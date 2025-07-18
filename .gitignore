@@ -41,3 +41,22 @@ coverage
 # OS generated files
 Thumbs.db
 .DS_Store
+
+# Additional development files
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/.ropeproject
+.idea/
+*.swp
+*.swo
+*~
+
+# Package manager files
+package-lock.json.bak
+yarn.lock
+pnpm-lock.yaml
+
+# Build artifacts
+*.d.ts.map
+*.js.map
