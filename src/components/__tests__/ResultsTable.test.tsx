@@ -161,14 +161,14 @@ describe('ResultsTable', () => {
   });
 
   it('エクスポートボタンが表示され、クリックできる', () => {
-    const mockOnExport = vi.fn();
-    render(<ResultsTable results={mockResults} onExport={mockOnExport} />);
+    render(<ResultsTable results={mockResults} />);
     
     const exportButton = screen.getByText('エクスポート');
     expect(exportButton).toBeInTheDocument();
     
     fireEvent.click(exportButton);
-    expect(mockOnExport).toHaveBeenCalledWith(mockResults);
+    // エクスポートモーダルが開くことを確認
+    expect(screen.getByText('データエクスポート')).toBeInTheDocument();
   });
 
   it('技タイプフィルターが正常に動作する', () => {

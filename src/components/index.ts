@@ -7,3 +7,4 @@ export { MovePreview } from './MovePreview';
 export { MoveInterface } from './MoveInterface';
 export { default as OptionsPanel } from './OptionsPanel';
 export { default as ResultsTable } from './ResultsTable';
+export { default as ExportModal } from './ExportModal';

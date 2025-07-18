@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from 'react';
 import type { PunishResult, PunishMove, SortOption, SortDirection } from '../types/frameData';
+import ExportModal from './ExportModal';
 
 interface ResultsTableProps {
   results: PunishResult[];
   className?: string;
-  onExport?: (data: PunishResult[]) => void;
 }
 
 interface SortConfig {
@@ -20,7 +20,7 @@ interface FilterConfig {
   maxDamage: number;
 }
 
-const ResultsTable: React.FC<ResultsTableProps> = ({ results, className = '', onExport }) => {
+const ResultsTable: React.FC<ResultsTableProps> = ({ results, className = '' }) => {
   const [sortConfig, setSortConfig] = useState<SortConfig>({ option: 'damage', direction: 'desc' });
   const [filterConfig, setFilterConfig] = useState<FilterConfig>({
     guaranteed: false,
@@ -29,6 +29,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, className = '', on
     minDamage: 0,
     maxDamage: 999,
   });
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
 
   const flattenedResults = useMemo(() => {
     const flattened: Array<{
@@ -165,14 +166,12 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, className = '', on
     <div className={`bg-white rounded-lg shadow-md p-6 ${className}`}>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold text-gray-800">計算結果</h2>
-        {onExport && (
-          <button
-            onClick={() => onExport(results)}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-          >
-            エクスポート
-          </button>
-        )}
+        <button
+          onClick={() => setIsExportModalOpen(true)}
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          エクスポート
+        </button>
       </div>
 
       {/* フィルター */}
@@ -392,6 +391,13 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, className = '', on
           ))}
         </div>
       </div>
+
+      {/* エクスポートモーダル */}
+      <ExportModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        results={results}
+      />
     </div>
   );
 };
