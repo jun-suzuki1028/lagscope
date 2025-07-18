@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import { Fighter } from '../types/frameData';
 import { CharacterCard } from './CharacterCard';
 
@@ -16,24 +17,33 @@ export function CharacterGrid({
   multiSelect = false,
   className = ''
 }: CharacterGridProps) {
+  const gridId = useId();
+  
   if (fighters.length === 0) {
     return (
-      <div className={`text-center py-8 text-gray-500 ${className}`}>
+      <div className={`text-center py-8 text-gray-500 ${className}`} role="status" aria-live="polite">
         該当するキャラクターが見つかりませんでした
       </div>
     );
   }
 
   return (
-    <div className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 ${className}`}>
-      {fighters.map((fighter) => (
-        <CharacterCard
-          key={fighter.id}
-          fighter={fighter}
-          isSelected={selectedFighterIds.includes(fighter.id)}
-          onSelect={() => onFighterSelect(fighter)}
-          multiSelect={multiSelect}
-        />
+    <div 
+      id={gridId}
+      className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 ${className}`}
+      role="grid"
+      aria-label="キャラクター選択グリッド"
+    >
+      {fighters.map((fighter, index) => (
+        <div key={fighter.id} role="gridcell">
+          <CharacterCard
+            fighter={fighter}
+            isSelected={selectedFighterIds.includes(fighter.id)}
+            onSelect={() => onFighterSelect(fighter)}
+            multiSelect={multiSelect}
+            tabIndex={index === 0 ? 0 : -1}
+          />
+        </div>
       ))}
     </div>
   );
