@@ -12,12 +12,22 @@ function App() {
 
   // モックデータの初期化
   useEffect(() => {
-    setFightersData({
-      data: mockFighters,
-      loading: false,
-      error: null,
-      lastFetch: Date.now(),
-    });
+    try {
+      setFightersData({
+        data: mockFighters,
+        loading: false,
+        error: null,
+        lastFetch: Date.now(),
+      });
+    } catch (error) {
+      console.error('Failed to initialize fighter data:', error);
+      setFightersData({
+        data: [],
+        loading: false,
+        error: 'キャラクターデータの初期化に失敗しました',
+        lastFetch: Date.now(),
+      });
+    }
   }, [setFightersData]);
 
   return (

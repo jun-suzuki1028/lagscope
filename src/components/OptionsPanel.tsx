@@ -10,7 +10,11 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({ className = '' }) => {
   const { calculationOptions, setCalculationOptions } = useAppStore();
 
   const handleOptionChange = (key: keyof CalculationOptions, value: any) => {
-    setCalculationOptions({ [key]: value });
+    try {
+      setCalculationOptions({ [key]: value });
+    } catch (error) {
+      console.error('Failed to update calculation options:', error);
+    }
   };
 
   const handleRangeToggle = (range: MoveRange) => {

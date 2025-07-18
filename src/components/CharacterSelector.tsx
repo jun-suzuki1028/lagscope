@@ -6,6 +6,7 @@ import { usePerformanceMonitor } from '../hooks/usePerformanceMonitor';
 import { CharacterGrid } from './CharacterGrid';
 import { CharacterModal } from './CharacterModal';
 import { SkeletonScreen } from './SkeletonScreen';
+import { CharacterSelectionFallback } from './FallbackUI';
 
 interface CharacterSelectorProps {
   type: 'attacker' | 'defender';
@@ -27,7 +28,9 @@ export const CharacterSelector = memo(function CharacterSelector({
   const sectionId = useId();
   const statusId = useId();
   
-  const { startMeasure, endMeasure } = usePerformanceMonitor('CharacterSelector');
+  const { startMeasure } = usePerformanceMonitor('CharacterSelector');
+  // 使用しない場合は削除
+  void startMeasure;
   
   const {
     fightersData,
@@ -120,8 +123,11 @@ export const CharacterSelector = memo(function CharacterSelector({
 
   if (fightersData.error) {
     return (
-      <div className={`${className} text-red-600 text-center py-8`} role="alert" aria-live="assertive">
-        エラー: {fightersData.error}
+      <div className={className}>
+        <CharacterSelectionFallback 
+          error={fightersData.error} 
+          onRetry={() => window.location.reload()}
+        />
       </div>
     );
   }

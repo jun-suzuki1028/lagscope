@@ -11,3 +11,8 @@ export { default as ExportModal } from './ExportModal';
 export { default as ResponsiveGrid } from './ResponsiveGrid';
 export { default as ResponsiveNavigation } from './ResponsiveNavigation';
 export { default as TouchFriendlyButton } from './TouchFriendlyButton';
+export { ErrorBoundary } from './ErrorBoundary';
+export { ErrorMessage } from './ErrorMessage';
+export { LoadingSpinner, LoadingOverlay, LoadingButton } from './LoadingSpinner';
+export { FallbackUI, CharacterSelectionFallback, MoveDataFallback, CalculationResultsFallback } from './FallbackUI';
+export { FormValidation, ValidatedInput, ValidatedSelect, validators, validateField, validateForm } from './FormValidation';
