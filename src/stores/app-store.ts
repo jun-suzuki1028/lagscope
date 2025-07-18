@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { devtools } from 'zustand/middleware';
+import { devtools, persist } from 'zustand/middleware';
 import type { Fighter, Move, CalculationOptions, PunishResult } from '../types/frameData';
 import type { AsyncState } from '../types/utils';
 
@@ -72,68 +72,76 @@ const initialState: AppState = {
 
 export const useAppStore = create<AppStore>()(
   devtools(
-    (set, get) => ({
-      ...initialState,
+    persist(
+      (set, get) => ({
+        ...initialState,
 
-      setAttackingFighter: (fighter) => {
-        set({ attackingFighter: fighter, selectedMove: null, results: [] });
-      },
+        setAttackingFighter: (fighter) => {
+          set({ attackingFighter: fighter, selectedMove: null, results: [] });
+        },
 
-      setDefendingFighters: (fighters) => {
-        set({ defendingFighters: fighters, results: [] });
-      },
+        setDefendingFighters: (fighters) => {
+          set({ defendingFighters: fighters, results: [] });
+        },
 
-      addDefendingFighter: (fighter) => {
-        const { defendingFighters } = get();
-        if (!defendingFighters.find(f => f.id === fighter.id)) {
-          set({ defendingFighters: [...defendingFighters, fighter], results: [] });
-        }
-      },
+        addDefendingFighter: (fighter) => {
+          const { defendingFighters } = get();
+          if (!defendingFighters.find(f => f.id === fighter.id)) {
+            set({ defendingFighters: [...defendingFighters, fighter], results: [] });
+          }
+        },
 
-      removeDefendingFighter: (fighterId) => {
-        const { defendingFighters } = get();
-        set({ 
-          defendingFighters: defendingFighters.filter(f => f.id !== fighterId),
-          results: [] 
-        });
-      },
+        removeDefendingFighter: (fighterId) => {
+          const { defendingFighters } = get();
+          set({ 
+            defendingFighters: defendingFighters.filter(f => f.id !== fighterId),
+            results: [] 
+          });
+        },
 
-      setSelectedMove: (move) => {
-        set({ selectedMove: move, results: [] });
-      },
+        setSelectedMove: (move) => {
+          set({ selectedMove: move, results: [] });
+        },
 
-      setCalculationOptions: (options) => {
-        const { calculationOptions } = get();
-        set({ 
-          calculationOptions: { ...calculationOptions, ...options },
-          results: [] 
-        });
-      },
+        setCalculationOptions: (options) => {
+          const { calculationOptions } = get();
+          set({ 
+            calculationOptions: { ...calculationOptions, ...options },
+            results: [] 
+          });
+        },
 
-      setResults: (results) => {
-        set({ results });
-      },
+        setResults: (results) => {
+          set({ results });
+        },
 
-      setIsCalculating: (isCalculating) => {
-        set({ isCalculating });
-      },
+        setIsCalculating: (isCalculating) => {
+          set({ isCalculating });
+        },
 
-      setError: (error) => {
-        set({ error });
-      },
+        setError: (error) => {
+          set({ error });
+        },
 
-      setFightersData: (data) => {
-        set({ fightersData: data });
-      },
+        setFightersData: (data) => {
+          set({ fightersData: data });
+        },
 
-      setMovesData: (data) => {
-        set({ movesData: data });
-      },
+        setMovesData: (data) => {
+          set({ movesData: data });
+        },
 
-      resetState: () => {
-        set(initialState);
-      },
-    }),
+        resetState: () => {
+          set(initialState);
+        },
+      }),
+      {
+        name: 'lagscope-options',
+        partialize: (state) => ({
+          calculationOptions: state.calculationOptions,
+        }),
+      }
+    ),
     {
       name: 'lagscope-app-store',
     }
