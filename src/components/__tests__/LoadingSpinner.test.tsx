@@ -4,9 +4,9 @@ import { LoadingSpinner, LoadingOverlay, LoadingButton } from '../LoadingSpinner
 
 describe('LoadingSpinner', () => {
   it('スピナーを表示する', () => {
-    render(<LoadingSpinner />);
+    const { container } = render(<LoadingSpinner />);
     
-    const spinner = screen.getByRole('generic');
+    const spinner = container.querySelector('.animate-spin');
     expect(spinner).toBeInTheDocument();
   });
 

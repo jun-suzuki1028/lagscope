@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { CharacterSelector } from '../CharacterSelector';
+import { useAppStore } from '../../stores/app-store';
 
 expect.extend(toHaveNoViolations);
 
@@ -27,7 +28,7 @@ const mockFightersData = {
   ],
 };
 
-vi.mock('../stores/app-store', () => ({
+vi.mock('../../stores/app-store', () => ({
   useAppStore: () => ({
     fightersData: mockFightersData,
     attackingFighter: null,

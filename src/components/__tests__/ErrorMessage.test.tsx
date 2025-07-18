@@ -17,17 +17,17 @@ describe('ErrorMessage', () => {
   });
 
   it('警告タイプのスタイルを適用する', () => {
-    render(<ErrorMessage type="warning" message="Warning message" />);
+    const { container } = render(<ErrorMessage type="warning" message="Warning message" />);
     
-    const container = screen.getByText('Warning message').closest('div')?.closest('div');
-    expect(container).toHaveClass('bg-yellow-50');
+    const rootElement = container.firstChild as HTMLElement;
+    expect(rootElement).toHaveClass('bg-yellow-50');
   });
 
   it('情報タイプのスタイルを適用する', () => {
-    render(<ErrorMessage type="info" message="Info message" />);
+    const { container } = render(<ErrorMessage type="info" message="Info message" />);
     
-    const container = screen.getByText('Info message').closest('div')?.closest('div');
-    expect(container).toHaveClass('bg-blue-50');
+    const rootElement = container.firstChild as HTMLElement;
+    expect(rootElement).toHaveClass('bg-blue-50');
   });
 
   it('再試行ボタンがクリックされた時にコールバックを実行する', () => {

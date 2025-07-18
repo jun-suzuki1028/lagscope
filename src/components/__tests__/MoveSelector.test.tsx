@@ -309,11 +309,20 @@ describe('MoveSelector', () => {
 
   it('displays category and range badges', () => {
     render(<MoveSelector selectedFighter={mockFighter} />);
-    expect(screen.getByText('ジャブ')).toBeInTheDocument();
-    expect(screen.getByText('ティルト')).toBeInTheDocument();
-    expect(screen.getByText('必殺技')).toBeInTheDocument();
-    expect(screen.getByText('近')).toBeInTheDocument();
-    expect(screen.getByText('飛')).toBeInTheDocument();
+    const jabElements = screen.getAllByText('ジャブ');
+    expect(jabElements.length).toBeGreaterThan(0);
+    
+    const tiltElements = screen.getAllByText('ティルト');
+    expect(tiltElements.length).toBeGreaterThan(0);
+    
+    const specialElements = screen.getAllByText('必殺技');
+    expect(specialElements.length).toBeGreaterThan(0);
+    
+    const closeRangeElements = screen.getAllByText('近');
+    expect(closeRangeElements.length).toBeGreaterThan(0);
+    
+    const farElements = screen.getAllByText('飛');
+    expect(farElements.length).toBeGreaterThan(0);
   });
 
   it('selects move when move card is clicked', async () => {

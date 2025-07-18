@@ -67,8 +67,8 @@ describe('MovePreview', () => {
 
   it('displays frame data correctly', () => {
     render(<MovePreview move={mockMove} />);
-    expect(screen.getByText('5F')).toBeInTheDocument(); // startup
-    expect(screen.getByText('5F')).toBeInTheDocument(); // active
+    const fiveFrameElements = screen.getAllByText('5F');
+    expect(fiveFrameElements.length).toBe(2); // startup and active
     expect(screen.getByText('10F')).toBeInTheDocument(); // recovery
     expect(screen.getByText('20F')).toBeInTheDocument(); // total
   });
