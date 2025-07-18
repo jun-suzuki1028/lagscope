@@ -1,4 +1,4 @@
-import type { PunishResult, PunishMove } from '../types/frameData';
+import type { PunishResult, PunishMove, Fighter, CalculationContext } from '../types/frameData';
 
 export type ExportFormat = 'csv' | 'txt' | 'json';
 

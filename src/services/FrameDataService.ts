@@ -91,7 +91,7 @@ export class FrameDataService {
         throw this.createError('VALIDATION_ERROR', 'Invalid fighters data format', parseResult.errors);
       }
 
-      return parseResult.data;
+      return parseResult.data as Fighter[];
     } catch (error) {
       if (error instanceof Error && error.name === 'FrameDataServiceError') {
         throw error;
@@ -156,7 +156,7 @@ export class FrameDataService {
         throw this.createError('VALIDATION_ERROR', 'Invalid fighter data format', parseResult.errors);
       }
 
-      return parseResult.data;
+      return parseResult.data as Fighter;
     } catch (error) {
       if (error instanceof Error && error.name === 'FrameDataServiceError') {
         throw error;
@@ -196,8 +196,8 @@ export class FrameDataService {
   private createError(code: FrameDataServiceError['code'], message: string, details?: unknown): Error {
     const error = new Error(message);
     error.name = 'FrameDataServiceError';
-    (error as FrameDataServiceError).code = code;
-    (error as FrameDataServiceError).details = details;
+    (error as unknown as FrameDataServiceError).code = code;
+    (error as unknown as FrameDataServiceError).details = details;
     return error;
   }
 }
