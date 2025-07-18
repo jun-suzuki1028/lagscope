@@ -20,6 +20,7 @@ function App() {
         lastFetch: Date.now(),
       });
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Failed to initialize fighter data:', error);
       setFightersData({
         data: [],

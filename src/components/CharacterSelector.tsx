@@ -41,9 +41,9 @@ export const CharacterSelector = memo(function CharacterSelector({
     removeDefendingFighter,
   } = useAppStore();
 
-  const allFighters = fightersData.data || [];
-  
   const filteredFighters = useMemo(() => {
+    const allFighters = fightersData.data || [];
+    
     if (!debouncedSearchTerm) {
       return allFighters;
     }
@@ -53,7 +53,7 @@ export const CharacterSelector = memo(function CharacterSelector({
       fighter.displayName.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
       fighter.series.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
     );
-  }, [allFighters, debouncedSearchTerm]);
+  }, [fightersData.data, debouncedSearchTerm]);
 
   const selectedFighterIds = useMemo(() => {
     if (type === 'attacker') {

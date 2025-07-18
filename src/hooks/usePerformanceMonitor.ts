@@ -17,7 +17,7 @@ export function usePerformanceMonitor(
   options: PerformanceMonitorOptions = {}
 ) {
   const {
-    enabled = process.env.NODE_ENV === 'development',
+    enabled = import.meta.env.DEV,
     threshold = 16, // 60fps = 16ms per frame
     onMetric
   } = options;
@@ -45,6 +45,7 @@ export function usePerformanceMonitor(
     metricsRef.current.push(metric);
     
     if (renderTime > threshold) {
+      // eslint-disable-next-line no-console
       console.warn(`⚠️ Performance warning: ${componentName} took ${renderTime.toFixed(2)}ms to render`);
     }
 
@@ -116,7 +117,8 @@ export function useRenderCount(componentName: string) {
   useEffect(() => {
     renderCountRef.current += 1;
     
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.DEV) {
+      // eslint-disable-next-line no-console
       console.log(`🔄 ${componentName} rendered ${renderCountRef.current} times`);
     }
   });

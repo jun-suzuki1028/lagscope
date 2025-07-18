@@ -40,11 +40,19 @@ export class FrameDataService {
 
   public async getFighter(fighterId: string): Promise<Fighter> {
     if (this.options.cacheEnabled && this.isCacheValid(fighterId)) {
-      return this.cache.get(fighterId)!.data;
+      const cached = this.cache.get(fighterId);
+      if (cached) {
+        return cached.data;
+      }
+      throw new Error(`Cache miss for fighter: ${fighterId}`);
     }
 
     if (this.loadingPromises.has(fighterId)) {
-      return this.loadingPromises.get(fighterId)!;
+      const loadingPromise = this.loadingPromises.get(fighterId);
+      if (loadingPromise) {
+        return loadingPromise;
+      }
+      throw new Error(`Loading promise not found for fighter: ${fighterId}`);
     }
 
     const loadingPromise = this.loadFighterData(fighterId);
@@ -83,7 +91,7 @@ export class FrameDataService {
         throw this.createError('VALIDATION_ERROR', 'Invalid fighters data format', parseResult.errors);
       }
 
-      return parseResult.data!;
+      return parseResult.data;
     } catch (error) {
       if (error instanceof Error && error.name === 'FrameDataServiceError') {
         throw error;
@@ -109,6 +117,7 @@ export class FrameDataService {
     });
 
     if (errors.length > 0) {
+      // eslint-disable-next-line no-console
       console.warn('Some fighters failed to load:', errors);
     }
 
@@ -147,7 +156,7 @@ export class FrameDataService {
         throw this.createError('VALIDATION_ERROR', 'Invalid fighter data format', parseResult.errors);
       }
 
-      return parseResult.data!;
+      return parseResult.data;
     } catch (error) {
       if (error instanceof Error && error.name === 'FrameDataServiceError') {
         throw error;
@@ -187,8 +196,8 @@ export class FrameDataService {
   private createError(code: FrameDataServiceError['code'], message: string, details?: unknown): Error {
     const error = new Error(message);
     error.name = 'FrameDataServiceError';
-    (error as any).code = code;
-    (error as any).details = details;
+    (error as FrameDataServiceError).code = code;
+    (error as FrameDataServiceError).details = details;
     return error;
   }
 }

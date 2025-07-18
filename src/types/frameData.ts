@@ -147,7 +147,8 @@ export type MoveCategory =
   | 'grab'
   | 'throw'
   | 'dodge'
-  | 'movement';
+  | 'movement'
+  | 'dash';
 
 export type MoveType = 
   | 'normal'

@@ -22,6 +22,7 @@ export function useAccessibility() {
         const parsedSettings = JSON.parse(savedSettings);
         setSettings({ ...DEFAULT_SETTINGS, ...parsedSettings });
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.warn('Failed to parse accessibility settings:', error);
       }
     }

@@ -181,6 +181,7 @@ export class FrameCalculator {
   private static getOutOfShieldOptions(
     defender: Fighter,
     disadvantageFrames: number,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _context: CalculationContext
   ): PunishMove[] {
     const punishingMoves: PunishMove[] = [];
@@ -211,6 +212,7 @@ export class FrameCalculator {
   private static getGuardCancelOptions(
     defender: Fighter,
     disadvantageFrames: number,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _context: CalculationContext
   ): PunishMove[] {
     const punishingMoves: PunishMove[] = [];
@@ -241,6 +243,7 @@ export class FrameCalculator {
   private static getShieldDropOptions(
     defender: Fighter,
     disadvantageFrames: number,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _context: CalculationContext
   ): PunishMove[] {
     const punishingMoves: PunishMove[] = [];

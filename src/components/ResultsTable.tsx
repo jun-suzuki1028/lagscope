@@ -112,7 +112,7 @@ const ResultsTable: React.FC<ResultsTableProps> = memo(({ results, className = '
     }));
   }, []);
 
-  const handleFilterChange = useCallback((key: keyof FilterConfig, value: any) => {
+  const handleFilterChange = useCallback((key: keyof FilterConfig, value: string | boolean) => {
     setFilterConfig(prev => ({ ...prev, [key]: value }));
   }, []);
 

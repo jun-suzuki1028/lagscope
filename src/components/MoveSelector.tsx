@@ -310,6 +310,7 @@ function MoveCategoryBadge({ category }: MoveCategoryBadgeProps) {
     throw: { label: '投げ', color: 'bg-pink-100 text-pink-800' },
     dodge: { label: '回避', color: 'bg-gray-100 text-gray-800' },
     movement: { label: '移動', color: 'bg-indigo-100 text-indigo-800' },
+    dash: { label: 'ダッシュ', color: 'bg-cyan-100 text-cyan-800' },
   };
 
   const config = categoryConfig[category];

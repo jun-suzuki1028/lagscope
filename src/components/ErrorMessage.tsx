@@ -1,4 +1,6 @@
 
+import React from 'react';
+
 export interface ErrorMessageProps {
   title?: string;
   message: string;
@@ -111,11 +113,3 @@ export function ErrorMessage({
   );
 }
 
-// Common error message presets
-export const ERROR_MESSAGES = {
-  NETWORK_ERROR: 'ネットワークエラーが発生しました。インターネット接続を確認してください。',
-  DATA_LOAD_ERROR: 'データの読み込みに失敗しました。',
-  VALIDATION_ERROR: '入力内容に問題があります。',
-  CALCULATION_ERROR: '計算処理でエラーが発生しました。',
-  UNKNOWN_ERROR: '予期しないエラーが発生しました。',
-} as const;

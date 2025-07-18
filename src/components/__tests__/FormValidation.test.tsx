@@ -1,6 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { vi } from 'vitest';
-import { FormValidation, ValidatedInput, ValidatedSelect, validators, validateField, validateForm } from '../FormValidation';
+import { render, screen } from '@testing-library/react';
+import { FormValidation, ValidatedInput, ValidatedSelect } from '../FormValidation';
+import { validators, validateField, validateForm } from '../../lib/validators';
 
 describe('FormValidation', () => {
   it('エラーがない場合は何も表示しない', () => {
