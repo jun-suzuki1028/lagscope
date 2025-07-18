@@ -8,3 +8,6 @@ export { MoveInterface } from './MoveInterface';
 export { default as OptionsPanel } from './OptionsPanel';
 export { default as ResultsTable } from './ResultsTable';
 export { default as ExportModal } from './ExportModal';
+export { default as ResponsiveGrid } from './ResponsiveGrid';
+export { default as ResponsiveNavigation } from './ResponsiveNavigation';
+export { default as TouchFriendlyButton } from './TouchFriendlyButton';
