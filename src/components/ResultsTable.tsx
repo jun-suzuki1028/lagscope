@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, memo, useCallback } from 'react';
 import type { PunishResult, PunishMove, SortOption, SortDirection } from '../types/frameData';
 import ExportModal from './ExportModal';
 
@@ -20,7 +20,7 @@ interface FilterConfig {
   maxDamage: number;
 }
 
-const ResultsTable: React.FC<ResultsTableProps> = ({ results, className = '' }) => {
+const ResultsTable: React.FC<ResultsTableProps> = memo(({ results, className = '' }) => {
   const [sortConfig, setSortConfig] = useState<SortConfig>({ option: 'damage', direction: 'desc' });
   const [filterConfig, setFilterConfig] = useState<FilterConfig>({
     guaranteed: false,
@@ -105,23 +105,23 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, className = '' }) 
     });
   }, [filteredResults, sortConfig]);
 
-  const handleSort = (option: SortOption) => {
+  const handleSort = useCallback((option: SortOption) => {
     setSortConfig(prev => ({
       option,
       direction: prev.option === option && prev.direction === 'asc' ? 'desc' : 'asc',
     }));
-  };
+  }, []);
 
-  const handleFilterChange = (key: keyof FilterConfig, value: any) => {
+  const handleFilterChange = useCallback((key: keyof FilterConfig, value: any) => {
     setFilterConfig(prev => ({ ...prev, [key]: value }));
-  };
+  }, []);
 
-  const getSortIcon = (option: SortOption) => {
+  const getSortIcon = useCallback((option: SortOption) => {
     if (sortConfig.option !== option) return '↕️';
     return sortConfig.direction === 'asc' ? '↑' : '↓';
-  };
+  }, [sortConfig]);
 
-  const formatMethod = (method: string) => {
+  const formatMethod = useCallback((method: string) => {
     const methodMap: Record<string, string> = {
       normal: '通常',
       out_of_shield: 'ガード解除',
@@ -138,9 +138,9 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, className = '' }) 
       spot_dodge: 'その場回避',
     };
     return methodMap[method] || method;
-  };
+  }, []);
 
-  const formatMoveType = (type: string) => {
+  const formatMoveType = useCallback((type: string) => {
     const typeMap: Record<string, string> = {
       normal: '通常技',
       special: '必殺技',
@@ -148,7 +148,7 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, className = '' }) 
       throw: '投げ',
     };
     return typeMap[type] || type;
-  };
+  }, []);
 
   if (results.length === 0) {
     return (
@@ -400,6 +400,6 @@ const ResultsTable: React.FC<ResultsTableProps> = ({ results, className = '' }) 
       />
     </div>
   );
-};
+});
 
 export default ResultsTable;

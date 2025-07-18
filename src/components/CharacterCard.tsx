@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Fighter } from '../types/frameData';
 
 interface CharacterCardProps {
@@ -9,7 +10,7 @@ interface CharacterCardProps {
   tabIndex?: number;
 }
 
-export function CharacterCard({ 
+export const CharacterCard = memo(function CharacterCard({ 
   fighter, 
   isSelected, 
   onSelect, 
@@ -73,4 +74,4 @@ export function CharacterCard({
       )}
     </div>
   );
-}
+});
