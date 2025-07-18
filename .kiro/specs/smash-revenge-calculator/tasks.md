@@ -1,135 +1,135 @@
-# Implementation Plan
+# 実装計画
 
-- [ ] 1. Set up project foundation and core infrastructure
-  - Initialize Vite + React + TypeScript project with proper configuration
-  - Configure Tailwind CSS with custom design tokens and responsive breakpoints
-  - Set up Zustand store with TypeScript interfaces
-  - Create basic project structure with folders for components, types, services, and data
-  - _Requirements: 8.1, 8.3_
+- [x] 1. プロジェクトの基盤とコアインフラストラクチャのセットアップ
+  - 適切な設定でVite + React + TypeScriptプロジェクトを初期化
+  - カスタムデザイントークンとレスポンシブブレークポイントでTailwind CSSを設定
+  - TypeScriptインターフェースでZustandストアをセットアップ
+  - コンポーネント、型、サービス、データ用のフォルダーを含む基本的なプロジェクト構造を作成
+  - _要求仕様: 8.1, 8.3_
 
-- [ ] 2. Define core TypeScript interfaces and data models
-  - Create comprehensive TypeScript interfaces for Fighter, Move, FrameData, and PunishResult
-  - Implement data validation schemas using Zod for runtime type checking
-  - Create utility types for calculation options and application state
-  - Write unit tests for data model validation
-  - _Requirements: 10.1, 10.3_
+- [x] 2. コアTypeScriptインターフェースとデータモデルの定義
+  - Fighter、Move、FrameData、PunishResult用の包括的なTypeScriptインターフェースを作成
+  - ランタイム型チェック用のZodを使用したデータバリデーションスキーマを実装
+  - 計算オプションとアプリケーション状態用のユーティリティ型を作成
+  - データモデルバリデーション用のユニットテストを作成
+  - _要求仕様: 10.1, 10.3_
 
-- [ ] 3. Implement frame data service and data loading system
-  - Create FrameDataService class with caching and lazy loading capabilities
-  - Implement JSON data loading with error handling and fallbacks
-  - Create sample fighter data files with accurate frame data structure
-  - Add data validation layer to ensure data integrity
-  - Write unit tests for data service functionality
-  - _Requirements: 10.1, 10.2, 8.2_
+- [ ] 3. フレームデータサービスとデータ読み込みシステムの実装
+  - キャッシュと遅延読み込み機能を持つFrameDataServiceクラスを作成
+  - エラーハンドリングとフォールバックを含むJSONデータ読み込みを実装
+  - 正確なフレームデータ構造を持つサンプルファイターデータファイルを作成
+  - データ整合性を保証するためのデータバリデーション層を追加
+  - データサービス機能用のユニットテストを作成
+  - _要求仕様: 10.1, 10.2, 8.2_
 
-- [ ] 4. Build core calculation engine
-  - Implement FrameCalculator class with shield advantage calculations
-  - Add support for guard cancel options (jump, up-B, up-smash) with proper frame costs
-  - Implement stale move negation calculations
-  - Create punish window calculation logic with all methods
-  - Write comprehensive unit tests for all calculation scenarios including edge cases
-  - _Requirements: 3.1, 3.2, 3.3, 3.5, 9.1_
+- [ ] 4. コア計算エンジンの構築
+  - シールド硬直差計算を含むFrameCalculatorクラスを実装
+  - 適切なフレームコストでガードキャンセル行動（ジャンプ、上B、上スマッシュ）のサポートを追加
+  - ワンパターン相殺計算を実装
+  - すべてのメソッドでの反撃ウィンドウ計算ロジックを作成
+  - エッジケースを含むすべての計算シナリオの包括的なユニットテストを作成
+  - _要求仕様: 3.1, 3.2, 3.3, 3.5, 9.1_
 
-- [ ] 5. Create character selection components
-  - Build CharacterSelector component with search and filtering capabilities
-  - Implement character grid layout with images and responsive design
-  - Add multi-select functionality for defending characters
-  - Create character modal for mobile devices
-  - Write component tests for selection behavior
-  - _Requirements: 1.1, 2.1, 2.2, 6.1, 6.2, 6.3_
+- [ ] 5. キャラクター選択コンポーネントの作成
+  - 検索とフィルタリング機能を持つCharacterSelectorコンポーネントを構築
+  - 画像とレスポンシブデザインを含むキャラクターグリッドレイアウトを実装
+  - 防御側キャラクター用のマルチセレクト機能を追加
+  - モバイルデバイス用のキャラクターモーダルを作成
+  - 選択動作用のコンポーネントテストを作成
+  - _要求仕様: 1.1, 2.1, 2.2, 6.1, 6.2, 6.3_
 
-- [ ] 6. Implement move selection interface
-  - Create MoveSelector component with categorized move display
-  - Add move filtering by type (normal, special, throw) and category
-  - Implement move search functionality with frame data preview
-  - Create responsive layout for move selection
-  - Write component tests for move selection and filtering
-  - _Requirements: 1.2, 1.3, 4.2_
+- [ ] 6. 技選択インターフェースの実装
+  - カテゴリ別技表示を含むMoveSelectorコンポーネントを作成
+  - 型別（通常技、必殺技、投げ技）とカテゴリ別の技フィルタリングを追加
+  - フレームデータプレビュー付きの技検索機能を実装
+  - 技選択用のレスポンシブレイアウトを作成
+  - 技選択とフィルタリング用のコンポーネントテストを作成
+  - _要求仕様: 1.2, 1.3, 4.2_
 
-- [ ] 7. Build calculation options panel
-  - Create OptionsPanel component with all configuration options
-  - Implement toggles for stale move negation, range filtering, and guard cancel options
-  - Add range filter controls (short/medium/long distance)
-  - Create session persistence for user preferences
-  - Write tests for options state management
-  - _Requirements: 9.1, 9.2, 9.3, 9.4_
+- [ ] 7. 計算オプションパネルの構築
+  - すべての設定オプションを含むOptionsPanelコンポーネントを作成
+  - ワンパターン相殺、距離フィルタリング、ガードキャンセル行動のトグルを実装
+  - 距離フィルタ制御（短距離/中距離/長距離）を追加
+  - ユーザー設定のセッション持続性を作成
+  - オプション状態管理のテストを作成
+  - _要求仕様: 9.1, 9.2, 9.3, 9.4_
 
-- [ ] 8. Develop results display system
-  - Create ResultsTable component with sortable columns
-  - Implement result filtering by move type and guaranteed status
-  - Add visual highlighting for kill moves and guaranteed punishes
-  - Create responsive table layout with mobile-friendly design
-  - Write tests for result display and sorting functionality
-  - _Requirements: 4.1, 4.2, 4.3, 4.5_
+- [ ] 8. 結果表示システムの開発
+  - ソート可能な列を持つResultsTableコンポーネントを作成
+  - 技タイプと確定状態による結果フィルタリングを実装
+  - 撃墜技と確定反撃技の視覚的ハイライトを追加
+  - モバイルフレンドリーなデザインのレスポンシブテーブルレイアウトを作成
+  - 結果表示とソート機能のテストを作成
+  - _要求仕様: 4.1, 4.2, 4.3, 4.5_
 
-- [ ] 9. Implement data export functionality
-  - Create export service supporting CSV and plain text formats
-  - Add export buttons to results interface
-  - Implement data formatting for different export types
-  - Add export validation to prevent empty data exports
-  - Write tests for export functionality
-  - _Requirements: 5.1, 5.2, 5.3, 5.4_
+- [ ] 9. データエクスポート機能の実装
+  - CSVとプレーンテキスト形式をサポートするエクスポートサービスを作成
+  - 結果インターフェースにエクスポートボタンを追加
+  - 異なるエクスポートタイプのデータフォーマットを実装
+  - 空のデータエクスポートを防ぐエクスポートバリデーションを追加
+  - エクスポート機能のテストを作成
+  - _要求仕様: 5.1, 5.2, 5.3, 5.4_
 
-- [ ] 10. Build responsive layout system
-  - Create ResponsiveGrid component handling all screen sizes
-  - Implement mobile-first responsive design with proper breakpoints
-  - Add touch-friendly interface elements with appropriate sizing
-  - Create adaptive navigation for different screen sizes
-  - Test layout behavior across all target screen sizes
-  - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
+- [ ] 10. レスポンシブレイアウトシステムの構築
+  - すべての画面サイズを処理するResponsiveGridコンポーネントを作成
+  - 適切なブレークポイントでモバイルファーストのレスポンシブデザインを実装
+  - 適切なサイズでタッチフレンドリーなインターフェース要素を追加
+  - 異なる画面サイズ用の適応型ナビゲーションを作成
+  - すべてのターゲット画面サイズでレイアウト動作をテスト
+  - _要求仕様: 6.1, 6.2, 6.3, 6.4, 6.5_
 
-- [ ] 11. Implement accessibility features
-  - Add comprehensive ARIA labels and descriptions to all interactive elements
-  - Implement full keyboard navigation support with proper focus management
-  - Create high contrast mode and ensure WCAG AA compliance
-  - Add screen reader support with proper semantic markup
-  - Write automated accessibility tests
-  - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5_
+- [ ] 11. アクセシビリティ機能の実装
+  - すべてのインタラクティブ要素に包括的なARIAラベルと説明を追加
+  - 適切なフォーカス管理で完全なキーボードナビゲーションサポートを実装
+  - 高コントラストモードを作成し、WCAG AA準拠を確保
+  - 適切なセマンティックマークアップでスクリーンリーダーサポートを追加
+  - 自動アクセシビリティテストを作成
+  - _要求仕様: 7.1, 7.2, 7.3, 7.4, 7.5_
 
-- [ ] 12. Add performance optimizations
-  - Implement React.memo for expensive components to prevent unnecessary re-renders
-  - Add calculation result memoization to cache frequent queries
-  - Create loading states and skeleton screens for better perceived performance
-  - Implement debounced input handling for search and filtering
-  - Add performance monitoring and measurement tools
-  - _Requirements: 8.1, 8.2, 8.3_
+- [ ] 12. パフォーマンス最適化の追加
+  - 不必要な再レンダリングを防ぐため、高コストなコンポーネントにReact.memoを実装
+  - 頻繁なクエリをキャッシュするため、計算結果のメモ化を追加
+  - より良い知覚パフォーマンスのため、読み込み状態とスケルトンスクリーンを作成
+  - 検索とフィルタリング用のデバウンス入力処理を実装
+  - パフォーマンスモニタリングと測定ツールを追加
+  - _要求仕様: 8.1, 8.2, 8.3_
 
-- [ ] 13. Create comprehensive test suite
-  - Write unit tests for all calculation logic and edge cases
-  - Create integration tests for component interactions and data flow
-  - Implement end-to-end tests for complete user workflows
-  - Add accessibility testing with automated tools
-  - Create performance tests for calculation speed requirements
-  - _Requirements: 8.2, 7.1, 7.2, 7.3, 7.4_
+- [ ] 13. 包括的なテストスイートの作成
+  - すべての計算ロジックとエッジケースのユニットテストを作成
+  - コンポーネント間の相互作用とデータフローの統合テストを作成
+  - 完全なユーザーワークフローのE2Eテストを実装
+  - 自動化ツールでアクセシビリティテストを追加
+  - 計算速度要件のパフォーマンステストを作成
+  - _要求仕様: 8.2, 7.1, 7.2, 7.3, 7.4_
 
-- [ ] 14. Implement error handling and user feedback
-  - Create global error boundary with graceful error recovery
-  - Add user-friendly error messages for all failure scenarios
-  - Implement loading indicators for all async operations
-  - Create fallback UI for missing or corrupted data
-  - Add form validation with clear feedback messages
-  - _Requirements: 2.4, 4.5, 5.4_
+- [ ] 14. エラーハンドリングとユーザーフィードバックの実装
+  - 優雅なエラー回復機能を持つグローバルエラーバウンダリを作成
+  - すべての失敗シナリオにユーザーフレンドリーなエラーメッセージを追加
+  - すべての非同期操作に読み込みインジケータを実装
+  - 欠損または破損データのフォールバックUIを作成
+  - 明確なフィードバックメッセージを含むフォームバリデーションを追加
+  - _要求仕様: 2.4, 4.5, 5.4_
 
-- [ ] 15. Set up build and deployment pipeline
-  - Configure Vite build optimization for production
-  - Set up GitHub Actions workflow for automated testing and deployment
-  - Implement GitHub Pages deployment with proper routing
-  - Add bundle analysis and performance monitoring
-  - Create deployment verification tests
-  - _Requirements: 8.1_
+- [ ] 15. ビルドとデプロイパイプラインのセットアップ
+  - 本番環境用のViteビルド最適化を設定
+  - 自動化テストとデプロイ用のGitHub Actionsワークフローをセットアップ
+  - 適切なルーティングでGitHub Pagesデプロイを実装
+  - バンドル分析とパフォーマンスモニタリングを追加
+  - デプロイ検証テストを作成
+  - _要求仕様: 8.1_
 
-- [ ] 16. Populate comprehensive frame data
-  - Create accurate frame data files for all Ultimate fighters
-  - Implement data validation to ensure consistency and accuracy
-  - Add move properties including damage, range, and kill power
-  - Create data update mechanism for game balance changes
-  - Verify data accuracy against trusted sources
-  - _Requirements: 10.1, 10.2, 10.4, 10.5_
+- [ ] 16. 包括的なフレームデータの投入
+  - すべてのSPECIALファイター用の正確なフレームデータファイルを作成
+  - 一貫性と正確性を保証するデータバリデーションを実装
+  - ダメージ、距離、撃墜力を含む技プロパティを追加
+  - ゲームバランス変更用のデータ更新メカニズムを作成
+  - 信頼できるソースに対するデータ正確性の検証
+  - _要求仕様: 10.1, 10.2, 10.4, 10.5_
 
-- [ ] 17. Final integration and polish
-  - Integrate all components into cohesive application flow
-  - Perform cross-browser testing and compatibility fixes
-  - Optimize bundle size and loading performance
-  - Add final UI polish and animations
-  - Conduct user acceptance testing with target audience
-  - _Requirements: 8.1, 8.2, 8.3_
+- [ ] 17. 最終統合と仕上げ
+  - すべてのコンポーネントを統合したまとまりのあるアプリケーションフローに統合
+  - クロスブラウザテストと互換性修正を実行
+  - バンドルサイズと読み込みパフォーマンスを最適化
+  - 最終的なUI仕上げとアニメーションを追加
+  - ターゲットオーディエンスでユーザー受け入れテストを実施
+  - _要求仕様: 8.1, 8.2, 8.3_

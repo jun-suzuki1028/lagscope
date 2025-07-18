@@ -1,47 +1,47 @@
-# Design Document
+# 設計書
 
-## Overview
+## 概要
 
-The Smash Revenger application will be built as a modern, responsive web application using React with TypeScript. The architecture follows a component-based design with clear separation of concerns between data management, business logic, and presentation layers. The application will be optimized for performance with client-side calculations and efficient state management.
+LagScopeアプリケーションは、React with TypeScriptを使用したモダンで、レスポンシブなWebアプリケーションとして構築されます。アーキテクチャはコンポーネントベースの設計に従い、データ管理、ビジネスロジック、プレゼンテーション層間の明確な関心の分離を実現します。アプリケーションは、クライアントサイドの計算と効率的な状態管理でパフォーマンスを最適化します。
 
-## Architecture
+## アーキテクチャ
 
-### High-Level Architecture
+### 高レベルアーキテクチャ
 
 ```mermaid
 graph TB
-    A[User Interface Layer] --> B[State Management Layer]
-    B --> C[Business Logic Layer]
-    C --> D[Data Access Layer]
-    D --> E[Frame Data Store]
+    A[ユーザーインターフェース層] --> B[状態管理層]
+    B --> C[ビジネスロジック層]
+    C --> D[データアクセス層]
+    D --> E[フレームデータストア]
     
-    A --> F[Component Library]
-    F --> G[Styling System]
+    A --> F[コンポーネントライブラリ]
+    F --> G[スタイリングシステム]
     
-    H[External APIs] --> D
-    I[Local Storage] --> B
+    H[外部API] --> D
+    I[ローカルストレージ] --> B
 ```
 
-### Technology Stack
+### 技術スタック
 
-- **Frontend Framework**: React 18 with TypeScript
-- **Build Tool**: Vite for fast development and optimized builds
-- **Styling**: Tailwind CSS for utility-first styling
-- **State Management**: Zustand for lightweight, performant state management
-- **Data Storage**: JSON files for frame data with potential IndexedDB caching
-- **Testing**: Vitest + React Testing Library
-- **Deployment**: GitHub Pages with automated CI/CD
+- **フロントエンドフレームワーク**: React 18 with TypeScript
+- **ビルドツール**: Vite（高速開発と最適化されたビルドのため）
+- **スタイリング**: Tailwind CSS（ユーティリティファーストスタイリングのため）
+- **状態管理**: Zustand（軽量で高性能な状態管理のため）
+- **データストレージ**: フレームデータ用JSONファイル（IndexedDBキャッシュの可能性あり）
+- **テスト**: Vitest + React Testing Library
+- **デプロイ**: GitHub Pages（自動化されたCI/CDと共に）
 
-## Components and Interfaces
+## コンポーネントとインターフェース
 
-### Core Components
+### コアコンポーネント
 
-#### 1. Application Shell (`App.tsx`)
-- Main application container
-- Handles global state initialization
-- Manages responsive layout breakpoints
+#### 1. アプリケーションシェル (`App.tsx`)
+- メインアプリケーションコンテナ
+- グローバル状態の初期化を処理
+- レスポンシブレイアウトブレークポイントの管理
 
-#### 2. Character Selector (`CharacterSelector.tsx`)
+#### 2. キャラクターセレクタ (`CharacterSelector.tsx`)
 ```typescript
 interface CharacterSelectorProps {
   type: 'attacker' | 'defender';
@@ -51,7 +51,7 @@ interface CharacterSelectorProps {
 }
 ```
 
-#### 3. Move Selector (`MoveSelector.tsx`)
+#### 3. 技セレクタ (`MoveSelector.tsx`)
 ```typescript
 interface MoveSelectorProps {
   characterId: string;
@@ -61,7 +61,7 @@ interface MoveSelectorProps {
 }
 ```
 
-#### 4. Calculation Engine (`CalculationEngine.tsx`)
+#### 4. 計算エンジン (`CalculationEngine.tsx`)
 ```typescript
 interface CalculationEngineProps {
   attackingMove: Move;
@@ -71,7 +71,7 @@ interface CalculationEngineProps {
 }
 ```
 
-#### 5. Results Display (`ResultsTable.tsx`)
+#### 5. 結果表示 (`ResultsTable.tsx`)
 ```typescript
 interface ResultsTableProps {
   results: PunishResult[];
@@ -81,7 +81,7 @@ interface ResultsTableProps {
 }
 ```
 
-#### 6. Options Panel (`OptionsPanel.tsx`)
+#### 6. オプションパネル (`OptionsPanel.tsx`)
 ```typescript
 interface OptionsPanelProps {
   options: CalculationOptions;
@@ -89,24 +89,24 @@ interface OptionsPanelProps {
 }
 ```
 
-### Layout Components
+### レイアウトコンポーネント
 
-#### 1. Responsive Grid (`ResponsiveGrid.tsx`)
-- Handles layout adaptation across screen sizes
-- Mobile: Single column stack
-- Tablet: Two-column layout
-- Desktop: Three-column layout
+#### 1. レスポンシブグリッド (`ResponsiveGrid.tsx`)
+- 画面サイズ間でのレイアウト適応を処理
+- モバイル: 単一列スタック
+- タブレット: 2列レイアウト
+- デスクトップ: 3列レイアウト
 
-#### 2. Modal System (`Modal.tsx`)
-- Character selection modals on mobile
-- Export confirmation dialogs
-- Help and information overlays
+#### 2. モーダルシステム (`Modal.tsx`)
+- モバイルでのキャラクター選択モーダル
+- エクスポート確認ダイアログ
+- ヘルプと情報オーバーレイ
 
-## Data Models
+## データモデル
 
-### Core Data Structures
+### コアデータ構造
 
-#### Fighter Interface
+#### ファイターインターフェース
 ```typescript
 interface Fighter {
   id: string;
@@ -121,7 +121,16 @@ interface Fighter {
 }
 ```
 
-#### Move Interface
+#### GuardCancelOptionインターフェース
+```typescript
+interface GuardCancelOption {
+  type: 'jump' | 'upB' | 'upSmash';
+  move: Move;
+  totalFrames: number; // ガードキャンセルのベースフレーム + 技の発生フレーム
+}
+```
+
+#### 技インターフェース
 ```typescript
 interface Move {
   id: string;
@@ -152,7 +161,7 @@ interface MoveProperties {
 }
 ```
 
-#### Calculation Result Interface
+#### 計算結果インターフェース
 ```typescript
 interface PunishResult {
   defendingCharacter: Fighter;
@@ -166,22 +175,22 @@ interface PunishResult {
 type PunishMethod = 'normal' | 'jump_cancel' | 'up_b_cancel' | 'up_smash_cancel';
 ```
 
-#### Application State Interface
+#### アプリケーション状態インターフェース
 ```typescript
 interface AppState {
-  // Character Selection
+  // キャラクター選択
   attackingCharacter: Fighter | null;
   defendingCharacters: Fighter[];
   selectedMove: Move | null;
   
-  // Calculation Options
+  // 計算オプション
   calculationOptions: CalculationOptions;
   
-  // Results
+  // 結果
   currentResults: PunishResult[];
   isCalculating: boolean;
   
-  // UI State
+  // UI状態
   activeTab: TabType;
   mobileMenuOpen: boolean;
   selectedResultIndex: number;
@@ -196,11 +205,11 @@ interface CalculationOptions {
 }
 ```
 
-## Business Logic
+## ビジネスロジック
 
-### Frame Calculation Engine
+### フレーム計算エンジン
 
-#### Core Calculation Logic
+#### コア計算ロジック
 ```typescript
 class FrameCalculator {
   static calculatePunishWindow(
@@ -217,7 +226,7 @@ class FrameCalculator {
       frameAdvantage: totalAdvantage,
       guaranteed: totalAdvantage >= defendMove.frameData.startup,
       method,
-      // ... other properties
+      // ... その他のプロパティ
     };
   }
   
@@ -233,10 +242,10 @@ class FrameCalculator {
   
   private static getMethodFrameCost(method: PunishMethod): number {
     const frameCosts = {
-      normal: 11, // Shield drop
-      jump_cancel: 3,
-      up_b_cancel: 8,
-      up_smash_cancel: 11
+      normal: 11, // シールド解除
+      jump_cancel: 3, // ジャンプ踏み切りのみ（空中攻撃の発生Fは別途加算）
+      up_b_cancel: 0, // キャラクター固有の上B発生Fをそのまま使用
+      up_smash_cancel: 0 // キャラクター固有の上スマ発生Fをそのまま使用
     };
     
     return frameCosts[method];
@@ -244,9 +253,9 @@ class FrameCalculator {
 }
 ```
 
-### Data Management
+### データ管理
 
-#### Frame Data Service
+#### フレームデータサービス
 ```typescript
 class FrameDataService {
   private static instance: FrameDataService;
@@ -271,18 +280,18 @@ class FrameDataService {
 }
 ```
 
-## Error Handling
+## エラーハンドリング
 
-### Error Boundaries
-- Global error boundary for unhandled exceptions
-- Component-level error boundaries for graceful degradation
-- Network error handling with retry mechanisms
+### エラーバウンダリ
+- 未処理例外用のグローバルエラーバウンダリ
+- 優雅な劣化のためのコンポーネントレベルエラーバウンダリ
+- 再試行メカニズム付きのネットワークエラーハンドリング
 
-### Validation Layer
+### バリデーション層
 ```typescript
 class DataValidator {
   static validateFighterData(data: unknown): Fighter {
-    // Runtime validation using Zod or similar
+    // ZodやSimilarを使用したランタイムバリデーション
     return fighterSchema.parse(data);
   }
   
@@ -292,70 +301,70 @@ class DataValidator {
 }
 ```
 
-### User Feedback
-- Loading states for all async operations
-- Clear error messages for user-facing issues
-- Fallback UI for missing or corrupted data
+### ユーザーフィードバック
+- すべての非同期操作の読み込み状態
+- ユーザー向け問題の明確なエラーメッセージ
+- 欠損または破損データのフォールバックUI
 
-## Testing Strategy
+## テスト戦略
 
-### Unit Testing
-- **Frame Calculator**: Test all calculation scenarios including edge cases
-- **Data Validation**: Ensure data integrity and proper error handling
-- **State Management**: Test state transitions and side effects
-- **Utility Functions**: Test helper functions and data transformations
+### ユニットテスト
+- **フレーム計算機**: エッジケースを含むすべての計算シナリオのテスト
+- **データバリデーション**: データの完全性と適切なエラーハンドリングの確保
+- **状態管理**: 状態遷移と副作用のテスト
+- **ユーティリティ関数**: ヘルパー関数とデータ変換のテスト
 
-### Integration Testing
-- **Component Integration**: Test component interactions and data flow
-- **API Integration**: Test data loading and caching mechanisms
-- **State Integration**: Test complex state changes across components
+### 統合テスト
+- **コンポーネント統合**: コンポーネント間の相互作用とデータフローのテスト
+- **API統合**: データ読み込みとキャッシュメカニズムのテスト
+- **状態統合**: コンポーネント間の複雑な状態変化のテスト
 
-### End-to-End Testing
-- **User Workflows**: Test complete user journeys from selection to results
-- **Responsive Behavior**: Test layout adaptation across screen sizes
-- **Performance**: Test loading times and calculation performance
+### E2Eテスト
+- **ユーザーワークフロー**: 選択から結果までの完全なユーザージャーニーのテスト
+- **レスポンシブ動作**: 画面サイズ間でのレイアウト適応のテスト
+- **パフォーマンス**: 読み込み時間と計算パフォーマンスのテスト
 
-### Accessibility Testing
-- **Keyboard Navigation**: Ensure full keyboard accessibility
-- **Screen Reader**: Test with screen reader software
-- **Color Contrast**: Automated testing for WCAG compliance
-- **Focus Management**: Test focus handling in dynamic content
+### アクセシビリティテスト
+- **キーボードナビゲーション**: 完全なキーボードアクセシビリティの確保
+- **スクリーンリーダー**: スクリーンリーダーソフトウェアでのテスト
+- **カラーコントラスト**: WCAG準拠の自動化テスト
+- **フォーカス管理**: 動的コンテンツでのフォーカス処理のテスト
 
-## Performance Optimization
+## パフォーマンス最適化
 
-### Data Loading Strategy
-- **Lazy Loading**: Load fighter data on demand
-- **Code Splitting**: Split components by route and feature
-- **Caching**: Implement intelligent caching for frequently accessed data
-- **Compression**: Use gzip compression for data files
+### データ読み込み戦略
+- **遅延読み込み**: オンデマンドでのファイターデータ読み込み
+- **コード分割**: ルートと機能によるコンポーネント分割
+- **キャッシュ**: 頻繁にアクセスされるデータのインテリジェントキャッシュ
+- **圧縮**: データファイルのgzip圧縮使用
 
-### Calculation Optimization
-- **Memoization**: Cache calculation results for repeated queries
-- **Web Workers**: Offload heavy calculations to prevent UI blocking
-- **Debouncing**: Debounce user input to reduce unnecessary calculations
+### 計算最適化
+- **メモ化**: 繰り返しクエリの計算結果キャッシュ
+- **Web Workers**: UIブロックを防ぐための重い計算のオフロード
+- **デバウンス**: 不必要な計算を減らすためのユーザー入力のデバウンス
 
-### Rendering Optimization
-- **Virtual Scrolling**: For large result sets
-- **React.memo**: Prevent unnecessary re-renders
-- **Lazy Components**: Load components only when needed
+### レンダリング最適化
+- **仮想スクロール**: 大きな結果セット用
+- **React.memo**: 不必要な再レンダリングの防止
+- **遅延コンポーネント**: 必要な時のみコンポーネントを読み込み
 
-## Security Considerations
+## セキュリティ考慮事項
 
-### Data Integrity
-- **Input Validation**: Validate all user inputs and data sources
-- **XSS Prevention**: Sanitize any dynamic content
-- **CSP Headers**: Implement Content Security Policy
+### データ整合性
+- **入力バリデーション**: すべてのユーザー入力とデータソースの検証
+- **XSS防止**: 動的コンテンツのサニタイズ
+- **CSPヘッダー**: コンテンツセキュリティポリシーの実装
 
-### Privacy
-- **Local Storage**: Minimize data stored locally
-- **No Tracking**: Avoid unnecessary user tracking
-- **Data Minimization**: Only collect and process necessary data
+### プライバシー
+- **ローカルストレージ**: ローカルに保存されるデータの最小化
+- **トラッキングなし**: 不必要なユーザートラッキングの回避
+- **データ最小化**: 必要なデータのみの収集と処理
 
-## Deployment and Infrastructure
+## デプロイとインフラストラクチャ
 
-### Build Process
+### ビルドプロセス
 ```yaml
-# GitHub Actions workflow
+# GitHub Actionsワークフロー
 name: Build and Deploy
 on:
   push:
@@ -372,12 +381,12 @@ jobs:
       - uses: peaceiris/actions-gh-pages@v3
 ```
 
-### Performance Monitoring
-- **Core Web Vitals**: Monitor LCP, FID, CLS
-- **Bundle Analysis**: Regular bundle size monitoring
-- **Error Tracking**: Client-side error reporting
+### パフォーマンスモニタリング
+- **Core Web Vitals**: LCP、FID、CLSの監視
+- **バンドル分析**: 定期的なバンドルサイズ監視
+- **エラートラッキング**: クライアントサイドエラーレポート
 
-### Progressive Enhancement
-- **Service Worker**: Cache static assets and data
-- **Offline Support**: Basic functionality without network
-- **PWA Features**: App-like experience on mobile devices
+### プログレッシブエンハンスメント
+- **Service Worker**: 静的アセットとデータのキャッシュ
+- **オフラインサポート**: ネットワークなしでの基本機能
+- **PWA機能**: モバイルでのアプリライクな体験

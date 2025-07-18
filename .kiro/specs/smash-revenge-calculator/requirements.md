@@ -1,124 +1,127 @@
-# Requirements Document
+# 要求仕様書
 
-## Introduction
+## 概要
 
-This document outlines the requirements for "Smash Revenger" (スマッシュ・リベンジャー), a web-based tool for calculating guaranteed punish options in Super Smash Bros. Ultimate. The tool will help intermediate to advanced players determine which counterattacks are guaranteed after shielding specific moves, improving upon existing tools with enhanced functionality, multi-character comparison, and better user experience.
+この文書は、「LagScope」の要求仕様を定義します。これは、大乱闘スマッシュブラザーズ SPECIALにおいて、特定の技をシールドした後の確定反撃技を算出するWebベースのツールです。このツールは、中級者から上級者のプレイヤーが、機能の拡張、複数キャラクターの比較、より優れたユーザーエクスペリエンスを備えた既存ツールの改良版として、どの反撃技が確定するかを判断するのに役立ちます。
 
-## Requirements
+## 要求仕様
 
-### Requirement 1
+### 要求仕様 1
 
-**User Story:** As a competitive Smash player, I want to select an attacking character and their move so that I can analyze punish opportunities against it.
+**ユーザーストーリー：** 競技スマブラプレイヤーとして、攻撃側のキャラクターとその技を選択し、その技に対する反撃機会を分析したい。
 
-#### Acceptance Criteria
+#### 受け入れ基準
 
-1. WHEN the user accesses the main interface THEN the system SHALL display a character selection dropdown with all Ultimate fighters
-2. WHEN a character is selected THEN the system SHALL load and display that character's moveset organized by categories (normal attacks, special moves, throws)
-3. WHEN a move is selected THEN the system SHALL display the move's frame data including startup frames, total frames, and shield advantage
-4. IF a move has variable frame data THEN the system SHALL display the range of possible values
+1. ユーザーがメインインターフェースにアクセスした時、システムは全SPECIALファイターを含むキャラクター選択ドロップダウンを表示する
+2. キャラクターが選択された時、システムはそのキャラクターの技セットをカテゴリ別（通常技、必殺技、投げ技）に整理して読み込み、表示する
+3. 技が選択された時、システムは発生フレーム、全体フレーム、シールド硬直差を含む技のフレームデータを表示する
+4. 技に可変フレームデータがある場合、システムは可能な値の範囲を表示する
 
-### Requirement 2
+### 要求仕様 2
 
-**User Story:** As a player learning matchups, I want to select my defending character(s) so that I can see what punish options are available to me.
+**ユーザーストーリー：** 対戦相手を研究しているプレイヤーとして、自分の防御側キャラクターを選択し、利用可能な反撃技を確認したい。
 
-#### Acceptance Criteria
+#### 受け入れ基準
 
-1. WHEN the user selects a defending character THEN the system SHALL load that character's complete moveset with frame data
-2. WHEN multiple defending characters are selected THEN the system SHALL support comparison across all selected characters simultaneously
-3. WHEN a defending character is selected THEN the system SHALL display their guard cancel options (jump, up-B, up-smash) with respective frame costs
-4. IF no defending character is selected THEN the system SHALL prompt the user to make a selection before calculation
+1. ユーザーが防御側キャラクターを選択した時、システムはそのキャラクターの完全な技セットとフレームデータを読み込む
+2. 複数の防御側キャラクターが選択された時、システムは選択されたすべてのキャラクターの同時比較をサポートする
+3. 防御側キャラクターが選択された時、システムはそのキャラクターのガードキャンセル行動（ジャンプ、上必殺ワザ、上スマッシュ）と各行動の発生フレームを表示する
+4. 防御側キャラクターが選択されていない場合、システムは計算前にユーザーに選択を促す
 
-### Requirement 3
+### 要求仕様 3
 
-**User Story:** As a frame data analyst, I want the system to accurately calculate guaranteed punish options so that I can make informed decisions in matches.
+**ユーザーストーリー：** フレームデータ分析者として、システムが確定反撃技を正確に算出し、試合で情報に基づいた決定を下せるようにしたい。
 
-#### Acceptance Criteria
+#### 受け入れ基準
 
-1. WHEN calculation is triggered THEN the system SHALL use the formula: Shield Advantage + 1 >= Move Startup Frames
-2. WHEN calculating punishes THEN the system SHALL consider guard cancel options (3F jump, 8F up-B, 11F up-smash)
-3. WHEN calculating punishes THEN the system SHALL account for normal shield drop (11F) for ground options
-4. WHEN moves have stale move negation applied THEN the system SHALL adjust shield advantage accordingly
-5. IF a punish option exists THEN the system SHALL calculate and display the frame advantage window
+1. 計算が実行された時、システムは次の公式を使用する：シールド硬直差 >= 技の発生フレーム
+2. 反撃技を計算する時、システムはガードキャンセル行動を考慮する：
+   - ジャンプキャンセル空中攻撃: 3F（踏み切り） + 各空中攻撃の発生フレーム
+   - 上必殺ワザ: キャラクター固有の発生フレーム
+   - 上スマッシュ: キャラクター固有の発生フレーム
+3. 反撃技を計算する時、システムは地上技に対する通常のシールド解除（11F）を考慮する
+4. 技にワンパターン相殺が適用されている場合、システムは直近9回の攻撃履歴に基づいてダメージ減衰を計算し、シールド硬直差を調整する
+5. 反撃技が存在する場合、システムはフレーム有利ウィンドウを計算して表示する
 
-### Requirement 4
+### 要求仕様 4
 
-**User Story:** As a tournament player, I want to see punish results organized and filtered so that I can quickly identify the most practical options.
+**ユーザーストーリー：** 大会プレイヤーとして、反撃結果を整理・フィルタリングして表示し、最も実用的な選択肢を素早く特定したい。
 
-#### Acceptance Criteria
+#### 受け入れ基準
 
-1. WHEN results are displayed THEN the system SHALL sort punish options by startup frames (fastest first)
-2. WHEN results are displayed THEN the system SHALL categorize moves by type (normal, special, throw)
-3. WHEN results include kill moves THEN the system SHALL highlight these options visually
-4. WHEN range filtering is enabled THEN the system SHALL filter results based on move range (short/medium/long)
-5. IF no guaranteed punishes exist THEN the system SHALL clearly indicate this to the user
+1. 結果が表示された時、システムは反撃技を発生フレーム順（最速優先）でソートする
+2. 結果が表示された時、システムは技を種類別（通常技、必殺技、投げ技）にカテゴリ分けする
+3. 結果に撃墜技が含まれる場合、システムはこれらの技を視覚的にハイライト表示する
+4. 距離フィルタリングが有効な場合、システムは技のリーチとシールドノックバックを考慮して、実際に届く反撃技のみを表示する
+5. 確定反撃技が存在しない場合、システムはこれをユーザーに明確に示す
 
-### Requirement 5
+### 要求仕様 5
 
-**User Story:** As a content creator, I want to export calculation results so that I can share findings with my community.
+**ユーザーストーリー：** コンテンツクリエイターとして、計算結果をエクスポートし、コミュニティと発見を共有したい。
 
-#### Acceptance Criteria
+#### 受け入れ基準
 
-1. WHEN the user requests data export THEN the system SHALL provide CSV format download
-2. WHEN the user requests data export THEN the system SHALL provide plain text format option
-3. WHEN exporting data THEN the system SHALL include all relevant frame data and calculation parameters
-4. IF no results exist THEN the system SHALL prevent export and display an appropriate message
+1. ユーザーがデータエクスポートを要求した時、システムはCSV形式でのダウンロードを提供する
+2. ユーザーがデータエクスポートを要求した時、システムはプレーンテキスト形式のオプションを提供する
+3. データをエクスポートする時、システムは関連するすべてのフレームデータと計算パラメータを含む
+4. 結果が存在しない場合、システムはエクスポートを防止し、適切なメッセージを表示する
 
-### Requirement 6
+### 要求仕様 6
 
-**User Story:** As a mobile user, I want the tool to work seamlessly on my phone so that I can reference it during practice sessions.
+**ユーザーストーリー：** モバイルユーザーとして、練習セッション中に参照できるよう、スマートフォンでツールがシームレスに動作することを望む。
 
-#### Acceptance Criteria
+#### 受け入れ基準
 
-1. WHEN accessed on mobile devices (320px+) THEN the system SHALL display a single-column vertical layout
-2. WHEN accessed on tablets (768px+) THEN the system SHALL display a two-column layout
-3. WHEN accessed on desktop (1024px+) THEN the system SHALL display a three-column layout
-4. WHEN using touch interfaces THEN the system SHALL provide appropriately sized touch targets (44px minimum)
-5. IF the device orientation changes THEN the system SHALL adapt the layout accordingly
+1. モバイルデバイス（320px以上）でアクセスした時、システムは単一列の縦レイアウトを表示する
+2. タブレット（768px以上）でアクセスした時、システムは2列レイアウトを表示する
+3. デスクトップ（1024px以上）でアクセスした時、システムは3列レイアウトを表示する
+4. タッチインターフェースを使用する時、システムは適切なサイズのタッチターゲット（最小44px）を提供する
+5. デバイスの向きが変わった場合、システムはそれに応じてレイアウトを調整する
 
-### Requirement 7
+### 要求仕様 7
 
-**User Story:** As a user with accessibility needs, I want the tool to be fully accessible so that I can use it effectively regardless of my abilities.
+**ユーザーストーリー：** アクセシビリティが必要なユーザーとして、能力に関係なく効果的にツールを使用できるよう、完全にアクセシブルなツールを望む。
 
-#### Acceptance Criteria
+#### 受け入れ基準
 
-1. WHEN navigating with keyboard only THEN the system SHALL provide full functionality access
-2. WHEN using screen readers THEN the system SHALL provide appropriate ARIA labels and descriptions
-3. WHEN distinguishing information THEN the system SHALL use methods beyond color alone (icons, text, patterns)
-4. WHEN displaying text THEN the system SHALL maintain sufficient contrast ratios (WCAG AA compliance)
-5. IF focus is moved programmatically THEN the system SHALL ensure focus visibility
+1. キーボードのみでナビゲーションする時、システムは完全な機能へのアクセスを提供する
+2. スクリーンリーダーを使用する時、システムは適切なARIAラベルと説明を提供する
+3. 情報を区別する時、システムは色だけでなく他の方法（アイコン、テキスト、パターン）を使用する
+4. テキストを表示する時、システムは十分なコントラスト比を維持する（WCAG AA準拠）
+5. フォーカスがプログラム的に移動される場合、システムはフォーカスの可視性を保証する
 
-### Requirement 8
+### 要求仕様 8
 
-**User Story:** As a user, I want the tool to load and respond quickly so that I can efficiently analyze multiple scenarios.
+**ユーザーストーリー：** ユーザーとして、複数のシナリオを効率的に分析できるよう、ツールが素早く読み込まれ、応答することを望む。
 
-#### Acceptance Criteria
+#### 受け入れ基準
 
-1. WHEN the application initially loads THEN the system SHALL complete loading within 3 seconds
-2. WHEN performing calculations THEN the system SHALL return results within 100 milliseconds
-3. WHEN switching between characters or moves THEN the system SHALL respond within 200 milliseconds
-4. IF network conditions are poor THEN the system SHALL still function with cached data
-5. WHEN loading large datasets THEN the system SHALL provide loading indicators
+1. アプリケーションが最初に読み込まれる時、システムは3秒以内に読み込みを完了する
+2. 計算を実行する時、システムは100ミリ秒以内に結果を返す
+3. キャラクターや技を切り替える時、システムは200ミリ秒以内に応答する
+4. ネットワーク条件が悪い場合、システムはキャッシュされたデータで機能する
+5. 大きなデータセットを読み込む時、システムは読み込みインジケータを提供する
 
-### Requirement 9
+### 要求仕様 9
 
-**User Story:** As a data-conscious user, I want to configure calculation parameters so that I can customize results for specific scenarios.
+**ユーザーストーリー：** データを意識するユーザーとして、特定のシナリオに合わせて結果をカスタマイズできるよう、計算パラメータを設定したい。
 
-#### Acceptance Criteria
+#### 受け入れ基準
 
-1. WHEN stale move negation is toggled THEN the system SHALL recalculate results with adjusted shield advantage values
-2. WHEN range filtering is applied THEN the system SHALL only show moves within the selected range category
-3. WHEN guard cancel options are toggled THEN the system SHALL include or exclude these options from calculations
-4. IF custom parameters are set THEN the system SHALL remember these preferences for the session
-5. WHEN parameters are changed THEN the system SHALL automatically recalculate and update results
+1. ワンパターン相殺が切り替えられた時、システムは調整されたシールド硬直差値で結果を再計算する
+2. 距離フィルタリングが適用された時、システムは選択された距離カテゴリ内の技のみを表示する
+3. ガードキャンセル行動が切り替えられた時、システムは計算からこれらの行動を含める、または除外する
+4. カスタムパラメータが設定された場合、システムはセッション中これらの設定を記憶する
+5. パラメータが変更された時、システムは自動的に再計算し、結果を更新する
 
-### Requirement 10
+### 要求仕様 10
 
-**User Story:** As a competitive player, I want access to accurate and up-to-date frame data so that my analysis reflects the current game state.
+**ユーザーストーリー：** 競技プレイヤーとして、分析が現在のゲーム状態を反映するよう、正確で最新のフレームデータにアクセスしたい。
 
-#### Acceptance Criteria
+#### 受け入れ基準
 
-1. WHEN displaying frame data THEN the system SHALL use verified data from Ultimate Frame Data and community sources
-2. WHEN game updates affect frame data THEN the system SHALL be updatable with new values
-3. WHEN displaying move properties THEN the system SHALL include startup, total frames, shield advantage, and range information
-4. IF frame data conflicts exist between sources THEN the system SHALL prioritize the most recent verified data
-5. WHEN data accuracy is uncertain THEN the system SHALL indicate this to users
+1. フレームデータを表示する時、システムはUltimate Frame Dataおよびコミュニティソースから検証されたデータを使用する
+2. ゲームアップデートがフレームデータに影響する場合、システムは新しい値で更新可能でなければならない
+3. 技の性質を表示する時、システムは発生フレーム、全体フレーム、シールド硬直差、距離情報を含む
+4. ソース間でフレームデータの矛盾がある場合、システムは最新の検証済みデータを優先する
+5. データの正確性が不確実な場合、システムはこれをユーザーに示す
