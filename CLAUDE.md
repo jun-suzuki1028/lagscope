@@ -6,6 +6,13 @@ LagScopeは、大乱闘スマッシュブラザーズ SPECIALの確定反撃算�
 
 **技術スタック**: React 18 + TypeScript + Vite + Tailwind CSS + Zustand + Vitest + React Testing Library
 
+## 仕様参照
+
+実装時に仕様について迷った場合は、以下のディレクトリを参照してください：
+- `/home/calc9/dev/lagscope/.kiro/specs/` - プロジェクトの詳細仕様書
+- `/home/calc9/dev/lagscope/.kiro/specs/smash-revenge-calculator/` - 実装計画とタスク定義
+- `/home/calc9/dev/lagscope/.kiro/specs/smash-revenge-calculator/tasks.md` - タスク進捗管理
+
 ## コーディング規約
 
 ### 1. TypeScript 規約
