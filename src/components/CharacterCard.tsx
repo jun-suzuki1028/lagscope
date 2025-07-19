@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { Fighter } from '../types/frameData';
+import { getCharacterIconUrl } from '../utils/characterIconMapping';
 
 interface CharacterCardProps {
   fighter: Fighter;
@@ -18,6 +19,8 @@ export const CharacterCard = memo(function CharacterCard({
   className = '',
   tabIndex = 0
 }: CharacterCardProps) {
+  const iconUrl = getCharacterIconUrl(fighter.id);
+  
   return (
     <div
       onClick={onSelect}
@@ -40,26 +43,21 @@ export const CharacterCard = memo(function CharacterCard({
         }
       }}
     >
-      <div className="flex flex-col items-center justify-center h-full p-2">
-        {fighter.iconUrl ? (
+      <div className="flex items-center justify-center h-full p-2">
+        {iconUrl ? (
           <img
-            src={fighter.iconUrl}
-            alt=""
-            className="w-8 h-8 sm:w-10 sm:h-10 object-contain mb-1"
+            src={iconUrl}
+            alt={fighter.displayName}
+            className="w-full h-full object-contain"
             loading="lazy"
-            aria-hidden="true"
           />
         ) : (
-          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-300 rounded-full flex items-center justify-center mb-1" aria-hidden="true">
-            <span className="text-xs font-bold text-gray-600">
+          <div className="w-full h-full bg-gray-300 rounded-lg flex items-center justify-center">
+            <span className="text-lg font-bold text-gray-600">
               {fighter.displayName.charAt(0)}
             </span>
           </div>
         )}
-        
-        <span className="text-xs text-center font-medium leading-tight">
-          {fighter.displayName}
-        </span>
       </div>
       
       {isSelected && multiSelect && (

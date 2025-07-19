@@ -103,7 +103,8 @@ export const ALL_CHARACTERS: CharacterInfo[] = [
   { id: 'simon', name: 'simon', displayName: 'シモン', series: 'Castlevania', fighterNumber: 73, category: 'unlockable' },
   { id: 'richter', name: 'richter', displayName: 'リヒター', series: 'Castlevania', fighterNumber: 74, category: 'unlockable', echoFighter: 'simon' },
   { id: 'king_k_rool', name: 'king_k_rool', displayName: 'キングクルール', series: 'Donkey Kong', fighterNumber: 75, category: 'unlockable' },
-  { id: 'isabelle', name: 'isabelle', displayName: 'しずえ', series: 'Animal Crossing', fighterNumber: 76, category: 'unlockable' },
+  { id: 'incineroar', name: 'incineroar', displayName: 'ガオガエン', series: 'Pokémon', fighterNumber: 76, category: 'unlockable' },
+  { id: 'isabelle', name: 'isabelle', displayName: 'しずえ', series: 'Animal Crossing', fighterNumber: 77, category: 'unlockable' },
   
   // ファイターパス Vol.1
   { id: 'piranha_plant', name: 'piranha_plant', displayName: 'パックンフラワー', series: 'Super Mario', fighterNumber: 77, category: 'dlc', releaseDate: '2019-01-29' },

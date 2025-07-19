@@ -754,6 +754,16 @@
       "missingMoves": [],
       "issues": []
     },
+    "incineroar": {
+      "characterId": "incineroar",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
     "isabelle": {
       "characterId": "isabelle",
       "score": 1,

@@ -675,6 +675,15 @@
     "category": "unlockable"
   },
   {
+    "id": "incineroar",
+    "name": "incineroar",
+    "displayName": "ガオガエン",
+    "series": "Pokémon",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
     "id": "isabelle",
     "name": "isabelle",
     "displayName": "しずえ",
