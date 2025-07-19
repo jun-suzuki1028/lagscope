@@ -1,10 +1,19 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    visualizer({
+      filename: 'dist/stats.html',
+      open: false,
+      gzipSize: true,
+      brotliSize: true,
+    })
+  ],
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
@@ -17,10 +26,31 @@ export default defineConfig({
     // バンドルサイズの最適化
     rollupOptions: {
       output: {
-        manualChunks: {
-          react: ['react', 'react-dom'],
-          zustand: ['zustand'],
-          zod: ['zod'],
+        manualChunks: (id) => {
+          // React関連を分離
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'react';
+          }
+          // 状態管理ライブラリを分離
+          if (id.includes('node_modules/zustand')) {
+            return 'state';
+          }
+          // バリデーションライブラリを分離
+          if (id.includes('node_modules/zod')) {
+            return 'validation';
+          }
+          // コンポーネントライブラリを分離
+          if (id.includes('/src/components/')) {
+            return 'components';
+          }
+          // データとサービスを分離
+          if (id.includes('/src/data/') || id.includes('/src/services/')) {
+            return 'data';
+          }
+          // その他のnode_modulesを分離
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
         },
       },
     },
