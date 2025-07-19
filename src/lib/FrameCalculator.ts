@@ -113,7 +113,6 @@ export class FrameCalculator {
         rangeFilter: options.rangeFilter || ['close', 'mid', 'far'],
         allowOutOfShield: options.allowOutOfShield ?? true,
         allowGuardCancel: options.allowGuardCancel ?? true,
-        allowShieldDrop: options.allowShieldDrop ?? true,
         allowPerfectShield: options.allowPerfectShield ?? false,
         allowRolling: options.allowRolling ?? true,
         allowSpotDodge: options.allowSpotDodge ?? true,
@@ -166,10 +165,6 @@ export class FrameCalculator {
       punishingMoves.push(...guardCancelOptions);
     }
 
-    if (options.allowShieldDrop) {
-      const shieldDropOptions = this.getShieldDropOptions(defender, advantageFrames, context);
-      punishingMoves.push(...shieldDropOptions);
-    }
 
     return punishingMoves
       .filter(move => 
@@ -246,38 +241,6 @@ export class FrameCalculator {
     return punishingMoves;
   }
 
-  private static getShieldDropOptions(
-    defender: Fighter,
-    advantageFrames: number,
-     
-    _context: CalculationContext
-  ): PunishMove[] {
-    const punishingMoves: PunishMove[] = [];
-    const shieldDropFrames = defender.shieldData.shieldDropFrames;
-    
-    for (const move of defender.moves) {
-      if (move.category !== 'aerial' && move.category !== 'grab') {
-        const totalFrames = shieldDropFrames + move.startup;
-        
-        if (totalFrames <= advantageFrames) {
-          punishingMoves.push({
-            move,
-            method: 'shield_drop',
-            totalFrames,
-            isGuaranteed: totalFrames < advantageFrames,
-            probability: this.calculateProbability(totalFrames, advantageFrames, 6),
-            damage: Array.isArray(move.damage) 
-              ? (move.damage.length > 0 ? move.damage[0] : 0)
-              : move.damage,
-            killPercent: move.properties.killPercent,
-            notes: `Shield drop option`
-          });
-        }
-      }
-    }
-
-    return punishingMoves;
-  }
 
   private static getOOSMethod(type: string): PunishMove['method'] {
     switch (type) {

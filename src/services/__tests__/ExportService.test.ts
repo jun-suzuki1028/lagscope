@@ -30,7 +30,6 @@ describe('ExportService', () => {
       shieldRegenDelay: 60,
       shieldStun: 0.725,
       shieldReleaseFrames: 11,
-      shieldDropFrames: 4,
       shieldGrabFrames: 7,
       outOfShieldOptions: [],
     },

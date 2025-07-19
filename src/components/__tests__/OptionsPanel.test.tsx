@@ -15,7 +15,6 @@ describe('OptionsPanel', () => {
     rangeFilter: ['close', 'mid', 'far'] as const,
     allowOutOfShield: true,
     allowGuardCancel: true,
-    allowShieldDrop: true,
     allowPerfectShield: true,
     allowRolling: true,
     allowSpotDodge: true,
@@ -114,7 +113,6 @@ describe('OptionsPanel', () => {
       rangeFilter: ['close', 'mid', 'far'],
       allowOutOfShield: true,
       allowGuardCancel: true,
-      allowShieldDrop: true,
       allowPerfectShield: true,
       allowRolling: true,
       allowSpotDodge: true,
@@ -156,14 +154,12 @@ describe('OptionsPanel', () => {
     
     const outOfShieldCheckbox = screen.getByLabelText('ガード解除');
     const guardCancelCheckbox = screen.getByLabelText('ガードキャンセル');
-    const shieldDropCheckbox = screen.getByLabelText('シールドドロップ');
     const perfectShieldCheckbox = screen.getByLabelText('ジャストシールド');
     const rollingCheckbox = screen.getByLabelText('回避');
     const spotDodgeCheckbox = screen.getByLabelText('その場回避');
     
     expect(outOfShieldCheckbox).toBeChecked();
     expect(guardCancelCheckbox).toBeChecked();
-    expect(shieldDropCheckbox).toBeChecked();
     expect(perfectShieldCheckbox).toBeChecked();
     expect(rollingCheckbox).toBeChecked();
     expect(spotDodgeCheckbox).toBeChecked();

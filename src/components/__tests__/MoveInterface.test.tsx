@@ -16,7 +16,7 @@ vi.mock('../../hooks/useDebounce', () => ({
 const mockMove: Move = {
   id: 'mario-jab1',
   name: 'Jab 1',
-  displayName: 'ジャブ1',
+  displayName: '弱攻撃1',
   category: 'jab',
   type: 'normal',
   input: 'A',
@@ -68,7 +68,6 @@ const mockFighter: Fighter = {
     shieldRegenDelay: 30,
     shieldStun: 0.725,
     shieldReleaseFrames: 11,
-    shieldDropFrames: 7,
     shieldGrabFrames: 10,
     outOfShieldOptions: [],
   },
@@ -142,10 +141,10 @@ describe('MoveInterface', () => {
     const user = userEvent.setup();
     render(<MoveInterface selectedFighter={mockFighter} />);
     
-    const moveCard = screen.getByLabelText('ジャブ1を選択');
+    const moveCard = screen.getByLabelText('弱攻撃1を選択');
     await user.click(moveCard);
     
-    const jabElements = screen.getAllByText('ジャブ1');
+    const jabElements = screen.getAllByText('弱攻撃1');
     expect(jabElements.length).toBeGreaterThan(0);
     
     const aElements = screen.getAllByText('A');
@@ -157,7 +156,7 @@ describe('MoveInterface', () => {
     const onMoveSelect = vi.fn();
     render(<MoveInterface selectedFighter={mockFighter} onMoveSelect={onMoveSelect} />);
     
-    const moveCard = screen.getByLabelText('ジャブ1を選択');
+    const moveCard = screen.getByLabelText('弱攻撃1を選択');
     await user.click(moveCard);
     
     expect(onMoveSelect).toHaveBeenCalledWith(mockMove);

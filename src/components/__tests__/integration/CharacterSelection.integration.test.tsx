@@ -32,7 +32,6 @@ const mockFighters: Fighter[] = [
       shieldRegenDelay: 30,
       shieldStun: 0.8665,
       shieldReleaseFrames: 11,
-      shieldDropFrames: 4,
       shieldGrabFrames: 6,
       outOfShieldOptions: []
     },
@@ -71,7 +70,6 @@ const mockFighters: Fighter[] = [
       shieldRegenDelay: 30,
       shieldStun: 0.8665,
       shieldReleaseFrames: 11,
-      shieldDropFrames: 4,
       shieldGrabFrames: 6,
       outOfShieldOptions: []
     },
@@ -110,7 +108,6 @@ const mockFighters: Fighter[] = [
       shieldRegenDelay: 30,
       shieldStun: 0.8665,
       shieldReleaseFrames: 11,
-      shieldDropFrames: 4,
       shieldGrabFrames: 6,
       outOfShieldOptions: []
     },

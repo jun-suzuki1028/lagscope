@@ -95,7 +95,6 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({ className = '' }) => {
             {[
               { key: 'allowOutOfShield' as const, label: 'ガード解除' },
               { key: 'allowGuardCancel' as const, label: 'ガードキャンセル' },
-              { key: 'allowShieldDrop' as const, label: 'シールドドロップ' },
               { key: 'allowPerfectShield' as const, label: 'ジャストシールド' },
               { key: 'allowRolling' as const, label: '回避' },
               { key: 'allowSpotDodge' as const, label: 'その場回避' },
@@ -216,7 +215,6 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({ className = '' }) => {
             rangeFilter: ['close', 'mid', 'far'],
             allowOutOfShield: true,
             allowGuardCancel: true,
-            allowShieldDrop: true,
             allowPerfectShield: true,
             allowRolling: true,
             allowSpotDodge: true,

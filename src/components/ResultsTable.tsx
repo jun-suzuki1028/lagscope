@@ -131,7 +131,6 @@ const ResultsTable: React.FC<ResultsTableProps> = memo(({ results, className = '
       guard_cancel_up_smash: 'ガーキャン上スマ',
       guard_cancel_nair: 'ガーキャン空N',
       guard_cancel_up_tilt: 'ガーキャン上強',
-      shield_drop: 'シールドドロップ',
       perfect_shield: 'ジャストシールド',
       roll_away: '回避(離脱)',
       roll_behind: '回避(後ろ)',

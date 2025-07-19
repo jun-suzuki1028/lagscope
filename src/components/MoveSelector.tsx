@@ -18,7 +18,7 @@ interface MoveFilters {
 
 const MOVE_CATEGORIES: Array<{ value: MoveCategory | 'all'; label: string }> = [
   { value: 'all', label: 'すべて' },
-  { value: 'jab', label: 'ジャブ' },
+  { value: 'jab', label: '弱攻撃' },
   { value: 'tilt', label: 'ティルト' },
   { value: 'smash', label: 'スマッシュ' },
   { value: 'aerial', label: '空中攻撃' },
@@ -301,7 +301,7 @@ interface MoveCategoryBadgeProps {
 
 function MoveCategoryBadge({ category }: MoveCategoryBadgeProps) {
   const categoryConfig = {
-    jab: { label: 'ジャブ', color: 'bg-blue-100 text-blue-800' },
+    jab: { label: '弱攻撃', color: 'bg-blue-100 text-blue-800' },
     tilt: { label: 'ティルト', color: 'bg-green-100 text-green-800' },
     smash: { label: 'スマッシュ', color: 'bg-red-100 text-red-800' },
     aerial: { label: '空中攻撃', color: 'bg-purple-100 text-purple-800' },

@@ -17,7 +17,7 @@ const mockMoves: Move[] = [
   {
     id: 'mario-jab1',
     name: 'Jab 1',
-    displayName: 'ジャブ1',
+    displayName: '弱攻撃1',
     category: 'jab',
     type: 'normal',
     input: 'A',
@@ -141,7 +141,6 @@ const mockFighter: Fighter = {
     shieldRegenDelay: 30,
     shieldStun: 0.725,
     shieldReleaseFrames: 11,
-    shieldDropFrames: 7,
     shieldGrabFrames: 10,
     outOfShieldOptions: [],
   },
@@ -199,7 +198,7 @@ describe('MoveSelector', () => {
 
   it('displays all moves initially', () => {
     render(<MoveSelector selectedFighter={mockFighter} />);
-    expect(screen.getByText('ジャブ1')).toBeInTheDocument();
+    expect(screen.getByText('弱攻撃1')).toBeInTheDocument();
     expect(screen.getByText('上強攻撃')).toBeInTheDocument();
     expect(screen.getByText('ファイアボール')).toBeInTheDocument();
   });
@@ -209,10 +208,10 @@ describe('MoveSelector', () => {
     render(<MoveSelector selectedFighter={mockFighter} />);
 
     const searchInput = screen.getByRole('searchbox');
-    await user.type(searchInput, 'ジャブ');
+    await user.type(searchInput, '弱攻撃');
 
     await waitFor(() => {
-      expect(screen.getByText('ジャブ1')).toBeInTheDocument();
+      expect(screen.getByText('弱攻撃1')).toBeInTheDocument();
       expect(screen.queryByText('上強攻撃')).not.toBeInTheDocument();
       expect(screen.queryByText('ファイアボール')).not.toBeInTheDocument();
     });
@@ -227,7 +226,7 @@ describe('MoveSelector', () => {
 
     await waitFor(() => {
       expect(screen.getByText('ファイアボール')).toBeInTheDocument();
-      expect(screen.queryByText('ジャブ1')).not.toBeInTheDocument();
+      expect(screen.queryByText('弱攻撃1')).not.toBeInTheDocument();
       expect(screen.queryByText('上強攻撃')).not.toBeInTheDocument();
     });
   });
@@ -241,7 +240,7 @@ describe('MoveSelector', () => {
 
     await waitFor(() => {
       expect(screen.getByText('ファイアボール')).toBeInTheDocument();
-      expect(screen.queryByText('ジャブ1')).not.toBeInTheDocument();
+      expect(screen.queryByText('弱攻撃1')).not.toBeInTheDocument();
       expect(screen.queryByText('上強攻撃')).not.toBeInTheDocument();
     });
   });
@@ -255,7 +254,7 @@ describe('MoveSelector', () => {
 
     await waitFor(() => {
       expect(screen.getByText('ファイアボール')).toBeInTheDocument();
-      expect(screen.queryByText('ジャブ1')).not.toBeInTheDocument();
+      expect(screen.queryByText('弱攻撃1')).not.toBeInTheDocument();
       expect(screen.queryByText('上強攻撃')).not.toBeInTheDocument();
     });
   });
@@ -265,7 +264,7 @@ describe('MoveSelector', () => {
     render(<MoveSelector selectedFighter={mockFighter} />);
 
     const searchInput = screen.getByRole('searchbox');
-    await user.type(searchInput, 'ジャブ');
+    await user.type(searchInput, '弱攻撃');
 
     const categorySelect = screen.getByLabelText('カテゴリでフィルタ');
     await user.selectOptions(categorySelect, 'jab');
@@ -309,7 +308,7 @@ describe('MoveSelector', () => {
 
   it('displays category and range badges', () => {
     render(<MoveSelector selectedFighter={mockFighter} />);
-    const jabElements = screen.getAllByText('ジャブ');
+    const jabElements = screen.getAllByText('弱攻撃');
     expect(jabElements.length).toBeGreaterThan(0);
     
     const tiltElements = screen.getAllByText('ティルト');
@@ -330,7 +329,7 @@ describe('MoveSelector', () => {
     const onMoveSelect = vi.fn();
     render(<MoveSelector selectedFighter={mockFighter} onMoveSelect={onMoveSelect} />);
 
-    const moveCard = screen.getByLabelText('ジャブ1を選択');
+    const moveCard = screen.getByLabelText('弱攻撃1を選択');
     await user.click(moveCard);
 
     expect(mockStore.setSelectedMove).toHaveBeenCalledWith(mockMoves[0]);
@@ -342,7 +341,7 @@ describe('MoveSelector', () => {
     const onMoveSelect = vi.fn();
     render(<MoveSelector selectedFighter={mockFighter} onMoveSelect={onMoveSelect} />);
 
-    const moveCard = screen.getByLabelText('ジャブ1を選択');
+    const moveCard = screen.getByLabelText('弱攻撃1を選択');
     moveCard.focus();
 
     await user.keyboard('{Enter}');
@@ -356,7 +355,7 @@ describe('MoveSelector', () => {
     const onMoveSelect = vi.fn();
     render(<MoveSelector selectedFighter={mockFighter} onMoveSelect={onMoveSelect} />);
 
-    const moveCard = screen.getByLabelText('ジャブ1を選択');
+    const moveCard = screen.getByLabelText('弱攻撃1を選択');
     moveCard.focus();
 
     await user.keyboard(' ');
@@ -373,7 +372,7 @@ describe('MoveSelector', () => {
     });
 
     render(<MoveSelector selectedFighter={mockFighter} />);
-    expect(screen.getByText('3個の技が見つかりました - 選択中: ジャブ1')).toBeInTheDocument();
+    expect(screen.getByText('3個の技が見つかりました - 選択中: 弱攻撃1')).toBeInTheDocument();
   });
 
   it('applies selected styles to selected move', () => {
@@ -384,7 +383,7 @@ describe('MoveSelector', () => {
     });
 
     render(<MoveSelector selectedFighter={mockFighter} />);
-    const moveCard = screen.getByLabelText('ジャブ1を選択');
+    const moveCard = screen.getByLabelText('弱攻撃1を選択');
     expect(moveCard).toHaveClass('border-blue-500', 'bg-blue-50', 'shadow-lg');
   });
 
@@ -397,7 +396,7 @@ describe('MoveSelector', () => {
 
     await waitFor(() => {
       expect(screen.getByText('上強攻撃')).toBeInTheDocument();
-      expect(screen.queryByText('ジャブ1')).not.toBeInTheDocument();
+      expect(screen.queryByText('弱攻撃1')).not.toBeInTheDocument();
       expect(screen.queryByText('ファイアボール')).not.toBeInTheDocument();
     });
   });
@@ -414,7 +413,7 @@ describe('MoveSelector', () => {
 
     await waitFor(() => {
       expect(screen.getByText('上強攻撃')).toBeInTheDocument();
-      expect(screen.queryByText('ジャブ1')).not.toBeInTheDocument();
+      expect(screen.queryByText('弱攻撃1')).not.toBeInTheDocument();
       expect(screen.queryByText('ファイアボール')).not.toBeInTheDocument();
       expect(screen.getByText('1個の技が見つかりました')).toBeInTheDocument();
     });

@@ -38,7 +38,7 @@ export const COMMON_MOVE_TEMPLATES: MoveTemplate[] = [
   {
     id: 'jab1',
     name: 'jab1',
-    displayName: 'ジャブ1',
+    displayName: '弱攻撃1',
     category: 'jab',
     type: 'normal',
     input: 'A',
@@ -52,7 +52,7 @@ export const COMMON_MOVE_TEMPLATES: MoveTemplate[] = [
   {
     id: 'jab2',
     name: 'jab2',
-    displayName: 'ジャブ2',
+    displayName: '弱攻撃2',
     category: 'jab',
     type: 'normal',
     input: 'A A',
@@ -66,7 +66,7 @@ export const COMMON_MOVE_TEMPLATES: MoveTemplate[] = [
   {
     id: 'jab3',
     name: 'jab3',
-    displayName: 'ジャブ3',
+    displayName: '弱攻撃3',
     category: 'jab',
     type: 'normal',
     input: 'A A A',
@@ -408,7 +408,6 @@ export const DEFAULT_SHIELD_DATA: ShieldData = {
   shieldRegenDelay: 30,
   shieldStun: 0.8665,
   shieldReleaseFrames: 11,
-  shieldDropFrames: 4,
   shieldGrabFrames: 6,
   outOfShieldOptions: [
     {
