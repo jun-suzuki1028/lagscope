@@ -567,6 +567,64 @@ export const CHARACTER_ADJUSTMENTS: CharacterAdjustments[] = [
       'jab1': { startup: 2, damage: 1.4 },
       'up_b': { startup: 2 }
     }
+  },
+  // カズヤ - 正確なフレームデータ
+  {
+    characterId: 'kazuya',
+    weightAdjustment: 113,
+    speedAdjustments: {
+      walkSpeed: 0.66,
+      runSpeed: 1.55,
+      airSpeed: 1.0,
+      fallSpeed: 1.7,
+      fastFallSpeed: 2.72,
+      gravity: 0.09
+    },
+    frameAdjustments: {
+      'jab1': { startup: 6, onShield: -11, damage: 2.0 },
+      'fsmash': { startup: 25, onShield: -16, damage: 15.0 },
+      'usmash': { startup: 12, onShield: -22, damage: 14.0 },
+      'nair': { startup: 8, onShield: -3, damage: 9.0 },
+      'up_b': { startup: 12 },
+      'grab': { startup: 7 }
+    },
+    shieldAdjustments: {
+      outOfShieldOptions: [
+        { move: 'nair', frames: 3, type: 'nair', effectiveness: 6 },
+        { move: 'up_b', frames: 12, type: 'up_b', effectiveness: 7 },
+        { move: 'grab', frames: 7, type: 'grab', effectiveness: 8 },
+        { move: 'up_smash', frames: 12, type: 'up_smash', effectiveness: 9 }
+      ]
+    }
+  },
+  // ソラ - 正確なフレームデータ
+  {
+    characterId: 'sora',
+    weightAdjustment: 85,
+    speedAdjustments: {
+      walkSpeed: 0.82,
+      runSpeed: 1.58,
+      airSpeed: 0.96,
+      fallSpeed: 1.44,
+      fastFallSpeed: 2.304,
+      gravity: 0.064
+    },
+    frameAdjustments: {
+      'jab1': { startup: 5, onShield: -22, damage: 2.5 },
+      'fsmash': { startup: 16, onShield: -16, damage: 15.0 },
+      'usmash': { startup: 11, onShield: -26, damage: 14.0 },
+      'nair': { startup: 8, onShield: -4, damage: 9.0 },
+      'up_b': { startup: 9 },
+      'grab': { startup: 7 }
+    },
+    shieldAdjustments: {
+      outOfShieldOptions: [
+        { move: 'nair', frames: 3, type: 'nair', effectiveness: 7 },
+        { move: 'up_b', frames: 9, type: 'up_b', effectiveness: 8 },
+        { move: 'grab', frames: 7, type: 'grab', effectiveness: 6 },
+        { move: 'up_smash', frames: 11, type: 'up_smash', effectiveness: 8 }
+      ]
+    }
   }
 ];
 
