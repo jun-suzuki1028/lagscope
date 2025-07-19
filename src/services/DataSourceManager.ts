@@ -3,13 +3,10 @@ import {
   FrameDataSource, 
   FrameDataStats, 
   ImportResult,
-  DataValidationResult,
-  GameMechanics
+  DataValidationResult
 } from '../types/frameData';
 import { 
   FighterSchema, 
-  FrameDataStatsSchema,
-  GameMechanicsSchema,
   safeParse,
   createValidationResult 
 } from '../lib/validation';
@@ -225,6 +222,7 @@ export class DataSourceManager {
         try {
           await this.updateFromSource(source.id);
         } catch (error) {
+          // eslint-disable-next-line no-console
           console.error(`Scheduled update failed for ${source.id}:`, error);
         }
       }
@@ -238,6 +236,7 @@ export class DataSourceManager {
         try {
           await this.verifySingleFighter(fighterId);
         } catch (error) {
+          // eslint-disable-next-line no-console
           console.error(`Verification failed for fighter ${fighterId}:`, error);
         }
       }
@@ -245,7 +244,6 @@ export class DataSourceManager {
   }
 
   public getDataStats(): FrameDataStats {
-    const allSources = this.config.sources;
     const primarySource = this.getSource(this.config.primarySource);
     
     return {
@@ -305,12 +303,12 @@ export class DataSourceManager {
     }
   }
 
-  private async fetchFromOfficialAPI(source: FrameDataSource): Promise<Fighter[]> {
+  private async fetchFromOfficialAPI(_source: FrameDataSource): Promise<Fighter[]> {
     // TODO: 公式APIがある場合の実装
     throw new Error('Official API not yet implemented');
   }
 
-  private async fetchFromCommunitySource(source: FrameDataSource): Promise<Fighter[]> {
+  private async fetchFromCommunitySource(_source: FrameDataSource): Promise<Fighter[]> {
     // TODO: コミュニティソースからのスクレイピング実装
     // 現在はモックデータを返す
     const { mockFighters } = await import('../data/mockData');
@@ -338,7 +336,7 @@ export class DataSourceManager {
   }
 
   private async validateFightersData(fighters: Fighter[]): Promise<DataValidationResult> {
-    const errors: Array<{ field: string; message: string; value: unknown }> = [];
+    const errors: Array<{ field: string; message: string; value?: unknown }> = [];
     const warnings: string[] = [];
 
     for (const fighter of fighters) {
@@ -365,7 +363,7 @@ export class DataSourceManager {
     };
   }
 
-  private async importFighters(fighters: Fighter[], source: FrameDataSource): Promise<ImportResult> {
+  private async importFighters(fighters: Fighter[], _source: FrameDataSource): Promise<ImportResult> {
     let importedCount = 0;
     let skippedCount = 0;
     const errors: string[] = [];
@@ -391,7 +389,7 @@ export class DataSourceManager {
     };
   }
 
-  private async performCrossSourceVerification(fighter: Fighter): Promise<{
+  private async performCrossSourceVerification(_fighter: Fighter): Promise<{
     totalChecks: number;
     passedChecks: number;
     inconsistencies: DataInconsistency[];
@@ -406,6 +404,7 @@ export class DataSourceManager {
 
   private async verifySingleFighter(fighterId: string): Promise<void> {
     // TODO: 単一ファイターの検証実装
+    // eslint-disable-next-line no-console
     console.log(`Verifying fighter: ${fighterId}`);
   }
 

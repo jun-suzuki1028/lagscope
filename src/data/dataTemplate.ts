@@ -6,7 +6,6 @@ import {
   MoveRange,
   ShieldData,
   MovementData,
-  OutOfShieldOption,
   GameMechanics
 } from '../types/frameData';
 import { CharacterInfo } from './charactersRegistry';
@@ -720,6 +719,7 @@ function generateDefaultMoveProperties(template: MoveTemplate) {
  * 全キャラクターのデータ生成
  */
 export function generateAllCharacterData(): Partial<Fighter>[] {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { ALL_CHARACTERS } = require('./charactersRegistry');
   
   return ALL_CHARACTERS.map((charInfo: CharacterInfo) => 

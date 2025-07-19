@@ -1,19 +1,14 @@
 import { 
   Fighter,
-  ImportResult,
   DataValidationResult,
   FrameDataStats
 } from '../types/frameData';
 import { 
-  CharacterInfo, 
-  ALL_CHARACTERS,
   getAllCharacterIds,
   getCharacterInfo 
 } from '../data/charactersRegistry';
 import { 
-  generateFighterFromTemplate,
-  generateAllCharacterData,
-  CHARACTER_ADJUSTMENTS 
+  generateFighterFromTemplate
 } from '../data/dataTemplate';
 import { 
   FighterSchema,
@@ -116,7 +111,7 @@ export class DataBatchProcessor {
     let totalProcessed = 0;
     let successCount = 0;
     let errorCount = 0;
-    let skippedCount = 0;
+    const skippedCount = 0;
     let generatedCount = 0;
     const validationErrors: string[] = [];
     const processingErrors: string[] = [];
@@ -353,7 +348,6 @@ export class DataBatchProcessor {
     let totalScore = 0;
     let totalCompleteness = 0;
     let totalAccuracy = 0;
-    let totalConsistency = 0;
     let totalIssues = 0;
     let criticalIssues = 0;
 
@@ -371,7 +365,7 @@ export class DataBatchProcessor {
         if (report.score < 0.5) {
           criticalIssues++;
         }
-      } catch (error) {
+      } catch {
         const errorReport: CharacterQualityReport = {
           characterId,
           score: 0,
@@ -477,7 +471,8 @@ export class DataBatchProcessor {
       if (move.totalFrames !== move.startup + move.active + move.recovery) {
         inconsistencies.push(`${move.name}: Total frames mismatch`);
       }
-      if (move.damage < 0) {
+      const damage = Array.isArray(move.damage) ? move.damage[0] : move.damage;
+      if (damage < 0) {
         invalidData.push(`${move.name}: Invalid damage (${move.damage})`);
       }
     }
@@ -505,11 +500,11 @@ export class DataBatchProcessor {
     let characterIds = getAllCharacterIds();
 
     if (config.includeCharacters) {
-      characterIds = characterIds.filter(id => config.includeCharacters!.includes(id));
+      characterIds = characterIds.filter(id => config.includeCharacters?.includes(id) ?? false);
     }
 
     if (config.excludeCharacters) {
-      characterIds = characterIds.filter(id => !config.excludeCharacters!.includes(id));
+      characterIds = characterIds.filter(id => !(config.excludeCharacters?.includes(id) ?? false));
     }
 
     return characterIds;

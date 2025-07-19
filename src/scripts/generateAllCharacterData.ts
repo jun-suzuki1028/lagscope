@@ -9,7 +9,6 @@ import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { 
   ALL_CHARACTERS, 
-  getCharacterInfo,
   getSeriesStatistics,
   getBaseRosterCount,
   getDLCCount 
@@ -22,10 +21,6 @@ import {
 import { 
   dataBatchProcessor 
 } from '../services/DataBatchProcessor';
-import { 
-  DataSourceManager,
-  DEFAULT_DATA_UPDATE_CONFIG
-} from '../services/DataSourceManager';
 import { Fighter, FrameDataStats } from '../types/frameData';
 
 async function main() {
@@ -112,21 +107,28 @@ async function generateAllCharacterData(): Promise<Fighter[]> {
       const partialFighter = generateFighterFromTemplate(charInfo, adjustments);
       
       // 必須フィールドを確実に設定
+      if (!partialFighter.id || !partialFighter.name || !partialFighter.displayName || 
+          !partialFighter.series || partialFighter.weight === undefined || 
+          partialFighter.fallSpeed === undefined || !partialFighter.moves ||
+          !partialFighter.shieldData || !partialFighter.movementData) {
+        throw new Error(`Missing required fields for fighter: ${charInfo.displayName}`);
+      }
+
       const fighter: Fighter = {
-        id: partialFighter.id!,
-        name: partialFighter.name!,
-        displayName: partialFighter.displayName!,
-        series: partialFighter.series!,
-        weight: partialFighter.weight!,
-        fallSpeed: partialFighter.fallSpeed!,
-        fastFallSpeed: partialFighter.fastFallSpeed!,
-        gravity: partialFighter.gravity!,
-        walkSpeed: partialFighter.walkSpeed!,
-        runSpeed: partialFighter.runSpeed!,
-        airSpeed: partialFighter.airSpeed!,
-        moves: partialFighter.moves!,
-        shieldData: partialFighter.shieldData!,
-        movementData: partialFighter.movementData!,
+        id: partialFighter.id,
+        name: partialFighter.name,
+        displayName: partialFighter.displayName,
+        series: partialFighter.series,
+        weight: partialFighter.weight,
+        fallSpeed: partialFighter.fallSpeed,
+        fastFallSpeed: partialFighter.fastFallSpeed || 0,
+        gravity: partialFighter.gravity || 0,
+        walkSpeed: partialFighter.walkSpeed || 0,
+        runSpeed: partialFighter.runSpeed || 0,
+        airSpeed: partialFighter.airSpeed || 0,
+        moves: partialFighter.moves,
+        shieldData: partialFighter.shieldData,
+        movementData: partialFighter.movementData,
         imageUrl: partialFighter.imageUrl,
         iconUrl: partialFighter.iconUrl
       };
@@ -147,7 +149,11 @@ async function generateAllCharacterData(): Promise<Fighter[]> {
 /**
  * 生成データの検証
  */
-async function validateGeneratedData(fighters: Fighter[]): Promise<any> {
+async function validateGeneratedData(fighters: Fighter[]): Promise<{
+  successCount: number;
+  errorCount: number;
+  validationErrors: string[];
+}> {
   console.log('  バッチ検証実行中...');
   
   const processor = dataBatchProcessor;
@@ -225,7 +231,13 @@ async function saveGeneratedData(fighters: Fighter[]): Promise<void> {
 /**
  * 品質レポートの生成
  */
-async function generateQualityReport(fighters: Fighter[]): Promise<any> {
+async function generateQualityReport(fighters: Fighter[]): Promise<{
+  overallScore: number;
+  completeness: number;
+  accuracy: number;
+  totalIssues: number;
+  characterReports: Map<string, any>;
+}> {
   const report = {
     overallScore: 0,
     completeness: 0,
@@ -294,7 +306,10 @@ async function generateQualityReport(fighters: Fighter[]): Promise<any> {
 /**
  * フレームデータ統計の生成
  */
-function generateFrameDataStats(fighters: Fighter[], qualityReport: any): FrameDataStats {
+function generateFrameDataStats(
+  fighters: Fighter[], 
+  qualityReport: { accuracy: number }
+): FrameDataStats {
   const totalMoves = fighters.reduce((sum, f) => sum + f.moves.length, 0);
   
   const stats: FrameDataStats = {
@@ -319,7 +334,11 @@ function generateFrameDataStats(fighters: Fighter[], qualityReport: any): FrameD
 /**
  * 結果の出力
  */
-function printResults(validationResults: any, qualityReport: any, stats: FrameDataStats): void {
+function printResults(
+  _validationResults: { successCount: number; errorCount: number; validationErrors: string[] }, 
+  qualityReport: { overallScore: number; completeness: number; accuracy: number; totalIssues: number }, 
+  stats: FrameDataStats
+): void {
   console.log('\n📈 生成結果サマリー:');
   console.log(`  キャラクター数: ${stats.totalFighters}体`);
   console.log(`  総技数: ${stats.totalMoves}技`);

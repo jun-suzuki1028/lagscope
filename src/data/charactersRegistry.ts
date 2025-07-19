@@ -1,4 +1,4 @@
-import { Fighter } from '../types/frameData';
+// import { Fighter } from '../types/frameData';
 
 export interface CharacterInfo {
   id: string;
