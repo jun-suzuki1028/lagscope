@@ -16,10 +16,22 @@ module.exports = {
     ],
     'no-console': 'warn',
     'no-debugger': 'error',
-    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
     '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-non-null-assertion': 'warn',
   },
+  overrides: [
+    {
+      files: ['src/scripts/**/*.ts', 'src/**/*.test.ts', 'src/**/*.test.tsx'],
+      rules: {
+        'no-console': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/no-unused-vars': 'warn',
+        '@typescript-eslint/no-require-imports': 'off',
+      },
+    },
+  ],
 }

@@ -1,0 +1,24 @@
+{
+  "shieldHealthMax": 50,
+  "shieldHealthMin": 7.5,
+  "shieldRegenRate": 0.07,
+  "shieldStunMultiplier": 0.8665,
+  "shieldDamageMultiplier": 0.7,
+  "perfectShieldWindow": 5,
+  "grabReleaseFrames": 30,
+  "hitlagMultiplier": 0.65,
+  "sdiMultiplier": 6,
+  "diInfluence": 0.17,
+  "stalenessMultipliers": {
+    "fresh": 1,
+    "stale1": 0.99,
+    "stale2": 0.98,
+    "stale3": 0.97,
+    "stale4": 0.96,
+    "stale5": 0.95,
+    "stale6": 0.94,
+    "stale7": 0.93,
+    "stale8": 0.92,
+    "stale9": 0.91
+  }
+}

@@ -1,18 +1,18 @@
 {
-  "id": "mario",
-  "name": "mario",
-  "displayName": "マリオ",
-  "series": "Super Mario",
-  "weight": 98,
-  "fallSpeed": 1.8,
-  "fastFallSpeed": 2.88,
-  "gravity": 0.087,
-  "walkSpeed": 1.1,
-  "runSpeed": 1.76,
-  "airSpeed": 1.208,
+  "id": "pikachu",
+  "name": "pikachu",
+  "displayName": "ピカチュウ",
+  "series": "Pokémon",
+  "weight": 79,
+  "fallSpeed": 1.55,
+  "fastFallSpeed": 2.48,
+  "gravity": 0.095,
+  "walkSpeed": 1.302,
+  "runSpeed": 2.039,
+  "airSpeed": 1,
   "moves": [
     {
-      "id": "mario-jab1",
+      "id": "pikachu-jab1",
       "name": "jab1",
       "displayName": "ジャブ1",
       "category": "jab",
@@ -25,17 +25,17 @@
       "onShield": -2,
       "onHit": 3,
       "onWhiff": -4,
-      "damage": 2.2,
-      "baseKnockback": 16,
+      "damage": 1.4,
+      "baseKnockback": 14,
       "knockbackGrowth": 50,
       "range": "close",
       "hitboxData": {
         "hitboxes": [
           {
             "id": 1,
-            "damage": 2.2,
+            "damage": 1.4,
             "angle": 361,
-            "baseKnockback": 16,
+            "baseKnockback": 14,
             "knockbackGrowth": 70,
             "hitboxType": "normal",
             "effect": "normal",
@@ -63,7 +63,7 @@
       }
     },
     {
-      "id": "mario-jab2",
+      "id": "pikachu-jab2",
       "name": "jab2",
       "displayName": "ジャブ2",
       "category": "jab",
@@ -114,7 +114,7 @@
       }
     },
     {
-      "id": "mario-jab3",
+      "id": "pikachu-jab3",
       "name": "jab3",
       "displayName": "ジャブ3",
       "category": "jab",
@@ -165,7 +165,7 @@
       }
     },
     {
-      "id": "mario-ftilt",
+      "id": "pikachu-ftilt",
       "name": "ftilt",
       "displayName": "横強攻撃",
       "category": "tilt",
@@ -216,7 +216,7 @@
       }
     },
     {
-      "id": "mario-utilt",
+      "id": "pikachu-utilt",
       "name": "utilt",
       "displayName": "上強攻撃",
       "category": "tilt",
@@ -267,7 +267,7 @@
       }
     },
     {
-      "id": "mario-dtilt",
+      "id": "pikachu-dtilt",
       "name": "dtilt",
       "displayName": "下強攻撃",
       "category": "tilt",
@@ -318,7 +318,7 @@
       }
     },
     {
-      "id": "mario-fsmash",
+      "id": "pikachu-fsmash",
       "name": "fsmash",
       "displayName": "横スマッシュ攻撃",
       "category": "smash",
@@ -370,7 +370,7 @@
       }
     },
     {
-      "id": "mario-usmash",
+      "id": "pikachu-usmash",
       "name": "usmash",
       "displayName": "上スマッシュ攻撃",
       "category": "smash",
@@ -422,7 +422,7 @@
       }
     },
     {
-      "id": "mario-dsmash",
+      "id": "pikachu-dsmash",
       "name": "dsmash",
       "displayName": "下スマッシュ攻撃",
       "category": "smash",
@@ -474,7 +474,7 @@
       }
     },
     {
-      "id": "mario-nair",
+      "id": "pikachu-nair",
       "name": "nair",
       "displayName": "空中ニュートラル攻撃",
       "category": "aerial",
@@ -525,7 +525,7 @@
       }
     },
     {
-      "id": "mario-fair",
+      "id": "pikachu-fair",
       "name": "fair",
       "displayName": "空中前攻撃",
       "category": "aerial",
@@ -576,7 +576,7 @@
       }
     },
     {
-      "id": "mario-bair",
+      "id": "pikachu-bair",
       "name": "bair",
       "displayName": "空中後攻撃",
       "category": "aerial",
@@ -627,7 +627,7 @@
       }
     },
     {
-      "id": "mario-uair",
+      "id": "pikachu-uair",
       "name": "uair",
       "displayName": "空中上攻撃",
       "category": "aerial",
@@ -678,7 +678,7 @@
       }
     },
     {
-      "id": "mario-dair",
+      "id": "pikachu-dair",
       "name": "dair",
       "displayName": "空中下攻撃",
       "category": "aerial",
@@ -729,7 +729,7 @@
       }
     },
     {
-      "id": "mario-dash_attack",
+      "id": "pikachu-dash_attack",
       "name": "dash_attack",
       "displayName": "ダッシュ攻撃",
       "category": "dash",
@@ -780,7 +780,7 @@
       }
     },
     {
-      "id": "mario-neutral_b",
+      "id": "pikachu-neutral_b",
       "name": "neutral_b",
       "displayName": "通常必殺技",
       "category": "special",
@@ -831,7 +831,7 @@
       }
     },
     {
-      "id": "mario-side_b",
+      "id": "pikachu-side_b",
       "name": "side_b",
       "displayName": "横必殺技",
       "category": "special",
@@ -882,16 +882,16 @@
       }
     },
     {
-      "id": "mario-up_b",
+      "id": "pikachu-up_b",
       "name": "up_b",
       "displayName": "上必殺技",
       "category": "special",
       "type": "special",
       "input": "↑ + B",
-      "startup": 3,
+      "startup": 2,
       "active": 6,
       "recovery": 16,
-      "totalFrames": 25,
+      "totalFrames": 24,
       "onShield": -6,
       "onHit": -1,
       "onWhiff": -16,
@@ -933,7 +933,7 @@
       }
     },
     {
-      "id": "mario-down_b",
+      "id": "pikachu-down_b",
       "name": "down_b",
       "displayName": "下必殺技",
       "category": "special",
@@ -984,7 +984,7 @@
       }
     },
     {
-      "id": "mario-grab",
+      "id": "pikachu-grab",
       "name": "grab",
       "displayName": "つかみ",
       "category": "grab",
@@ -1035,7 +1035,7 @@
       }
     },
     {
-      "id": "mario-pummel",
+      "id": "pikachu-pummel",
       "name": "pummel",
       "displayName": "つかみ攻撃",
       "category": "grab",
@@ -1086,7 +1086,7 @@
       }
     },
     {
-      "id": "mario-fthrow",
+      "id": "pikachu-fthrow",
       "name": "fthrow",
       "displayName": "前投げ",
       "category": "throw",
@@ -1137,7 +1137,7 @@
       }
     },
     {
-      "id": "mario-bthrow",
+      "id": "pikachu-bthrow",
       "name": "bthrow",
       "displayName": "後投げ",
       "category": "throw",
@@ -1188,7 +1188,7 @@
       }
     },
     {
-      "id": "mario-uthrow",
+      "id": "pikachu-uthrow",
       "name": "uthrow",
       "displayName": "上投げ",
       "category": "throw",
@@ -1239,7 +1239,7 @@
       }
     },
     {
-      "id": "mario-dthrow",
+      "id": "pikachu-dthrow",
       "name": "dthrow",
       "displayName": "下投げ",
       "category": "throw",
@@ -1359,6 +1359,6 @@
       }
     }
   },
-  "imageUrl": "/images/mario.png",
-  "iconUrl": "/icons/mario.png"
+  "imageUrl": "/images/pikachu.png",
+  "iconUrl": "/icons/pikachu.png"
 }

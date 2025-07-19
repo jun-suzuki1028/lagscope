@@ -337,7 +337,7 @@ export interface DisplaySettings {
 export interface ValidationError {
   field: string;
   message: string;
-  value: unknown;
+  value?: unknown;
 }
 
 export interface DataValidationResult {

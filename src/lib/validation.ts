@@ -9,7 +9,8 @@ export const MoveCategorySchema = z.enum([
   'grab',
   'throw',
   'dodge',
-  'movement'
+  'movement',
+  'dash'
 ]);
 
 export const MoveTypeSchema = z.enum([
@@ -227,8 +228,8 @@ export const FighterSchema = z.object({
   moves: z.array(MoveSchema),
   shieldData: ShieldDataSchema,
   movementData: MovementDataSchema,
-  imageUrl: z.string().url().optional(),
-  iconUrl: z.string().url().optional()
+  imageUrl: z.string().optional(),
+  iconUrl: z.string().optional()
 });
 
 export const CalculationOptionsSchema = z.object({
@@ -305,7 +306,7 @@ export const GameMechanicsSchema = z.object({
 export const ValidationErrorSchema = z.object({
   field: z.string(),
   message: z.string(),
-  value: z.unknown()
+  value: z.unknown().optional()
 });
 
 export const DataValidationResultSchema = z.object({
@@ -528,7 +529,7 @@ export function createValidationResult(errors: z.ZodError): z.infer<typeof DataV
   const validationErrors = errors.errors.map(err => ({
     field: err.path.join('.'),
     message: err.message,
-    value: 'received' in err ? err.received : undefined
+    value: 'received' in err ? err.received : null
   }));
 
   return {
