@@ -6,6 +6,11 @@ import { CharacterGrid } from '../../CharacterGrid';
 import { CharacterCard } from '../../CharacterCard';
 import { Fighter } from '../../../types/frameData';
 
+// Mock the character icon mapping utility
+vi.mock('../../../utils/characterIconMapping', () => ({
+  getCharacterIconUrl: vi.fn((id: string) => `/lagscope/icons/fighters/${id}.png`),
+}));
+
 const mockFighters: Fighter[] = [
   {
     id: 'mario',
@@ -211,7 +216,7 @@ describe('キャラクター選択統合テスト', () => {
       await user.type(searchInput, 'マリオ');
       
       // マリオのみ表示されることを確認
-      expect(screen.getByText('マリオ')).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /マリオを選択/ })).toBeInTheDocument();
       expect(screen.queryByText('リンク')).not.toBeInTheDocument();
       expect(screen.queryByText('ピカチュウ')).not.toBeInTheDocument();
     });
@@ -230,9 +235,9 @@ describe('キャラクター選択統合テスト', () => {
       await user.click(clearButton);
       
       // 全てのキャラクターが表示されることを確認
-      expect(screen.getByText('マリオ')).toBeInTheDocument();
-      expect(screen.getByText('リンク')).toBeInTheDocument();
-      expect(screen.getByText('ピカチュウ')).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /マリオを選択/ })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /リンクを選択/ })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /ピカチュウを選択/ })).toBeInTheDocument();
     });
 
     it('シリーズ名でも検索できる', async () => {
@@ -245,7 +250,7 @@ describe('キャラクター選択統合テスト', () => {
       await user.type(searchInput, 'Pokémon');
       
       // ピカチュウのみ表示されることを確認
-      expect(screen.getByText('ピカチュウ')).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /ピカチュウを選択/ })).toBeInTheDocument();
       expect(screen.queryByText('マリオ')).not.toBeInTheDocument();
       expect(screen.queryByText('リンク')).not.toBeInTheDocument();
     });

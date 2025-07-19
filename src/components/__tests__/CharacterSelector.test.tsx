@@ -13,6 +13,11 @@ vi.mock('../../hooks/useDebounce', () => ({
   useDebounce: (value: string) => value,
 }));
 
+// Mock the character icon mapping utility
+vi.mock('../../utils/characterIconMapping', () => ({
+  getCharacterIconUrl: vi.fn((id: string) => `/lagscope/icons/fighters/${id}.png`),
+}));
+
 const mockFighters: Fighter[] = [
   {
     id: 'mario',
@@ -149,8 +154,8 @@ describe('CharacterSelector', () => {
     await user.type(searchInput, 'マリオ');
 
     await waitFor(() => {
-      expect(screen.getByText('マリオ')).toBeInTheDocument();
-      expect(screen.queryByText('リンク')).not.toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /マリオを選択/ })).toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: /リンクを選択/ })).not.toBeInTheDocument();
     });
   });
 
@@ -162,8 +167,8 @@ describe('CharacterSelector', () => {
     await user.type(searchInput, 'zelda');
 
     await waitFor(() => {
-      expect(screen.getByText('リンク')).toBeInTheDocument();
-      expect(screen.queryByText('マリオ')).not.toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /リンクを選択/ })).toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: /マリオを選択/ })).not.toBeInTheDocument();
     });
   });
 
@@ -194,7 +199,7 @@ describe('CharacterSelector', () => {
     const user = userEvent.setup();
     render(<CharacterSelector type="attacker" />);
 
-    const marioCard = screen.getByText('マリオ');
+    const marioCard = screen.getByRole('button', { name: /マリオを選択/ });
     await user.click(marioCard);
 
     expect(mockStore.setAttackingFighter).toHaveBeenCalledWith(mockFighters[0]);
@@ -204,7 +209,7 @@ describe('CharacterSelector', () => {
     const user = userEvent.setup();
     render(<CharacterSelector type="defender" multiSelect={true} />);
 
-    const marioCard = screen.getByText('マリオ');
+    const marioCard = screen.getByRole('button', { name: /マリオを選択/ });
     await user.click(marioCard);
 
     expect(mockStore.addDefendingFighter).toHaveBeenCalledWith(mockFighters[0]);
@@ -219,7 +224,7 @@ describe('CharacterSelector', () => {
 
     render(<CharacterSelector type="defender" multiSelect={true} />);
 
-    const marioCard = screen.getByText('マリオ');
+    const marioCard = screen.getByRole('button', { name: /マリオを選択/ });
     await user.click(marioCard);
 
     expect(mockStore.removeDefendingFighter).toHaveBeenCalledWith('mario');
@@ -266,7 +271,7 @@ describe('CharacterSelector', () => {
     const user = userEvent.setup();
     render(<CharacterSelector type="attacker" />);
 
-    const marioCard = screen.getByText('マリオ');
+    const marioCard = screen.getByRole('button', { name: /マリオを選択/ });
     await user.click(marioCard);
 
     expect(mockStore.setAttackingFighter).toHaveBeenCalledWith(mockFighters[0]);
@@ -276,7 +281,7 @@ describe('CharacterSelector', () => {
     const user = userEvent.setup();
     render(<CharacterSelector type="attacker" />);
 
-    const marioCard = screen.getByText('マリオ');
+    const marioCard = screen.getByRole('button', { name: /マリオを選択/ });
     await user.click(marioCard);
 
     expect(mockStore.setAttackingFighter).toHaveBeenCalledWith(mockFighters[0]);
@@ -299,7 +304,7 @@ describe('CharacterSelector', () => {
     const onCharacterSelect = vi.fn();
     render(<CharacterSelector type="attacker" onCharacterSelect={onCharacterSelect} />);
 
-    const marioCard = screen.getByText('マリオ');
+    const marioCard = screen.getByRole('button', { name: /マリオを選択/ });
     await user.click(marioCard);
 
     expect(onCharacterSelect).toHaveBeenCalledWith(mockFighters[0]);
