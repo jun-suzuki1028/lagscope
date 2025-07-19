@@ -1,8 +1,13 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { CharacterCard } from '../CharacterCard';
 import { Fighter } from '../../types/frameData';
+
+// Mock the character icon mapping utility
+vi.mock('../../utils/characterIconMapping', () => ({
+  getCharacterIconUrl: vi.fn(() => '/lagscope/icons/fighters/mario.png'),
+}));
 
 const mockFighter: Fighter = {
   id: 'mario',
@@ -45,7 +50,7 @@ const mockFighter: Fighter = {
 };
 
 describe('CharacterCard', () => {
-  it('renders character display name', () => {
+  it('renders character card with accessibility label', () => {
     const onSelect = vi.fn();
     render(
       <CharacterCard
@@ -56,7 +61,8 @@ describe('CharacterCard', () => {
       />
     );
 
-    expect(screen.getByText('マリオ')).toBeInTheDocument();
+    const card = screen.getByRole('button');
+    expect(card).toHaveAttribute('aria-label', 'マリオを選択');
   });
 
   it('renders character icon when iconUrl is provided', () => {
@@ -72,16 +78,19 @@ describe('CharacterCard', () => {
     
     const icon = container.querySelector('img');
     expect(icon).toBeInTheDocument();
-    expect(icon).toHaveAttribute('src', '/images/mario-icon.png');
+    expect(icon).toHaveAttribute('alt', 'マリオ');
   });
 
-  it('renders fallback icon when iconUrl is not provided', () => {
+  it('renders fallback when icon is not available', async () => {
     const onSelect = vi.fn();
-    const fighterWithoutIcon = { ...mockFighter, iconUrl: undefined };
+    const { getCharacterIconUrl } = await import('../../utils/characterIconMapping');
+    
+    // Mock getCharacterIconUrl to return null for this test
+    vi.mocked(getCharacterIconUrl).mockReturnValueOnce(null);
     
     render(
       <CharacterCard
-        fighter={fighterWithoutIcon}
+        fighter={mockFighter}
         isSelected={false}
         onSelect={onSelect}
         multiSelect={false}
@@ -297,5 +306,6 @@ describe('CharacterCard', () => {
     const icon = container.querySelector('img');
     expect(icon).toBeInTheDocument();
     expect(icon).toHaveAttribute('loading', 'lazy');
+    expect(icon).toHaveClass('w-full', 'h-full', 'object-contain');
   });
 });
