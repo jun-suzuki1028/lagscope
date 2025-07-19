@@ -9,7 +9,8 @@ export const MoveCategorySchema = z.enum([
   'grab',
   'throw',
   'dodge',
-  'movement'
+  'movement',
+  'dash'
 ]);
 
 export const MoveTypeSchema = z.enum([
@@ -227,8 +228,8 @@ export const FighterSchema = z.object({
   moves: z.array(MoveSchema),
   shieldData: ShieldDataSchema,
   movementData: MovementDataSchema,
-  imageUrl: z.string().url().optional(),
-  iconUrl: z.string().url().optional()
+  imageUrl: z.string().optional(),
+  iconUrl: z.string().optional()
 });
 
 export const CalculationOptionsSchema = z.object({

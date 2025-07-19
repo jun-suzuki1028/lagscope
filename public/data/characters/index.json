@@ -1,122 +1,794 @@
 [
   {
     "id": "mario",
-    "name": "Mario",
+    "name": "mario",
     "displayName": "マリオ",
     "series": "Super Mario",
+    "moveCount": 25,
     "weight": 98,
-    "fallSpeed": 1.8,
-    "fastFallSpeed": 2.88,
-    "gravity": 0.087,
-    "walkSpeed": 1.1,
-    "runSpeed": 1.76,
-    "airSpeed": 1.208,
-    "moves": [],
-    "shieldData": {
-      "shieldHealth": 50,
-      "shieldRegen": 0.07,
-      "shieldRegenDelay": 30,
-      "shieldStun": 0.8665,
-      "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
-      "shieldGrabFrames": 6,
-      "outOfShieldOptions": []
-    },
-    "movementData": {
-      "jumpSquat": 3,
-      "fullHopHeight": 34.65,
-      "shortHopHeight": 16.74,
-      "airJumps": 1,
-      "dodgeFrames": {
-        "spotDodge": {
-          "startup": 3,
-          "active": 20,
-          "recovery": 4,
-          "total": 27
-        },
-        "airDodge": {
-          "startup": 3,
-          "active": 29,
-          "recovery": 28,
-          "total": 60
-        }
-      },
-      "rollFrames": {
-        "forward": {
-          "startup": 4,
-          "active": 12,
-          "recovery": 15,
-          "total": 31
-        },
-        "backward": {
-          "startup": 4,
-          "active": 12,
-          "recovery": 15,
-          "total": 31
-        }
-      }
-    },
-    "imageUrl": "/images/fighters/mario.png",
-    "iconUrl": "/images/icons/mario.png"
+    "category": "starter"
+  },
+  {
+    "id": "donkey_kong",
+    "name": "donkey_kong",
+    "displayName": "ドンキーコング",
+    "series": "Donkey Kong",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "starter"
   },
   {
     "id": "link",
-    "name": "Link",
+    "name": "link",
     "displayName": "リンク",
     "series": "The Legend of Zelda",
-    "weight": 104,
-    "fallSpeed": 1.6,
-    "fastFallSpeed": 2.56,
-    "gravity": 0.096,
-    "walkSpeed": 1.247,
-    "runSpeed": 1.534,
-    "airSpeed": 0.924,
-    "moves": [],
-    "shieldData": {
-      "shieldHealth": 50,
-      "shieldRegen": 0.07,
-      "shieldRegenDelay": 30,
-      "shieldStun": 0.8665,
-      "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
-      "shieldGrabFrames": 12,
-      "outOfShieldOptions": []
-    },
-    "movementData": {
-      "jumpSquat": 3,
-      "fullHopHeight": 32.83,
-      "shortHopHeight": 15.64,
-      "airJumps": 1,
-      "dodgeFrames": {
-        "spotDodge": {
-          "startup": 3,
-          "active": 20,
-          "recovery": 4,
-          "total": 27
-        },
-        "airDodge": {
-          "startup": 3,
-          "active": 29,
-          "recovery": 28,
-          "total": 60
-        }
-      },
-      "rollFrames": {
-        "forward": {
-          "startup": 4,
-          "active": 12,
-          "recovery": 15,
-          "total": 31
-        },
-        "backward": {
-          "startup": 4,
-          "active": 12,
-          "recovery": 15,
-          "total": 31
-        }
-      }
-    },
-    "imageUrl": "/images/fighters/link.png",
-    "iconUrl": "/images/icons/link.png"
+    "moveCount": 25,
+    "weight": 100,
+    "category": "starter"
+  },
+  {
+    "id": "samus",
+    "name": "samus",
+    "displayName": "サムス",
+    "series": "Metroid",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "starter"
+  },
+  {
+    "id": "dark_samus",
+    "name": "dark_samus",
+    "displayName": "ダークサムス",
+    "series": "Metroid",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "yoshi",
+    "name": "yoshi",
+    "displayName": "ヨッシー",
+    "series": "Yoshi",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "starter"
+  },
+  {
+    "id": "kirby",
+    "name": "kirby",
+    "displayName": "カービィ",
+    "series": "Kirby",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "starter"
+  },
+  {
+    "id": "fox",
+    "name": "fox",
+    "displayName": "フォックス",
+    "series": "Star Fox",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "starter"
+  },
+  {
+    "id": "pikachu",
+    "name": "pikachu",
+    "displayName": "ピカチュウ",
+    "series": "Pokémon",
+    "moveCount": 25,
+    "weight": 79,
+    "category": "starter"
+  },
+  {
+    "id": "luigi",
+    "name": "luigi",
+    "displayName": "ルイージ",
+    "series": "Super Mario",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "ness",
+    "name": "ness",
+    "displayName": "ネス",
+    "series": "EarthBound",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "captain_falcon",
+    "name": "captain_falcon",
+    "displayName": "キャプテン・ファルコン",
+    "series": "F-Zero",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "jigglypuff",
+    "name": "jigglypuff",
+    "displayName": "プリン",
+    "series": "Pokémon",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "peach",
+    "name": "peach",
+    "displayName": "ピーチ",
+    "series": "Super Mario",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "daisy",
+    "name": "daisy",
+    "displayName": "デイジー",
+    "series": "Super Mario",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "bowser",
+    "name": "bowser",
+    "displayName": "クッパ",
+    "series": "Super Mario",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "ice_climbers",
+    "name": "ice_climbers",
+    "displayName": "アイスクライマー",
+    "series": "Ice Climber",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "sheik",
+    "name": "sheik",
+    "displayName": "シーク",
+    "series": "The Legend of Zelda",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "zelda",
+    "name": "zelda",
+    "displayName": "ゼルダ",
+    "series": "The Legend of Zelda",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "dr_mario",
+    "name": "dr_mario",
+    "displayName": "Dr.マリオ",
+    "series": "Super Mario",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "pichu",
+    "name": "pichu",
+    "displayName": "ピチュー",
+    "series": "Pokémon",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "falco",
+    "name": "falco",
+    "displayName": "ファルコ",
+    "series": "Star Fox",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "marth",
+    "name": "marth",
+    "displayName": "マルス",
+    "series": "Fire Emblem",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "lucina",
+    "name": "lucina",
+    "displayName": "ルキナ",
+    "series": "Fire Emblem",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "young_link",
+    "name": "young_link",
+    "displayName": "こどもリンク",
+    "series": "The Legend of Zelda",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "ganondorf",
+    "name": "ganondorf",
+    "displayName": "ガノンドロフ",
+    "series": "The Legend of Zelda",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "mewtwo",
+    "name": "mewtwo",
+    "displayName": "ミュウツー",
+    "series": "Pokémon",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "roy",
+    "name": "roy",
+    "displayName": "ロイ",
+    "series": "Fire Emblem",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "chrom",
+    "name": "chrom",
+    "displayName": "クロム",
+    "series": "Fire Emblem",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "mr_game_and_watch",
+    "name": "mr_game_and_watch",
+    "displayName": "Mr.ゲーム&ウォッチ",
+    "series": "Game & Watch",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "meta_knight",
+    "name": "meta_knight",
+    "displayName": "メタナイト",
+    "series": "Kirby",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "pit",
+    "name": "pit",
+    "displayName": "ピット",
+    "series": "Kid Icarus",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "dark_pit",
+    "name": "dark_pit",
+    "displayName": "ブラックピット",
+    "series": "Kid Icarus",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "zero_suit_samus",
+    "name": "zero_suit_samus",
+    "displayName": "ゼロスーツサムス",
+    "series": "Metroid",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "wario",
+    "name": "wario",
+    "displayName": "ワリオ",
+    "series": "Wario",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "snake",
+    "name": "snake",
+    "displayName": "スネーク",
+    "series": "Metal Gear",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "ike",
+    "name": "ike",
+    "displayName": "アイク",
+    "series": "Fire Emblem",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "pokemon_trainer",
+    "name": "pokemon_trainer",
+    "displayName": "ポケモントレーナー",
+    "series": "Pokémon",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "squirtle",
+    "name": "squirtle",
+    "displayName": "ゼニガメ",
+    "series": "Pokémon",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "ivysaur",
+    "name": "ivysaur",
+    "displayName": "フシギソウ",
+    "series": "Pokémon",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "charizard",
+    "name": "charizard",
+    "displayName": "リザードン",
+    "series": "Pokémon",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "diddy_kong",
+    "name": "diddy_kong",
+    "displayName": "ディディーコング",
+    "series": "Donkey Kong",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "lucas",
+    "name": "lucas",
+    "displayName": "リュカ",
+    "series": "EarthBound",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "sonic",
+    "name": "sonic",
+    "displayName": "ソニック",
+    "series": "Sonic the Hedgehog",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "king_dedede",
+    "name": "king_dedede",
+    "displayName": "デデデ大王",
+    "series": "Kirby",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "olimar",
+    "name": "olimar",
+    "displayName": "ピクミン&オリマー",
+    "series": "Pikmin",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "lucario",
+    "name": "lucario",
+    "displayName": "ルカリオ",
+    "series": "Pokémon",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "rob",
+    "name": "rob",
+    "displayName": "ロボット",
+    "series": "Robot",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "toon_link",
+    "name": "toon_link",
+    "displayName": "トゥーンリンク",
+    "series": "The Legend of Zelda",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "wolf",
+    "name": "wolf",
+    "displayName": "ウルフ",
+    "series": "Star Fox",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "villager",
+    "name": "villager",
+    "displayName": "むらびと",
+    "series": "Animal Crossing",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "mega_man",
+    "name": "mega_man",
+    "displayName": "ロックマン",
+    "series": "Mega Man",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "wii_fit_trainer",
+    "name": "wii_fit_trainer",
+    "displayName": "Wii Fit トレーナー",
+    "series": "Wii Fit",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "rosalina",
+    "name": "rosalina",
+    "displayName": "ロゼッタ&チコ",
+    "series": "Super Mario",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "little_mac",
+    "name": "little_mac",
+    "displayName": "リトル・マック",
+    "series": "Punch-Out!!",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "greninja",
+    "name": "greninja",
+    "displayName": "ゲッコウガ",
+    "series": "Pokémon",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "mii_brawler",
+    "name": "mii_brawler",
+    "displayName": "Mii格闘タイプ",
+    "series": "Mii",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "mii_swordfighter",
+    "name": "mii_swordfighter",
+    "displayName": "Mii剣術タイプ",
+    "series": "Mii",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "mii_gunner",
+    "name": "mii_gunner",
+    "displayName": "Mii射撃タイプ",
+    "series": "Mii",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "palutena",
+    "name": "palutena",
+    "displayName": "パルテナ",
+    "series": "Kid Icarus",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "pac_man",
+    "name": "pac_man",
+    "displayName": "パックマン",
+    "series": "Pac-Man",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "robin",
+    "name": "robin",
+    "displayName": "ルフレ",
+    "series": "Fire Emblem",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "shulk",
+    "name": "shulk",
+    "displayName": "シュルク",
+    "series": "Xenoblade Chronicles",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "bowser_jr",
+    "name": "bowser_jr",
+    "displayName": "クッパJr.",
+    "series": "Super Mario",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "duck_hunt",
+    "name": "duck_hunt",
+    "displayName": "ダックハント",
+    "series": "Duck Hunt",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "ryu",
+    "name": "ryu",
+    "displayName": "リュウ",
+    "series": "Street Fighter",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "ken",
+    "name": "ken",
+    "displayName": "ケン",
+    "series": "Street Fighter",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "cloud",
+    "name": "cloud",
+    "displayName": "クラウド",
+    "series": "Final Fantasy",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "corrin",
+    "name": "corrin",
+    "displayName": "カムイ",
+    "series": "Fire Emblem",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "bayonetta",
+    "name": "bayonetta",
+    "displayName": "ベヨネッタ",
+    "series": "Bayonetta",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "inkling",
+    "name": "inkling",
+    "displayName": "インクリング",
+    "series": "Splatoon",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "ridley",
+    "name": "ridley",
+    "displayName": "リドリー",
+    "series": "Metroid",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "simon",
+    "name": "simon",
+    "displayName": "シモン",
+    "series": "Castlevania",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "richter",
+    "name": "richter",
+    "displayName": "リヒター",
+    "series": "Castlevania",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "king_k_rool",
+    "name": "king_k_rool",
+    "displayName": "キングクルール",
+    "series": "Donkey Kong",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "isabelle",
+    "name": "isabelle",
+    "displayName": "しずえ",
+    "series": "Animal Crossing",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "unlockable"
+  },
+  {
+    "id": "piranha_plant",
+    "name": "piranha_plant",
+    "displayName": "パックンフラワー",
+    "series": "Super Mario",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "dlc"
+  },
+  {
+    "id": "joker",
+    "name": "joker",
+    "displayName": "ジョーカー",
+    "series": "Persona",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "dlc"
+  },
+  {
+    "id": "hero",
+    "name": "hero",
+    "displayName": "勇者",
+    "series": "Dragon Quest",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "dlc"
+  },
+  {
+    "id": "banjo_kazooie",
+    "name": "banjo_kazooie",
+    "displayName": "バンジョー&カズーイ",
+    "series": "Banjo-Kazooie",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "dlc"
+  },
+  {
+    "id": "terry",
+    "name": "terry",
+    "displayName": "テリー",
+    "series": "Fatal Fury",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "dlc"
+  },
+  {
+    "id": "byleth",
+    "name": "byleth",
+    "displayName": "ベレト/ベレス",
+    "series": "Fire Emblem",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "dlc"
+  },
+  {
+    "id": "min_min",
+    "name": "min_min",
+    "displayName": "ミェンミェン",
+    "series": "ARMS",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "dlc"
+  },
+  {
+    "id": "steve",
+    "name": "steve",
+    "displayName": "スティーブ/アレックス",
+    "series": "Minecraft",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "dlc"
+  },
+  {
+    "id": "sephiroth",
+    "name": "sephiroth",
+    "displayName": "セフィロス",
+    "series": "Final Fantasy",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "dlc"
+  },
+  {
+    "id": "pyra_mythra",
+    "name": "pyra_mythra",
+    "displayName": "ホムラ/ヒカリ",
+    "series": "Xenoblade Chronicles",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "dlc"
+  },
+  {
+    "id": "kazuya",
+    "name": "kazuya",
+    "displayName": "カズヤ",
+    "series": "Tekken",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "dlc"
+  },
+  {
+    "id": "sora",
+    "name": "sora",
+    "displayName": "ソラ",
+    "series": "Kingdom Hearts",
+    "moveCount": 25,
+    "weight": 100,
+    "category": "dlc"
   }
 ]

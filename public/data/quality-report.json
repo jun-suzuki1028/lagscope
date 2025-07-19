@@ -1,0 +1,888 @@
+{
+  "overallScore": 1,
+  "completeness": 1,
+  "accuracy": 1,
+  "totalIssues": 0,
+  "characterReports": {
+    "mario": {
+      "characterId": "mario",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "donkey_kong": {
+      "characterId": "donkey_kong",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "link": {
+      "characterId": "link",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "samus": {
+      "characterId": "samus",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "dark_samus": {
+      "characterId": "dark_samus",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "yoshi": {
+      "characterId": "yoshi",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "kirby": {
+      "characterId": "kirby",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "fox": {
+      "characterId": "fox",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "pikachu": {
+      "characterId": "pikachu",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "luigi": {
+      "characterId": "luigi",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "ness": {
+      "characterId": "ness",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "captain_falcon": {
+      "characterId": "captain_falcon",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "jigglypuff": {
+      "characterId": "jigglypuff",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "peach": {
+      "characterId": "peach",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "daisy": {
+      "characterId": "daisy",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "bowser": {
+      "characterId": "bowser",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "ice_climbers": {
+      "characterId": "ice_climbers",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "sheik": {
+      "characterId": "sheik",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "zelda": {
+      "characterId": "zelda",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "dr_mario": {
+      "characterId": "dr_mario",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "pichu": {
+      "characterId": "pichu",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "falco": {
+      "characterId": "falco",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "marth": {
+      "characterId": "marth",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "lucina": {
+      "characterId": "lucina",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "young_link": {
+      "characterId": "young_link",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "ganondorf": {
+      "characterId": "ganondorf",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "mewtwo": {
+      "characterId": "mewtwo",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "roy": {
+      "characterId": "roy",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "chrom": {
+      "characterId": "chrom",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "mr_game_and_watch": {
+      "characterId": "mr_game_and_watch",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "meta_knight": {
+      "characterId": "meta_knight",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "pit": {
+      "characterId": "pit",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "dark_pit": {
+      "characterId": "dark_pit",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "zero_suit_samus": {
+      "characterId": "zero_suit_samus",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "wario": {
+      "characterId": "wario",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "snake": {
+      "characterId": "snake",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "ike": {
+      "characterId": "ike",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "pokemon_trainer": {
+      "characterId": "pokemon_trainer",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "squirtle": {
+      "characterId": "squirtle",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "ivysaur": {
+      "characterId": "ivysaur",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "charizard": {
+      "characterId": "charizard",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "diddy_kong": {
+      "characterId": "diddy_kong",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "lucas": {
+      "characterId": "lucas",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "sonic": {
+      "characterId": "sonic",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "king_dedede": {
+      "characterId": "king_dedede",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "olimar": {
+      "characterId": "olimar",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "lucario": {
+      "characterId": "lucario",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "rob": {
+      "characterId": "rob",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "toon_link": {
+      "characterId": "toon_link",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "wolf": {
+      "characterId": "wolf",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "villager": {
+      "characterId": "villager",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "mega_man": {
+      "characterId": "mega_man",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "wii_fit_trainer": {
+      "characterId": "wii_fit_trainer",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "rosalina": {
+      "characterId": "rosalina",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "little_mac": {
+      "characterId": "little_mac",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "greninja": {
+      "characterId": "greninja",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "mii_brawler": {
+      "characterId": "mii_brawler",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "mii_swordfighter": {
+      "characterId": "mii_swordfighter",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "mii_gunner": {
+      "characterId": "mii_gunner",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "palutena": {
+      "characterId": "palutena",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "pac_man": {
+      "characterId": "pac_man",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "robin": {
+      "characterId": "robin",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "shulk": {
+      "characterId": "shulk",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "bowser_jr": {
+      "characterId": "bowser_jr",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "duck_hunt": {
+      "characterId": "duck_hunt",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "ryu": {
+      "characterId": "ryu",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "ken": {
+      "characterId": "ken",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "cloud": {
+      "characterId": "cloud",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "corrin": {
+      "characterId": "corrin",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "bayonetta": {
+      "characterId": "bayonetta",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "inkling": {
+      "characterId": "inkling",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "ridley": {
+      "characterId": "ridley",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "simon": {
+      "characterId": "simon",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "richter": {
+      "characterId": "richter",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "king_k_rool": {
+      "characterId": "king_k_rool",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "isabelle": {
+      "characterId": "isabelle",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "piranha_plant": {
+      "characterId": "piranha_plant",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "joker": {
+      "characterId": "joker",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "hero": {
+      "characterId": "hero",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "banjo_kazooie": {
+      "characterId": "banjo_kazooie",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "terry": {
+      "characterId": "terry",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "byleth": {
+      "characterId": "byleth",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "min_min": {
+      "characterId": "min_min",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "steve": {
+      "characterId": "steve",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "sephiroth": {
+      "characterId": "sephiroth",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "pyra_mythra": {
+      "characterId": "pyra_mythra",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "kazuya": {
+      "characterId": "kazuya",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    },
+    "sora": {
+      "characterId": "sora",
+      "score": 1,
+      "completeness": 1,
+      "accuracy": 1,
+      "moveCount": 25,
+      "expectedMoveCount": 20,
+      "missingMoves": [],
+      "issues": []
+    }
+  }
+}

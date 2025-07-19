@@ -14,7 +14,9 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:deployment": "playwright test e2e/deployment.spec.ts",
-    "build:analyze": "npm run build && echo '📊 Bundle analysis complete. Check dist/assets/ for file sizes.'"
+    "build:analyze": "npm run build && echo '📊 Bundle analysis complete. Check dist/assets/ for file sizes.'",
+    "data:generate": "vitest run src/scripts/generateAllCharacterData.test.ts",
+    "data:validate": "vitest run src/scripts/validateData.test.ts"
   },
   "dependencies": {
     "react": "^18.2.0",
