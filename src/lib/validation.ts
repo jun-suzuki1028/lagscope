@@ -519,7 +519,7 @@ export function safeParse<T>(schema: z.ZodType<T>, data: unknown): { success: bo
   }
 }
 
-export function validatePartial<T>(schema: z.ZodObject<any>, data: unknown): Partial<T> {
+export function validatePartial<T>(schema: z.ZodObject<z.ZodRawShape>, data: unknown): Partial<T> {
   const result = schema.partial().parse(data);
   return result as Partial<T>;
 }

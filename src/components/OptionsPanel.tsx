@@ -9,10 +9,11 @@ interface OptionsPanelProps {
 const OptionsPanel: React.FC<OptionsPanelProps> = ({ className = '' }) => {
   const { calculationOptions, setCalculationOptions } = useAppStore();
 
-  const handleOptionChange = (key: keyof CalculationOptions, value: any) => {
+  const handleOptionChange = (key: keyof CalculationOptions, value: unknown) => {
     try {
       setCalculationOptions({ [key]: value });
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Failed to update calculation options:', error);
     }
   };

@@ -145,8 +145,11 @@ describe('MoveInterface', () => {
     const moveCard = screen.getByLabelText('ジャブ1を選択');
     await user.click(moveCard);
     
-    expect(screen.getByText('ジャブ1')).toBeInTheDocument();
-    expect(screen.getByText('A')).toBeInTheDocument();
+    const jabElements = screen.getAllByText('ジャブ1');
+    expect(jabElements.length).toBeGreaterThan(0);
+    
+    const aElements = screen.getAllByText('A');
+    expect(aElements.length).toBeGreaterThan(0);
   });
 
   it('calls onMoveSelect callback when move is selected', async () => {

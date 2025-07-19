@@ -1,0 +1,64 @@
+name: Bundle Analysis
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build with bundle analysis
+      run: npm run build
+      
+    - name: Analyze bundle size
+      run: |
+        echo "## Bundle Analysis 📊" >> $GITHUB_STEP_SUMMARY
+        echo "| File | Size | Gzipped |" >> $GITHUB_STEP_SUMMARY
+        echo "|------|------|---------|" >> $GITHUB_STEP_SUMMARY
+        cd dist/assets
+        for file in *.js *.css; do
+          if [ -f "$file" ]; then
+            size=$(wc -c < "$file" | numfmt --to=iec)
+            gzip_size=$(gzip -c "$file" | wc -c | numfmt --to=iec)
+            echo "| $file | $size | $gzip_size |" >> $GITHUB_STEP_SUMMARY
+          fi
+        done
+        
+    - name: Check bundle size limits
+      run: |
+        cd dist/assets
+        # 各JavaScriptファイルのサイズをチェック (1MB制限)
+        for file in *.js; do
+          if [ -f "$file" ]; then
+            size=$(wc -c < "$file")
+            if [ "$size" -gt 1048576 ]; then
+              echo "❌ $file is too large: $(echo $size | numfmt --to=iec)"
+              exit 1
+            else
+              echo "✅ $file size is acceptable: $(echo $size | numfmt --to=iec)"
+            fi
+          fi
+        done
+        
+    - name: Upload bundle analysis
+      uses: actions/upload-artifact@v4
+      with:
+        name: bundle-analysis
+        path: dist/
+        retention-days: 30

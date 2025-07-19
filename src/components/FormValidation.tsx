@@ -1,9 +1,5 @@
 import React from 'react';
-
-export interface ValidationError {
-  field: string;
-  message: string;
-}
+import { ValidationError } from '../lib/validators';
 
 export interface FormValidationProps {
   errors: ValidationError[];
@@ -139,70 +135,3 @@ export function ValidatedSelect({
   );
 }
 
-// Validation utilities
-export const validators = {
-  required: (value: string) => {
-    if (!value || value.trim() === '') {
-      return 'この項目は必須です';
-    }
-    return null;
-  },
-  
-  minLength: (min: number) => (value: string) => {
-    if (value && value.length < min) {
-      return `${min}文字以上で入力してください`;
-    }
-    return null;
-  },
-  
-  maxLength: (max: number) => (value: string) => {
-    if (value && value.length > max) {
-      return `${max}文字以下で入力してください`;
-    }
-    return null;
-  },
-  
-  pattern: (regex: RegExp, message: string) => (value: string) => {
-    if (value && !regex.test(value)) {
-      return message;
-    }
-    return null;
-  },
-  
-  number: (value: string) => {
-    if (value && isNaN(Number(value))) {
-      return '数値を入力してください';
-    }
-    return null;
-  },
-  
-  range: (min: number, max: number) => (value: string) => {
-    const num = Number(value);
-    if (value && (!isNaN(num) && (num < min || num > max))) {
-      return `${min}から${max}の範囲で入力してください`;
-    }
-    return null;
-  },
-};
-
-export function validateField(value: string, validatorFunctions: ((value: string) => string | null)[]): string | null {
-  for (const validator of validatorFunctions) {
-    const error = validator(value);
-    if (error) return error;
-  }
-  return null;
-}
-
-export function validateForm(values: Record<string, string>, rules: Record<string, ((value: string) => string | null)[]>): ValidationError[] {
-  const errors: ValidationError[] = [];
-  
-  for (const [field, validators] of Object.entries(rules)) {
-    const value = values[field] || '';
-    const error = validateField(value, validators);
-    if (error) {
-      errors.push({ field, message: error });
-    }
-  }
-  
-  return errors;
-}

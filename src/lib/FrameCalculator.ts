@@ -64,7 +64,9 @@ export class FrameCalculator {
     staleness: StalenessLevel = 'fresh',
     isPerfectShield: boolean = false
   ): FrameAdvantageResult {
-    const baseDamage = Array.isArray(attackMove.damage) ? attackMove.damage[0] : attackMove.damage;
+    const baseDamage = Array.isArray(attackMove.damage) 
+      ? (attackMove.damage.length > 0 ? attackMove.damage[0] : 0)
+      : attackMove.damage;
     const shieldStun = this.calculateShieldStun(baseDamage, staleness);
     const shieldDamage = this.calculateShieldDamage(baseDamage, staleness);
     
@@ -181,6 +183,7 @@ export class FrameCalculator {
   private static getOutOfShieldOptions(
     defender: Fighter,
     disadvantageFrames: number,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _context: CalculationContext
   ): PunishMove[] {
     const punishingMoves: PunishMove[] = [];
@@ -197,7 +200,9 @@ export class FrameCalculator {
             totalFrames,
             isGuaranteed: totalFrames < disadvantageFrames,
             probability: this.calculateProbability(totalFrames, disadvantageFrames, oosOption.effectiveness),
-            damage: Array.isArray(move.damage) ? move.damage[0] : move.damage,
+            damage: Array.isArray(move.damage) 
+              ? (move.damage.length > 0 ? move.damage[0] : 0)
+              : move.damage,
             killPercent: move.properties.killPercent,
             notes: `OOS option: ${oosOption.type}`
           });
@@ -211,6 +216,7 @@ export class FrameCalculator {
   private static getGuardCancelOptions(
     defender: Fighter,
     disadvantageFrames: number,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _context: CalculationContext
   ): PunishMove[] {
     const punishingMoves: PunishMove[] = [];
@@ -227,7 +233,9 @@ export class FrameCalculator {
             totalFrames,
             isGuaranteed: totalFrames < disadvantageFrames,
             probability: this.calculateProbability(totalFrames, disadvantageFrames, 7),
-            damage: Array.isArray(move.damage) ? move.damage[0] : move.damage,
+            damage: Array.isArray(move.damage) 
+              ? (move.damage.length > 0 ? move.damage[0] : 0)
+              : move.damage,
             killPercent: move.properties.killPercent,
             notes: `Jump cancel option`
           });
@@ -241,6 +249,7 @@ export class FrameCalculator {
   private static getShieldDropOptions(
     defender: Fighter,
     disadvantageFrames: number,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _context: CalculationContext
   ): PunishMove[] {
     const punishingMoves: PunishMove[] = [];
@@ -257,7 +266,9 @@ export class FrameCalculator {
             totalFrames,
             isGuaranteed: totalFrames < disadvantageFrames,
             probability: this.calculateProbability(totalFrames, disadvantageFrames, 6),
-            damage: Array.isArray(move.damage) ? move.damage[0] : move.damage,
+            damage: Array.isArray(move.damage) 
+              ? (move.damage.length > 0 ? move.damage[0] : 0)
+              : move.damage,
             killPercent: move.properties.killPercent,
             notes: `Shield drop option`
           });

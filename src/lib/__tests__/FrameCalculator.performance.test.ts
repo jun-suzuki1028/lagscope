@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { FrameCalculator } from '../FrameCalculator';
 import { Move, Fighter } from '../../types/frameData';
 
@@ -347,6 +347,7 @@ describe('FrameCalculator パフォーマンステスト', () => {
       expect(averageTime).toBeLessThan(5);
       
       // ベンチマーク結果をログ出力
+      // eslint-disable-next-line no-console
       console.log(`ベンチマーク結果: ${iterations}回の計算に${totalTime.toFixed(2)}ms、平均${averageTime.toFixed(2)}ms`);
     });
   });

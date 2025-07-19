@@ -1,4 +1,4 @@
-import { Fighter, Move } from '../types/frameData';
+import { Fighter } from '../types/frameData';
 
 export const mockFighters: Fighter[] = [
   {

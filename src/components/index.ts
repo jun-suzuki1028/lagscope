@@ -15,4 +15,5 @@ export { ErrorBoundary } from './ErrorBoundary';
 export { ErrorMessage } from './ErrorMessage';
 export { LoadingSpinner, LoadingOverlay, LoadingButton } from './LoadingSpinner';
 export { FallbackUI, CharacterSelectionFallback, MoveDataFallback, CalculationResultsFallback } from './FallbackUI';
-export { FormValidation, ValidatedInput, ValidatedSelect, validators, validateField, validateForm } from './FormValidation';
+export { FormValidation, ValidatedInput, ValidatedSelect } from './FormValidation';
+export { validators, validateField, validateForm } from '../lib/validators';

@@ -1,4 +1,4 @@
-import type { PunishResult, PunishMove } from '../types/frameData';
+import type { PunishResult, PunishMove, Fighter, CalculationContext } from '../types/frameData';
 
 export type ExportFormat = 'csv' | 'txt' | 'json';
 
@@ -144,9 +144,9 @@ export class ExportService {
       acc[characterId].moves.push(move);
       return acc;
     }, {} as Record<string, {
-      fighter: any;
+      fighter: Fighter;
       moves: PunishMove[];
-      context: any;
+      context: CalculationContext;
     }>);
 
     Object.values(groupedByCharacter).forEach(({ fighter, moves, context }) => {
@@ -203,7 +203,7 @@ export class ExportService {
       throw new Error('エクスポートするデータがありません');
     }
 
-    const exportData: any = {
+    const exportData: Record<string, unknown> = {
       results,
     };
 
