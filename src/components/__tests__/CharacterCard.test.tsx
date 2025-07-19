@@ -61,7 +61,7 @@ describe('CharacterCard', () => {
 
   it('renders character icon when iconUrl is provided', () => {
     const onSelect = vi.fn();
-    render(
+    const { container } = render(
       <CharacterCard
         fighter={mockFighter}
         isSelected={false}
@@ -69,8 +69,8 @@ describe('CharacterCard', () => {
         multiSelect={false}
       />
     );
-
-    const icon = screen.getByAltText('マリオ');
+    
+    const icon = container.querySelector('img');
     expect(icon).toBeInTheDocument();
     expect(icon).toHaveAttribute('src', '/images/mario-icon.png');
   });
@@ -285,7 +285,7 @@ describe('CharacterCard', () => {
 
   it('has proper image loading optimization', () => {
     const onSelect = vi.fn();
-    render(
+    const { container } = render(
       <CharacterCard
         fighter={mockFighter}
         isSelected={false}
@@ -294,7 +294,8 @@ describe('CharacterCard', () => {
       />
     );
 
-    const icon = screen.getByAltText('マリオ');
+    const icon = container.querySelector('img');
+    expect(icon).toBeInTheDocument();
     expect(icon).toHaveAttribute('loading', 'lazy');
   });
 });

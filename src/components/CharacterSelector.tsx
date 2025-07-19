@@ -150,6 +150,7 @@ export const CharacterSelector = memo(function CharacterSelector({
             aria-label="キャラクター検索"
             aria-describedby={statusId}
             aria-autocomplete="list"
+            tabIndex={0}
           />
           {searchTerm && (
             <button

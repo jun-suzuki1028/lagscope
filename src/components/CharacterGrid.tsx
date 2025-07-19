@@ -31,11 +31,11 @@ export function CharacterGrid({
     <div 
       id={gridId}
       className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 ${className}`}
-      role="grid"
-      aria-label="キャラクター選択グリッド"
+      role="list"
+      aria-label="キャラクター選択リスト"
     >
       {fighters.map((fighter, index) => (
-        <div key={fighter.id} role="gridcell">
+        <div key={fighter.id} role="listitem">
           <CharacterCard
             fighter={fighter}
             isSelected={selectedFighterIds.includes(fighter.id)}

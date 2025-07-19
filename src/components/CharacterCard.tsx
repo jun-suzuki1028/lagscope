@@ -44,12 +44,13 @@ export const CharacterCard = memo(function CharacterCard({
         {fighter.iconUrl ? (
           <img
             src={fighter.iconUrl}
-            alt={fighter.displayName}
+            alt=""
             className="w-8 h-8 sm:w-10 sm:h-10 object-contain mb-1"
             loading="lazy"
+            aria-hidden="true"
           />
         ) : (
-          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-300 rounded-full flex items-center justify-center mb-1">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-300 rounded-full flex items-center justify-center mb-1" aria-hidden="true">
             <span className="text-xs font-bold text-gray-600">
               {fighter.displayName.charAt(0)}
             </span>
