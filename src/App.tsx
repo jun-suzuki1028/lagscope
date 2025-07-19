@@ -64,6 +64,7 @@ function App() {
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error('Failed to load fighter data:', error);
+        // eslint-disable-next-line no-console
         console.warn('Falling back to mock data');
         
         // フォールバック: モックデータを使用

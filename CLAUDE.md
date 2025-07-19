@@ -335,3 +335,78 @@ test('確定反撃計算のフルフロー', async ({ page }) => {
 - **計算性能**: 100ms以内の応答時間維持
 
 このプロジェクトでは、フレームデータの正確性とユーザー体験が最重要です。すべての実装において、これらの品質基準を満たすことを最優先とします。
+
+## CI/CD品質チェック
+
+### Push前必須チェック項目
+
+コードをpushする前に、以下の項目を**必ず**ローカルで確認してください。CIで同じチェックが実行されるため、事前確認により無駄なCI実行を防げます。
+
+#### 1. 型チェック
+```bash
+npx tsc --noEmit
+```
+- TypeScriptの型エラーがないことを確認
+- any型の使用、型安全性の問題を検出
+
+#### 2. ESLintチェック
+```bash
+npm run lint
+```
+- コーディング規約への準拠を確認
+- unused variables、console.log等のチェック
+- 自動修正: `npm run lint -- --fix`
+
+#### 3. 単体テスト
+```bash
+npm run test:run
+```
+- 全テストスイートの実行（338テスト）
+- カバレッジ確認、テスト失敗の検出
+
+#### 4. E2Eテスト
+```bash
+npx playwright install --with-deps  # 初回のみ
+npx playwright test
+```
+- ブラウザでの統合テスト実行
+- 実際のユーザーフロー検証
+
+#### 5. ビルドテスト
+```bash
+npm run build
+```
+- 本番ビルドの成功確認
+- バンドルサイズ、アセット生成の検証
+
+### CI/CD推奨ワークフロー
+
+```bash
+# 1. 開発完了後の品質チェック
+npm run lint
+npx tsc --noEmit
+npm run test:run
+
+# 2. E2Eテスト（重要な変更の場合）
+npx playwright test
+
+# 3. ビルド確認
+npm run build
+
+# 4. 問題なければcommit & push
+git add .
+git commit -m "..."
+git push
+```
+
+### CIエラー対応
+
+CIでエラーが発生した場合：
+
+1. **型エラー**: `npx tsc --noEmit`でローカル確認
+2. **Lintエラー**: `npm run lint -- --fix`で自動修正
+3. **テスト失敗**: `npm run test:run`でローカル再現
+4. **E2Eエラー**: `npx playwright test --ui`でデバッグ
+5. **ビルドエラー**: `npm run build`で依存関係確認
+
+この事前チェックにより、CI/CDパイプラインの効率的な運用と高品質なコードの維持を実現します。
