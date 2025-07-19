@@ -23,25 +23,60 @@ function App() {
   const [isCalculating, setIsCalculating] = useState(false);
   const [calculationError, setCalculationError] = useState<string | null>(null);
 
-  // モックデータの初期化
+  // 生成されたフレームデータの読み込み
   useEffect(() => {
-    try {
+    const loadFighterData = async () => {
       setFightersData({
-        data: mockFighters,
-        loading: false,
+        data: [],
+        loading: true,
         error: null,
         lastFetch: Date.now(),
       });
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Failed to initialize fighter data:', error);
-      setFightersData({
-        data: [],
-        loading: false,
-        error: 'キャラクターデータの初期化に失敗しました',
-        lastFetch: Date.now(),
-      });
-    }
+
+      try {
+        // ベースパスを考慮したURL構築
+        const baseUrl = import.meta.env.BASE_URL || '/';
+        const dataUrl = `${baseUrl}data/all-fighters.json`.replace(/\/+/g, '/');
+        
+        // eslint-disable-next-line no-console
+        console.log('Attempting to fetch data from:', dataUrl);
+        
+        const response = await fetch(dataUrl);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText} - URL: ${dataUrl}`);
+        }
+        const fighters = await response.json();
+        
+        // データ検証
+        if (!Array.isArray(fighters) || fighters.length === 0) {
+          throw new Error('Invalid fighter data: expected non-empty array');
+        }
+        
+        // eslint-disable-next-line no-console
+        console.log(`Successfully loaded ${fighters.length} fighters`);
+        
+        setFightersData({
+          data: fighters,
+          loading: false,
+          error: null,
+          lastFetch: Date.now(),
+        });
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Failed to load fighter data:', error);
+        console.warn('Falling back to mock data');
+        
+        // フォールバック: モックデータを使用
+        setFightersData({
+          data: mockFighters,
+          loading: false,
+          error: null,
+          lastFetch: Date.now(),
+        });
+      }
+    };
+
+    loadFighterData();
   }, [setFightersData]);
 
   // 計算実行

@@ -230,7 +230,15 @@ describe('FrameCalculator エッジケース', () => {
         }
       });
       
-      const slowMove = createMockMove({ totalFrames: 50 });
+      // 非常に不利な技（攻撃側が大幅に不利になる）
+      const slowMove = createMockMove({ 
+        totalFrames: 50,
+        startup: 10,
+        active: 5, 
+        recovery: 35, // 回復35フレーム
+        onShield: -20, // 非常に大きな不利フレーム
+        damage: 30 // シールド硬直を十分に増やして防御側を有利に
+      });
       const result = FrameCalculator.calculatePunishWindow(slowMove, fighter);
       
       expect(result.punishingMoves.length).toBeGreaterThan(0);

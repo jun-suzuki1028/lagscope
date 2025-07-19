@@ -130,7 +130,7 @@ export class FrameCalculator {
 
     const punishingMoves = this.findPunishingMoves(
       defender,
-      frameAdvantage.frameAdvantage < 0 ? Math.abs(frameAdvantage.frameAdvantage) : 0,
+      frameAdvantage.frameAdvantage > 0 ? frameAdvantage.frameAdvantage : 0,
       context
     );
 
@@ -145,29 +145,29 @@ export class FrameCalculator {
 
   private static findPunishingMoves(
     defender: Fighter,
-    disadvantageFrames: number,
+    advantageFrames: number,
     context: CalculationContext
   ): PunishMove[] {
     const punishingMoves: PunishMove[] = [];
     const { options } = context;
 
     // 有利フレームが0以下の場合、反撃オプションはない
-    if (disadvantageFrames <= 0) {
+    if (advantageFrames <= 0) {
       return punishingMoves;
     }
 
     if (options.allowOutOfShield) {
-      const oosOptions = this.getOutOfShieldOptions(defender, disadvantageFrames, context);
+      const oosOptions = this.getOutOfShieldOptions(defender, advantageFrames, context);
       punishingMoves.push(...oosOptions);
     }
 
     if (options.allowGuardCancel) {
-      const guardCancelOptions = this.getGuardCancelOptions(defender, disadvantageFrames, context);
+      const guardCancelOptions = this.getGuardCancelOptions(defender, advantageFrames, context);
       punishingMoves.push(...guardCancelOptions);
     }
 
     if (options.allowShieldDrop) {
-      const shieldDropOptions = this.getShieldDropOptions(defender, disadvantageFrames, context);
+      const shieldDropOptions = this.getShieldDropOptions(defender, advantageFrames, context);
       punishingMoves.push(...shieldDropOptions);
     }
 
@@ -182,7 +182,7 @@ export class FrameCalculator {
 
   private static getOutOfShieldOptions(
     defender: Fighter,
-    disadvantageFrames: number,
+    advantageFrames: number,
      
     _context: CalculationContext
   ): PunishMove[] {
@@ -191,15 +191,15 @@ export class FrameCalculator {
     for (const oosOption of defender.shieldData.outOfShieldOptions) {
       const totalFrames = oosOption.frames;
       
-      if (totalFrames <= disadvantageFrames) {
+      if (totalFrames <= advantageFrames) {
         const move = defender.moves.find(m => m.name === oosOption.move);
         if (move) {
           punishingMoves.push({
             move,
             method: this.getOOSMethod(oosOption.type),
             totalFrames,
-            isGuaranteed: totalFrames < disadvantageFrames,
-            probability: this.calculateProbability(totalFrames, disadvantageFrames, oosOption.effectiveness),
+            isGuaranteed: totalFrames < advantageFrames,
+            probability: this.calculateProbability(totalFrames, advantageFrames, oosOption.effectiveness),
             damage: Array.isArray(move.damage) 
               ? (move.damage.length > 0 ? move.damage[0] : 0)
               : move.damage,
@@ -215,7 +215,7 @@ export class FrameCalculator {
 
   private static getGuardCancelOptions(
     defender: Fighter,
-    disadvantageFrames: number,
+    advantageFrames: number,
      
     _context: CalculationContext
   ): PunishMove[] {
@@ -226,13 +226,13 @@ export class FrameCalculator {
       if (move.category === 'aerial') {
         const totalFrames = jumpSquatFrames + move.startup;
         
-        if (totalFrames <= disadvantageFrames) {
+        if (totalFrames <= advantageFrames) {
           punishingMoves.push({
             move,
             method: 'guard_cancel_jump',
             totalFrames,
-            isGuaranteed: totalFrames < disadvantageFrames,
-            probability: this.calculateProbability(totalFrames, disadvantageFrames, 7),
+            isGuaranteed: totalFrames < advantageFrames,
+            probability: this.calculateProbability(totalFrames, advantageFrames, 7),
             damage: Array.isArray(move.damage) 
               ? (move.damage.length > 0 ? move.damage[0] : 0)
               : move.damage,
@@ -248,7 +248,7 @@ export class FrameCalculator {
 
   private static getShieldDropOptions(
     defender: Fighter,
-    disadvantageFrames: number,
+    advantageFrames: number,
      
     _context: CalculationContext
   ): PunishMove[] {
@@ -259,13 +259,13 @@ export class FrameCalculator {
       if (move.category !== 'aerial' && move.category !== 'grab') {
         const totalFrames = shieldDropFrames + move.startup;
         
-        if (totalFrames <= disadvantageFrames) {
+        if (totalFrames <= advantageFrames) {
           punishingMoves.push({
             move,
             method: 'shield_drop',
             totalFrames,
-            isGuaranteed: totalFrames < disadvantageFrames,
-            probability: this.calculateProbability(totalFrames, disadvantageFrames, 6),
+            isGuaranteed: totalFrames < advantageFrames,
+            probability: this.calculateProbability(totalFrames, advantageFrames, 6),
             damage: Array.isArray(move.damage) 
               ? (move.damage.length > 0 ? move.damage[0] : 0)
               : move.damage,
