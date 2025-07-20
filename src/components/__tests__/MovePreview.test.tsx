@@ -93,7 +93,7 @@ describe('MovePreview', () => {
 
   it('displays category badge', () => {
     render(<MovePreview move={mockMove} />);
-    expect(screen.getByText('ティルト')).toBeInTheDocument();
+    expect(screen.getByText('強攻撃')).toBeInTheDocument();
   });
 
   it('displays range badge', () => {

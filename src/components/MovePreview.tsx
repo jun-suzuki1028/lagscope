@@ -155,7 +155,7 @@ function FrameDataItem({ label, value, valueColor = 'text-gray-900' }: FrameData
 function getCategoryLabel(category: string): string {
   const categoryLabels: Record<string, string> = {
     jab: '弱攻撃',
-    tilt: 'ティルト',
+    tilt: '強攻撃',
     smash: 'スマッシュ',
     aerial: '空中攻撃',
     special: '必殺技',
