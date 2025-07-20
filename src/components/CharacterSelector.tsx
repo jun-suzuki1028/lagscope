@@ -189,14 +189,12 @@ export const CharacterSelector = memo(function CharacterSelector({
         {selectedFighterIds.length > 0 && ` - ${selectedFighterIds.length}体選択中`}
       </div>
 
-      <div className="hidden sm:block">
-        <CharacterGrid
-          fighters={filteredFighters}
-          selectedFighterIds={selectedFighterIds}
-          onFighterSelect={handleFighterSelect}
-          multiSelect={multiSelect}
-        />
-      </div>
+      <CharacterGrid
+        fighters={filteredFighters}
+        selectedFighterIds={selectedFighterIds}
+        onFighterSelect={handleFighterSelect}
+        multiSelect={multiSelect}
+      />
 
       <CharacterModal
         isOpen={isModalOpen}

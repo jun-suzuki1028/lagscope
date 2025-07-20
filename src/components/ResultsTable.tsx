@@ -151,9 +151,9 @@ const ResultsTable: React.FC<ResultsTableProps> = memo(({ results, className = '
 
   if (results.length === 0) {
     return (
-      <div className={`bg-white rounded-lg shadow-md p-6 ${className}`}>
-        <h2 className="text-xl font-bold mb-4 text-gray-800">計算結果</h2>
-        <div className="text-center py-8 text-gray-500">
+      <div className={`bg-white rounded-lg shadow-md p-3 sm:p-6 ${className}`}>
+        <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-gray-800">計算結果</h2>
+        <div className="text-center py-6 sm:py-8 text-gray-500">
           <p>計算結果がありません。</p>
           <p className="text-sm mt-2">攻撃キャラクター、防御キャラクター、技を選択して計算を実行してください。</p>
         </div>
@@ -162,20 +162,20 @@ const ResultsTable: React.FC<ResultsTableProps> = memo(({ results, className = '
   }
 
   return (
-    <div className={`bg-white rounded-lg shadow-md p-6 ${className}`}>
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold text-gray-800">計算結果</h2>
+    <div className={`bg-white rounded-lg shadow-md p-3 sm:p-6 ${className}`}>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 sm:mb-4 gap-2">
+        <h2 className="text-lg sm:text-xl font-bold text-gray-800">計算結果</h2>
         <button
           onClick={() => setIsExportModalOpen(true)}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className="px-3 sm:px-4 py-1.5 sm:py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
         >
           エクスポート
         </button>
       </div>
 
       {/* フィルター */}
-      <div className="mb-4 p-4 bg-gray-50 rounded-lg">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-gray-50 rounded-lg">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <div>
             <label className="flex items-center">
               <input
@@ -242,7 +242,7 @@ const ResultsTable: React.FC<ResultsTableProps> = memo(({ results, className = '
       </div>
 
       {/* テーブル */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto hidden md:block">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
@@ -345,7 +345,7 @@ const ResultsTable: React.FC<ResultsTableProps> = memo(({ results, className = '
       </div>
 
       {/* モバイル表示 */}
-      <div className="md:hidden">
+      <div className="block md:hidden">
         <div className="space-y-4">
           {sortedResults.map(({ result, move, key }) => (
             <div key={key} className="bg-gray-50 rounded-lg p-4">

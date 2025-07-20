@@ -25,7 +25,7 @@ export const CharacterCard = memo(function CharacterCard({
     <div
       onClick={onSelect}
       className={`
-        relative cursor-pointer aspect-square rounded-lg border-2 transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${className}
+        relative cursor-pointer aspect-square rounded-lg border-2 transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 min-h-16 min-w-16 ${className}
         ${isSelected 
           ? 'border-blue-500 bg-blue-50 shadow-lg' 
           : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-md'
@@ -43,7 +43,7 @@ export const CharacterCard = memo(function CharacterCard({
         }
       }}
     >
-      <div className="flex items-center justify-center h-full p-2">
+      <div className="flex items-center justify-center h-full p-1 sm:p-2">
         {iconUrl ? (
           <img
             src={iconUrl}

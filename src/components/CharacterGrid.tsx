@@ -30,7 +30,7 @@ export function CharacterGrid({
   return (
     <div 
       id={gridId}
-      className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 ${className}`}
+      className={`grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-2 sm:gap-3 md:gap-4 ${className}`}
       role="list"
       aria-label="キャラクター選択リスト"
     >

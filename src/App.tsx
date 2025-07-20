@@ -135,25 +135,25 @@ function App() {
           </div>
         </header>
         
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-fadeIn">
+        <main className="max-w-7xl mx-auto px-2 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-8 space-y-4 sm:space-y-8 animate-fadeIn">
           {/* キャラクター選択セクション */}
-          <section className="bg-white rounded-lg shadow p-6 transform transition-all duration-300 hover:shadow-lg animate-slideInUp">
-            <h2 className="text-xl font-semibold mb-6">キャラクター選択</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <section className="bg-white rounded-lg shadow p-3 sm:p-6 transform transition-all duration-300 hover:shadow-lg animate-slideInUp">
+            <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">キャラクター選択</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
               <div>
-                <h3 className="text-lg font-medium mb-4">攻撃側キャラクター</h3>
+                <h3 className="text-base sm:text-lg font-medium mb-3 sm:mb-4">攻撃側キャラクター</h3>
                 <CharacterSelector type="attacker" />
               </div>
               <div>
-                <h3 className="text-lg font-medium mb-4">防御側キャラクター</h3>
+                <h3 className="text-base sm:text-lg font-medium mb-3 sm:mb-4">防御側キャラクター</h3>
                 <CharacterSelector type="defender" multiSelect />
               </div>
             </div>
           </section>
 
           {/* 技選択セクション */}
-          <section className="bg-white rounded-lg shadow p-6 transform transition-all duration-300 hover:shadow-lg animate-slideInUp" style={{ animationDelay: '0.1s' }}>
-            <h2 className="text-xl font-semibold mb-6">技選択</h2>
+          <section className="bg-white rounded-lg shadow p-3 sm:p-6 transform transition-all duration-300 hover:shadow-lg animate-slideInUp" style={{ animationDelay: '0.1s' }}>
+            <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">技選択</h2>
             <MoveSelector 
               selectedFighter={attackingFighter}
               className="w-full"
@@ -166,7 +166,7 @@ function App() {
           </div>
 
           {/* 計算状態表示 */}
-          <section className="bg-white rounded-lg shadow p-6 transform transition-all duration-300 hover:shadow-lg animate-slideInUp" style={{ animationDelay: '0.3s' }}>
+          <section className="bg-white rounded-lg shadow p-3 sm:p-6 transform transition-all duration-300 hover:shadow-lg animate-slideInUp" style={{ animationDelay: '0.3s' }}>
             <div className="flex flex-col items-center space-y-4">
               {isCalculating && (
                 <div className="flex items-center space-x-2 text-blue-600">
@@ -212,9 +212,9 @@ function App() {
           )}
 
           {/* 選択状態の表示 */}
-          <section className="bg-white rounded-lg shadow p-6 transform transition-all duration-300 hover:shadow-lg animate-slideInUp" style={{ animationDelay: '0.5s' }}>
-            <h2 className="text-xl font-semibold mb-4">現在の選択状態</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <section className="bg-white rounded-lg shadow p-3 sm:p-6 transform transition-all duration-300 hover:shadow-lg animate-slideInUp" style={{ animationDelay: '0.5s' }}>
+            <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">現在の選択状態</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 text-xs sm:text-sm">
               <div>
                 <span className="font-medium text-gray-700">攻撃側：</span>
                 <span className="ml-2">{attackingFighter?.displayName || '未選択'}</span>

@@ -36,21 +36,21 @@ export function MoveSelector({ selectedFighter, onMoveSelect, className = '' }: 
   }
 
   return (
-    <div className={`${className} space-y-4`}>
-      <h3 className="text-lg font-semibold">
+    <div className={`${className} space-y-3 sm:space-y-4`}>
+      <h3 className="text-base sm:text-lg font-semibold">
         {selectedFighter.displayName}の技選択
       </h3>
 
       {/* メイン技選択プルダウン */}
-      <div className="space-y-2">
-        <label htmlFor="move-select" className="block text-sm font-medium text-gray-700">
+      <div className="space-y-2 sm:space-y-3">
+        <label htmlFor="move-select" className="block text-xs sm:text-sm font-medium text-gray-700">
           技を選択
         </label>
         <select
           id="move-select"
           value={selectedMove?.id.toString() || ''}
           onChange={(e) => handleMoveSelect(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full px-2 sm:px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           aria-label="技を選択"
           data-testid="move-select"
         >
@@ -64,12 +64,12 @@ export function MoveSelector({ selectedFighter, onMoveSelect, className = '' }: 
         
         {/* 選択された技の詳細表示 */}
         {selectedMove && (
-          <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="mt-2 sm:mt-3 p-2 sm:p-3 bg-blue-50 rounded-lg border border-blue-200">
             <div className="flex items-center gap-2 mb-2">
               <span className="font-medium text-blue-900">{selectedMove.displayName}</span>
             </div>
             
-            <div className="flex items-center gap-4 text-sm text-blue-700">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-blue-700">
               <span>発生: {selectedMove.startup}F</span>
               <span>全体: {selectedMove.totalFrames}F</span>
               <span>
