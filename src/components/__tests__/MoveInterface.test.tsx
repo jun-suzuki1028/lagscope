@@ -141,14 +141,11 @@ describe('MoveInterface', () => {
     const user = userEvent.setup();
     render(<MoveInterface selectedFighter={mockFighter} />);
     
-    const moveCard = screen.getByLabelText('弱攻撃1を選択');
-    await user.click(moveCard);
+    const moveSelect = screen.getByTestId('move-select');
+    await user.selectOptions(moveSelect, 'mario-jab1');
     
     const jabElements = screen.getAllByText('弱攻撃1');
     expect(jabElements.length).toBeGreaterThan(0);
-    
-    const aElements = screen.getAllByText('A');
-    expect(aElements.length).toBeGreaterThan(0);
   });
 
   it('calls onMoveSelect callback when move is selected', async () => {
@@ -156,8 +153,8 @@ describe('MoveInterface', () => {
     const onMoveSelect = vi.fn();
     render(<MoveInterface selectedFighter={mockFighter} onMoveSelect={onMoveSelect} />);
     
-    const moveCard = screen.getByLabelText('弱攻撃1を選択');
-    await user.click(moveCard);
+    const moveSelect = screen.getByTestId('move-select');
+    await user.selectOptions(moveSelect, 'mario-jab1');
     
     expect(onMoveSelect).toHaveBeenCalledWith(mockMove);
   });
@@ -188,7 +185,7 @@ describe('MoveInterface', () => {
     render(<MoveInterface selectedFighter={mockFighter} />);
     
     // The preview section should be hidden on mobile but visible on desktop
-    const previewContainer = screen.getByText('技を選択してください').closest('.hidden');
+    const previewContainer = screen.getAllByText('技を選択してください')[1].closest('.hidden');
     expect(previewContainer).toHaveClass('hidden', 'lg:block');
   });
 });

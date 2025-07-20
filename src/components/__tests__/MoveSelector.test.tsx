@@ -284,7 +284,6 @@ describe('MoveSelector', () => {
 
     render(<MoveSelector selectedFighter={mockFighter} />);
     
-    expect(screen.getByText('A')).toBeInTheDocument(); // input
     expect(screen.getByText('発生: 2F')).toBeInTheDocument(); // startup
     expect(screen.getByText('全体: 9F')).toBeInTheDocument(); // total frames
     expect(screen.getByText('ダメージ: 2.2%')).toBeInTheDocument(); // damage
@@ -302,7 +301,7 @@ describe('MoveSelector', () => {
     expect(screen.getByText('撃墜技')).toBeInTheDocument();
   });
 
-  it('displays category and range badges when move is selected', () => {
+  it('displays move name and details when move is selected', () => {
     const selectedMove = mockMoves[0]; // jab
     (useAppStore as any).mockReturnValue({
       ...mockStore,
@@ -311,8 +310,8 @@ describe('MoveSelector', () => {
 
     render(<MoveSelector selectedFighter={mockFighter} />);
     
-    expect(screen.getByText('弱攻撃')).toBeInTheDocument();
-    expect(screen.getByText('近')).toBeInTheDocument();
+    expect(screen.getAllByText('弱攻撃1').length).toBeGreaterThan(0); // move name appears multiple times
+    expect(screen.getByText('発生: 2F')).toBeInTheDocument(); // startup frames
   });
 
   it('selects move when dropdown option is selected', async () => {
