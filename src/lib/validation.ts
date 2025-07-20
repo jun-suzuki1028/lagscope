@@ -72,7 +72,6 @@ export const PunishMethodSchema = z.enum([
   'guard_cancel_up_smash',
   'guard_cancel_nair',
   'guard_cancel_up_tilt',
-  'shield_drop',
   'perfect_shield',
   'roll_away',
   'roll_behind',
@@ -208,7 +207,6 @@ export const ShieldDataSchema = z.object({
   shieldRegenDelay: z.number().min(0),
   shieldStun: z.number().min(0),
   shieldReleaseFrames: z.number().min(1).max(20),
-  shieldDropFrames: z.number().min(1).max(20),
   shieldGrabFrames: z.number().min(1).max(20),
   outOfShieldOptions: z.array(OutOfShieldOptionSchema)
 });
@@ -237,7 +235,6 @@ export const CalculationOptionsSchema = z.object({
   rangeFilter: z.array(MoveRangeSchema),
   allowOutOfShield: z.boolean(),
   allowGuardCancel: z.boolean(),
-  allowShieldDrop: z.boolean(),
   allowPerfectShield: z.boolean(),
   allowRolling: z.boolean(),
   allowSpotDodge: z.boolean(),

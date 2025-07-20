@@ -17,7 +17,7 @@ import { Fighter, FrameDataStats } from '../types/frameData';
 import { FighterSchema, safeParse } from '../lib/validation';
 
 describe('全キャラクターフレームデータ生成', () => {
-  it('全89キャラクターのデータを生成し保存する', async () => {
+  it('全88キャラクターのデータを生成し保存する', async () => {
     console.log('🚀 大乱闘スマッシュブラザーズ SPECIAL フレームデータ生成開始');
     console.log(`📊 対象キャラクター: ${ALL_CHARACTERS.length}体`);
     console.log(`📈 基本ファイター: ${getBaseRosterCount()}体`);
@@ -219,9 +219,9 @@ describe('全キャラクターフレームデータ生成', () => {
     console.log('\n🎉 全キャラクターのフレームデータ生成が完了しました！');
 
     // アサーション
-    expect(fighters.length).toBe(89);
-    expect(saved).toBe(89);
-    expect(stats.totalMoves).toBeGreaterThan(1500); // 89キャラ × 平均17技以上
+    expect(fighters.length).toBe(88);
+    expect(saved).toBe(88);
+    expect(stats.totalMoves).toBeGreaterThan(1500); // 88キャラ × 平均17技以上
     expect(qualityReport.overallScore).toBeGreaterThan(0.8); // 80%以上の品質
   });
 });

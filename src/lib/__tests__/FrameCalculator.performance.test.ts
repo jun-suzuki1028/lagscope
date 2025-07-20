@@ -73,7 +73,6 @@ describe('FrameCalculator パフォーマンステスト', () => {
         shieldRegenDelay: 30,
         shieldStun: 0.8665,
         shieldReleaseFrames: 11,
-        shieldDropFrames: 4,
         shieldGrabFrames: 6,
         outOfShieldOptions: moves.slice(0, 5).map((move, i) => ({
           move: move.name,

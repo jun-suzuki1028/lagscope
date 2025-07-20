@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { MoveSelector } from '../MoveSelector';
@@ -8,16 +8,11 @@ import { Fighter, Move } from '../../types/frameData';
 // Mock the store
 vi.mock('../../stores/app-store');
 
-// Mock the debounce hook to return value immediately
-vi.mock('../../hooks/useDebounce', () => ({
-  useDebounce: (value: string) => value,
-}));
-
 const mockMoves: Move[] = [
   {
     id: 'mario-jab1',
     name: 'Jab 1',
-    displayName: 'ジャブ1',
+    displayName: '弱攻撃1',
     category: 'jab',
     type: 'normal',
     input: 'A',
@@ -120,6 +115,77 @@ const mockMoves: Move[] = [
       transcendentPriority: true,
     },
   },
+  // つかみと投げのテスト用モック（フィルターで除外される）
+  {
+    id: 'mario-grab',
+    name: 'Grab',
+    displayName: 'つかみ',
+    category: 'grab',
+    type: 'grab',
+    input: 'Z',
+    startup: 6,
+    active: 2,
+    recovery: 30,
+    totalFrames: 38,
+    onShield: 0,
+    onHit: 0,
+    onWhiff: -30,
+    damage: 0,
+    baseKnockback: 0,
+    knockbackGrowth: 0,
+    range: 'close',
+    hitboxData: {
+      hitboxes: [],
+      multihit: false,
+    },
+    properties: {
+      isKillMove: false,
+      hasArmor: false,
+      isCommandGrab: true,
+      isSpike: false,
+      isMeteor: false,
+      hasInvincibility: false,
+      hasIntangibility: false,
+      canClank: false,
+      priority: 1,
+      transcendentPriority: false,
+    },
+  },
+  {
+    id: 'mario-fthrow',
+    name: 'Forward Throw',
+    displayName: '前投げ',
+    category: 'throw',
+    type: 'throw',
+    input: '前+Z',
+    startup: 16,
+    active: 1,
+    recovery: 23,
+    totalFrames: 40,
+    onShield: 0,
+    onHit: 0,
+    onWhiff: 0,
+    damage: 8,
+    baseKnockback: 65,
+    knockbackGrowth: 65,
+    range: 'close',
+    hitboxData: {
+      hitboxes: [],
+      multihit: false,
+    },
+    properties: {
+      isKillMove: false,
+      hasArmor: false,
+      isCommandGrab: false,
+      isSpike: false,
+      isMeteor: false,
+      hasInvincibility: false,
+      hasIntangibility: false,
+      canClank: false,
+      priority: 1,
+      transcendentPriority: false,
+    },
+  },
 ];
 
 const mockFighter: Fighter = {
@@ -141,7 +207,6 @@ const mockFighter: Fighter = {
     shieldRegenDelay: 30,
     shieldStun: 0.725,
     shieldReleaseFrames: 11,
-    shieldDropFrames: 7,
     shieldGrabFrames: 10,
     outOfShieldOptions: [],
   },
@@ -178,194 +243,90 @@ describe('MoveSelector', () => {
     expect(screen.getByText('キャラクターを選択してください')).toBeInTheDocument();
   });
 
-  it('renders fighter name and move count', () => {
+  it('renders fighter name', () => {
     render(<MoveSelector selectedFighter={mockFighter} />);
     expect(screen.getByText('マリオの技選択')).toBeInTheDocument();
-    expect(screen.getByText('3個の技が見つかりました')).toBeInTheDocument();
   });
 
-  it('renders search input', () => {
+
+
+  it('displays move dropdown with filtered moves (excludes grab and throw)', () => {
     render(<MoveSelector selectedFighter={mockFighter} />);
-    expect(screen.getByRole('searchbox')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('技を検索...')).toBeInTheDocument();
+    const dropdown = screen.getByTestId('move-select');
+    expect(dropdown).toBeInTheDocument();
+    expect(screen.getByText('技を選択してください')).toBeInTheDocument();
+    expect(dropdown).toHaveValue('');
+    
+    // プルダウンに技名のみが表示され、つかみと投げが除外されることを確認
+    const options = screen.getAllByRole('option');
+    expect(options).toHaveLength(4); // 空のオプション + 3つの技（つかみと投げは除外）
+    expect(options[1]).toHaveTextContent('弱攻撃1');
+    expect(options[2]).toHaveTextContent('上強攻撃');
+    expect(options[3]).toHaveTextContent('ファイアボール');
+    
+    // つかみと投げが表示されないことを確認
+    expect(screen.queryByText('つかみ')).not.toBeInTheDocument();
+    expect(screen.queryByText('前投げ')).not.toBeInTheDocument();
   });
 
-  it('renders filter selects', () => {
-    render(<MoveSelector selectedFighter={mockFighter} />);
-    expect(screen.getByLabelText('カテゴリでフィルタ')).toBeInTheDocument();
-    expect(screen.getByLabelText('タイプでフィルタ')).toBeInTheDocument();
-    expect(screen.getByLabelText('レンジでフィルタ')).toBeInTheDocument();
-  });
 
-  it('displays all moves initially', () => {
-    render(<MoveSelector selectedFighter={mockFighter} />);
-    expect(screen.getByText('ジャブ1')).toBeInTheDocument();
-    expect(screen.getByText('上強攻撃')).toBeInTheDocument();
-    expect(screen.getByText('ファイアボール')).toBeInTheDocument();
-  });
 
-  it('filters moves by search term', async () => {
-    const user = userEvent.setup();
-    render(<MoveSelector selectedFighter={mockFighter} />);
 
-    const searchInput = screen.getByRole('searchbox');
-    await user.type(searchInput, 'ジャブ');
 
-    await waitFor(() => {
-      expect(screen.getByText('ジャブ1')).toBeInTheDocument();
-      expect(screen.queryByText('上強攻撃')).not.toBeInTheDocument();
-      expect(screen.queryByText('ファイアボール')).not.toBeInTheDocument();
+
+
+  it('displays move details when a move is selected', () => {
+    const selectedMove = mockMoves[0];
+    (useAppStore as any).mockReturnValue({
+      ...mockStore,
+      selectedMove,
     });
-  });
 
-  it('filters moves by category', async () => {
-    const user = userEvent.setup();
-    render(<MoveSelector selectedFighter={mockFighter} />);
-
-    const categorySelect = screen.getByLabelText('カテゴリでフィルタ');
-    await user.selectOptions(categorySelect, 'special');
-
-    await waitFor(() => {
-      expect(screen.getByText('ファイアボール')).toBeInTheDocument();
-      expect(screen.queryByText('ジャブ1')).not.toBeInTheDocument();
-      expect(screen.queryByText('上強攻撃')).not.toBeInTheDocument();
-    });
-  });
-
-  it('filters moves by type', async () => {
-    const user = userEvent.setup();
-    render(<MoveSelector selectedFighter={mockFighter} />);
-
-    const typeSelect = screen.getByLabelText('タイプでフィルタ');
-    await user.selectOptions(typeSelect, 'special');
-
-    await waitFor(() => {
-      expect(screen.getByText('ファイアボール')).toBeInTheDocument();
-      expect(screen.queryByText('ジャブ1')).not.toBeInTheDocument();
-      expect(screen.queryByText('上強攻撃')).not.toBeInTheDocument();
-    });
-  });
-
-  it('filters moves by range', async () => {
-    const user = userEvent.setup();
-    render(<MoveSelector selectedFighter={mockFighter} />);
-
-    const rangeSelect = screen.getByLabelText('レンジでフィルタ');
-    await user.selectOptions(rangeSelect, 'projectile');
-
-    await waitFor(() => {
-      expect(screen.getByText('ファイアボール')).toBeInTheDocument();
-      expect(screen.queryByText('ジャブ1')).not.toBeInTheDocument();
-      expect(screen.queryByText('上強攻撃')).not.toBeInTheDocument();
-    });
-  });
-
-  it('clears filters when clear button is clicked', async () => {
-    const user = userEvent.setup();
-    render(<MoveSelector selectedFighter={mockFighter} />);
-
-    const searchInput = screen.getByRole('searchbox');
-    await user.type(searchInput, 'ジャブ');
-
-    const categorySelect = screen.getByLabelText('カテゴリでフィルタ');
-    await user.selectOptions(categorySelect, 'jab');
-
-    const clearButton = screen.getByLabelText('フィルタをクリア');
-    await user.click(clearButton);
-
-    await waitFor(() => {
-      expect(searchInput).toHaveValue('');
-      expect(categorySelect).toHaveValue('all');
-      expect(screen.getByText('3個の技が見つかりました')).toBeInTheDocument();
-    });
-  });
-
-  it('shows no results message when no moves match filters', async () => {
-    const user = userEvent.setup();
-    render(<MoveSelector selectedFighter={mockFighter} />);
-
-    const searchInput = screen.getByRole('searchbox');
-    await user.type(searchInput, 'nonexistent');
-
-    await waitFor(() => {
-      expect(screen.getByText('条件に該当する技が見つかりませんでした')).toBeInTheDocument();
-    });
-  });
-
-  it('displays move details correctly', () => {
     render(<MoveSelector selectedFighter={mockFighter} />);
     
-    expect(screen.getByText('A')).toBeInTheDocument(); // input
     expect(screen.getByText('発生: 2F')).toBeInTheDocument(); // startup
     expect(screen.getByText('全体: 9F')).toBeInTheDocument(); // total frames
     expect(screen.getByText('ダメージ: 2.2%')).toBeInTheDocument(); // damage
     expect(screen.getByText('ガード: -2F')).toBeInTheDocument(); // on shield
   });
 
-  it('displays kill move badge for kill moves', () => {
+  it('displays kill move badge for kill moves when selected', () => {
+    const selectedMove = mockMoves[1]; // utilt is a kill move
+    (useAppStore as any).mockReturnValue({
+      ...mockStore,
+      selectedMove,
+    });
+
     render(<MoveSelector selectedFighter={mockFighter} />);
     expect(screen.getByText('撃墜技')).toBeInTheDocument();
   });
 
-  it('displays category and range badges', () => {
+  it('displays move name and details when move is selected', () => {
+    const selectedMove = mockMoves[0]; // jab
+    (useAppStore as any).mockReturnValue({
+      ...mockStore,
+      selectedMove,
+    });
+
     render(<MoveSelector selectedFighter={mockFighter} />);
-    const jabElements = screen.getAllByText('ジャブ');
-    expect(jabElements.length).toBeGreaterThan(0);
     
-    const tiltElements = screen.getAllByText('ティルト');
-    expect(tiltElements.length).toBeGreaterThan(0);
-    
-    const specialElements = screen.getAllByText('必殺技');
-    expect(specialElements.length).toBeGreaterThan(0);
-    
-    const closeRangeElements = screen.getAllByText('近');
-    expect(closeRangeElements.length).toBeGreaterThan(0);
-    
-    const farElements = screen.getAllByText('飛');
-    expect(farElements.length).toBeGreaterThan(0);
+    expect(screen.getAllByText('弱攻撃1').length).toBeGreaterThan(0); // move name appears multiple times
+    expect(screen.getByText('発生: 2F')).toBeInTheDocument(); // startup frames
   });
 
-  it('selects move when move card is clicked', async () => {
+  it('selects move when dropdown option is selected', async () => {
     const user = userEvent.setup();
     const onMoveSelect = vi.fn();
     render(<MoveSelector selectedFighter={mockFighter} onMoveSelect={onMoveSelect} />);
 
-    const moveCard = screen.getByLabelText('ジャブ1を選択');
-    await user.click(moveCard);
+    const dropdown = screen.getByTestId('move-select');
+    await user.selectOptions(dropdown, mockMoves[0].id);
 
     expect(mockStore.setSelectedMove).toHaveBeenCalledWith(mockMoves[0]);
     expect(onMoveSelect).toHaveBeenCalledWith(mockMoves[0]);
   });
 
-  it('handles keyboard navigation', async () => {
-    const user = userEvent.setup();
-    const onMoveSelect = vi.fn();
-    render(<MoveSelector selectedFighter={mockFighter} onMoveSelect={onMoveSelect} />);
-
-    const moveCard = screen.getByLabelText('ジャブ1を選択');
-    moveCard.focus();
-
-    await user.keyboard('{Enter}');
-
-    expect(mockStore.setSelectedMove).toHaveBeenCalledWith(mockMoves[0]);
-    expect(onMoveSelect).toHaveBeenCalledWith(mockMoves[0]);
-  });
-
-  it('handles space key for selection', async () => {
-    const user = userEvent.setup();
-    const onMoveSelect = vi.fn();
-    render(<MoveSelector selectedFighter={mockFighter} onMoveSelect={onMoveSelect} />);
-
-    const moveCard = screen.getByLabelText('ジャブ1を選択');
-    moveCard.focus();
-
-    await user.keyboard(' ');
-
-    expect(mockStore.setSelectedMove).toHaveBeenCalledWith(mockMoves[0]);
-    expect(onMoveSelect).toHaveBeenCalledWith(mockMoves[0]);
-  });
-
-  it('shows selected move in status', () => {
+  it('shows selected move in dropdown', () => {
     const selectedMove = mockMoves[0];
     (useAppStore as any).mockReturnValue({
       ...mockStore,
@@ -373,50 +334,12 @@ describe('MoveSelector', () => {
     });
 
     render(<MoveSelector selectedFighter={mockFighter} />);
-    expect(screen.getByText('3個の技が見つかりました - 選択中: ジャブ1')).toBeInTheDocument();
+    const dropdown = screen.getByTestId('move-select');
+    expect(dropdown).toHaveValue(mockMoves[0].id);
   });
 
-  it('applies selected styles to selected move', () => {
-    const selectedMove = mockMoves[0];
-    (useAppStore as any).mockReturnValue({
-      ...mockStore,
-      selectedMove,
-    });
 
-    render(<MoveSelector selectedFighter={mockFighter} />);
-    const moveCard = screen.getByLabelText('ジャブ1を選択');
-    expect(moveCard).toHaveClass('border-blue-500', 'bg-blue-50', 'shadow-lg');
-  });
 
-  it('filters by input command', async () => {
-    const user = userEvent.setup();
-    render(<MoveSelector selectedFighter={mockFighter} />);
 
-    const searchInput = screen.getByRole('searchbox');
-    await user.type(searchInput, '上+A');
 
-    await waitFor(() => {
-      expect(screen.getByText('上強攻撃')).toBeInTheDocument();
-      expect(screen.queryByText('ジャブ1')).not.toBeInTheDocument();
-      expect(screen.queryByText('ファイアボール')).not.toBeInTheDocument();
-    });
-  });
-
-  it('combines multiple filters correctly', async () => {
-    const user = userEvent.setup();
-    render(<MoveSelector selectedFighter={mockFighter} />);
-
-    const categorySelect = screen.getByLabelText('カテゴリでフィルタ');
-    await user.selectOptions(categorySelect, 'tilt');
-
-    const typeSelect = screen.getByLabelText('タイプでフィルタ');
-    await user.selectOptions(typeSelect, 'normal');
-
-    await waitFor(() => {
-      expect(screen.getByText('上強攻撃')).toBeInTheDocument();
-      expect(screen.queryByText('ジャブ1')).not.toBeInTheDocument();
-      expect(screen.queryByText('ファイアボール')).not.toBeInTheDocument();
-      expect(screen.getByText('1個の技が見つかりました')).toBeInTheDocument();
-    });
-  });
 });

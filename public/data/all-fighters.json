@@ -15,7 +15,7 @@
       {
         "id": "mario-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -66,7 +66,7 @@
       {
         "id": "mario-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -117,7 +117,7 @@
       {
         "id": "mario-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -1297,7 +1297,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -1379,7 +1378,7 @@
       {
         "id": "donkey_kong-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -1430,7 +1429,7 @@
       {
         "id": "donkey_kong-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -1481,7 +1480,7 @@
       {
         "id": "donkey_kong-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -2661,7 +2660,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -2743,7 +2741,7 @@
       {
         "id": "link-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -2794,7 +2792,7 @@
       {
         "id": "link-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -2845,7 +2843,7 @@
       {
         "id": "link-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -4025,7 +4023,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -4107,7 +4104,7 @@
       {
         "id": "samus-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -4158,7 +4155,7 @@
       {
         "id": "samus-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -4209,7 +4206,7 @@
       {
         "id": "samus-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -5389,7 +5386,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -5471,7 +5467,7 @@
       {
         "id": "dark_samus-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -5522,7 +5518,7 @@
       {
         "id": "dark_samus-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -5573,7 +5569,7 @@
       {
         "id": "dark_samus-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -6753,7 +6749,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -6835,7 +6830,7 @@
       {
         "id": "yoshi-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -6886,7 +6881,7 @@
       {
         "id": "yoshi-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -6937,7 +6932,7 @@
       {
         "id": "yoshi-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -8117,7 +8112,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -8199,7 +8193,7 @@
       {
         "id": "kirby-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -8250,7 +8244,7 @@
       {
         "id": "kirby-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -8301,7 +8295,7 @@
       {
         "id": "kirby-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -9481,7 +9475,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -9563,7 +9556,7 @@
       {
         "id": "fox-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -9614,7 +9607,7 @@
       {
         "id": "fox-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -9665,7 +9658,7 @@
       {
         "id": "fox-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -10845,7 +10838,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -10927,7 +10919,7 @@
       {
         "id": "pikachu-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -10978,7 +10970,7 @@
       {
         "id": "pikachu-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -11029,7 +11021,7 @@
       {
         "id": "pikachu-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -12209,7 +12201,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -12291,7 +12282,7 @@
       {
         "id": "luigi-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -12342,7 +12333,7 @@
       {
         "id": "luigi-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -12393,7 +12384,7 @@
       {
         "id": "luigi-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -13573,7 +13564,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -13655,7 +13645,7 @@
       {
         "id": "ness-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -13706,7 +13696,7 @@
       {
         "id": "ness-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -13757,7 +13747,7 @@
       {
         "id": "ness-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -14937,7 +14927,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -15019,7 +15008,7 @@
       {
         "id": "captain_falcon-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -15070,7 +15059,7 @@
       {
         "id": "captain_falcon-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -15121,7 +15110,7 @@
       {
         "id": "captain_falcon-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -16301,7 +16290,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -16383,7 +16371,7 @@
       {
         "id": "jigglypuff-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -16434,7 +16422,7 @@
       {
         "id": "jigglypuff-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -16485,7 +16473,7 @@
       {
         "id": "jigglypuff-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -17665,7 +17653,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -17747,7 +17734,7 @@
       {
         "id": "peach-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -17798,7 +17785,7 @@
       {
         "id": "peach-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -17849,7 +17836,7 @@
       {
         "id": "peach-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -19029,7 +19016,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -19111,7 +19097,7 @@
       {
         "id": "daisy-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -19162,7 +19148,7 @@
       {
         "id": "daisy-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -19213,7 +19199,7 @@
       {
         "id": "daisy-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -20393,7 +20379,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -20475,7 +20460,7 @@
       {
         "id": "bowser-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -20526,7 +20511,7 @@
       {
         "id": "bowser-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -20577,7 +20562,7 @@
       {
         "id": "bowser-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -21757,7 +21742,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -21839,7 +21823,7 @@
       {
         "id": "ice_climbers-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -21890,7 +21874,7 @@
       {
         "id": "ice_climbers-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -21941,7 +21925,7 @@
       {
         "id": "ice_climbers-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -23121,7 +23105,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -23203,7 +23186,7 @@
       {
         "id": "sheik-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -23254,7 +23237,7 @@
       {
         "id": "sheik-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -23305,7 +23288,7 @@
       {
         "id": "sheik-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -24485,7 +24468,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -24567,7 +24549,7 @@
       {
         "id": "zelda-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -24618,7 +24600,7 @@
       {
         "id": "zelda-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -24669,7 +24651,7 @@
       {
         "id": "zelda-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -25849,7 +25831,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -25931,7 +25912,7 @@
       {
         "id": "dr_mario-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -25982,7 +25963,7 @@
       {
         "id": "dr_mario-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -26033,7 +26014,7 @@
       {
         "id": "dr_mario-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -27213,7 +27194,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -27295,7 +27275,7 @@
       {
         "id": "pichu-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -27346,7 +27326,7 @@
       {
         "id": "pichu-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -27397,7 +27377,7 @@
       {
         "id": "pichu-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -28577,7 +28557,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -28659,7 +28638,7 @@
       {
         "id": "falco-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -28710,7 +28689,7 @@
       {
         "id": "falco-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -28761,7 +28740,7 @@
       {
         "id": "falco-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -29941,7 +29920,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -30023,7 +30001,7 @@
       {
         "id": "marth-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -30074,7 +30052,7 @@
       {
         "id": "marth-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -30125,7 +30103,7 @@
       {
         "id": "marth-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -31305,7 +31283,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -31387,7 +31364,7 @@
       {
         "id": "lucina-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -31438,7 +31415,7 @@
       {
         "id": "lucina-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -31489,7 +31466,7 @@
       {
         "id": "lucina-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -32669,7 +32646,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -32751,7 +32727,7 @@
       {
         "id": "young_link-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -32802,7 +32778,7 @@
       {
         "id": "young_link-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -32853,7 +32829,7 @@
       {
         "id": "young_link-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -34033,7 +34009,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -34115,7 +34090,7 @@
       {
         "id": "ganondorf-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -34166,7 +34141,7 @@
       {
         "id": "ganondorf-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -34217,7 +34192,7 @@
       {
         "id": "ganondorf-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -35397,7 +35372,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -35479,7 +35453,7 @@
       {
         "id": "mewtwo-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -35530,7 +35504,7 @@
       {
         "id": "mewtwo-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -35581,7 +35555,7 @@
       {
         "id": "mewtwo-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -36761,7 +36735,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -36843,7 +36816,7 @@
       {
         "id": "roy-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -36894,7 +36867,7 @@
       {
         "id": "roy-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -36945,7 +36918,7 @@
       {
         "id": "roy-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -38125,7 +38098,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -38207,7 +38179,7 @@
       {
         "id": "chrom-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -38258,7 +38230,7 @@
       {
         "id": "chrom-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -38309,7 +38281,7 @@
       {
         "id": "chrom-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -39489,7 +39461,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -39571,7 +39542,7 @@
       {
         "id": "mr_game_and_watch-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -39622,7 +39593,7 @@
       {
         "id": "mr_game_and_watch-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -39673,7 +39644,7 @@
       {
         "id": "mr_game_and_watch-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -40853,7 +40824,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -40935,7 +40905,7 @@
       {
         "id": "meta_knight-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -40986,7 +40956,7 @@
       {
         "id": "meta_knight-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -41037,7 +41007,7 @@
       {
         "id": "meta_knight-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -42217,7 +42187,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -42299,7 +42268,7 @@
       {
         "id": "pit-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -42350,7 +42319,7 @@
       {
         "id": "pit-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -42401,7 +42370,7 @@
       {
         "id": "pit-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -43581,7 +43550,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -43663,7 +43631,7 @@
       {
         "id": "dark_pit-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -43714,7 +43682,7 @@
       {
         "id": "dark_pit-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -43765,7 +43733,7 @@
       {
         "id": "dark_pit-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -44945,7 +44913,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -45027,7 +44994,7 @@
       {
         "id": "zero_suit_samus-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -45078,7 +45045,7 @@
       {
         "id": "zero_suit_samus-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -45129,7 +45096,7 @@
       {
         "id": "zero_suit_samus-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -46309,7 +46276,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -46391,7 +46357,7 @@
       {
         "id": "wario-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -46442,7 +46408,7 @@
       {
         "id": "wario-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -46493,7 +46459,7 @@
       {
         "id": "wario-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -47673,7 +47639,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -47755,7 +47720,7 @@
       {
         "id": "snake-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -47806,7 +47771,7 @@
       {
         "id": "snake-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -47857,7 +47822,7 @@
       {
         "id": "snake-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -49037,7 +49002,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -49119,7 +49083,7 @@
       {
         "id": "ike-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -49170,7 +49134,7 @@
       {
         "id": "ike-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -49221,7 +49185,7 @@
       {
         "id": "ike-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -50401,7 +50365,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -50468,1370 +50431,6 @@
     "iconUrl": "/icons/ike.png"
   },
   {
-    "id": "pokemon_trainer",
-    "name": "pokemon_trainer",
-    "displayName": "ポケモントレーナー",
-    "series": "Pokémon",
-    "weight": 100,
-    "fallSpeed": 1.6,
-    "fastFallSpeed": 2.56,
-    "gravity": 0.09,
-    "walkSpeed": 1,
-    "runSpeed": 1.5,
-    "airSpeed": 1,
-    "moves": [
-      {
-        "id": "pokemon_trainer-jab1",
-        "name": "jab1",
-        "displayName": "ジャブ1",
-        "category": "jab",
-        "type": "normal",
-        "input": "A",
-        "startup": 3,
-        "active": 2,
-        "recovery": 4,
-        "totalFrames": 9,
-        "onShield": -2,
-        "onHit": 3,
-        "onWhiff": -4,
-        "damage": 2.5,
-        "baseKnockback": 17,
-        "knockbackGrowth": 50,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 2.5,
-              "angle": 361,
-              "baseKnockback": 17,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-jab2",
-        "name": "jab2",
-        "displayName": "ジャブ2",
-        "category": "jab",
-        "type": "normal",
-        "input": "A A",
-        "startup": 3,
-        "active": 2,
-        "recovery": 4,
-        "totalFrames": 9,
-        "onShield": -2,
-        "onHit": 3,
-        "onWhiff": -4,
-        "damage": 2,
-        "baseKnockback": 16,
-        "knockbackGrowth": 50,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 2,
-              "angle": 361,
-              "baseKnockback": 16,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-jab3",
-        "name": "jab3",
-        "displayName": "ジャブ3",
-        "category": "jab",
-        "type": "normal",
-        "input": "A A A",
-        "startup": 5,
-        "active": 3,
-        "recovery": 8,
-        "totalFrames": 16,
-        "onShield": -5,
-        "onHit": 0,
-        "onWhiff": -8,
-        "damage": 4,
-        "baseKnockback": 22,
-        "knockbackGrowth": 50,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 4,
-              "angle": 361,
-              "baseKnockback": 22,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-ftilt",
-        "name": "ftilt",
-        "displayName": "横強攻撃",
-        "category": "tilt",
-        "type": "normal",
-        "input": "→ + A",
-        "startup": 8,
-        "active": 3,
-        "recovery": 12,
-        "totalFrames": 23,
-        "onShield": -3,
-        "onHit": 2,
-        "onWhiff": -12,
-        "damage": 8,
-        "baseKnockback": 34,
-        "knockbackGrowth": 50,
-        "range": "mid",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 8,
-              "angle": 361,
-              "baseKnockback": 34,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1.6,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-utilt",
-        "name": "utilt",
-        "displayName": "上強攻撃",
-        "category": "tilt",
-        "type": "normal",
-        "input": "↑ + A",
-        "startup": 6,
-        "active": 4,
-        "recovery": 10,
-        "totalFrames": 20,
-        "onShield": -2,
-        "onHit": 3,
-        "onWhiff": -10,
-        "damage": 7,
-        "baseKnockback": 31,
-        "knockbackGrowth": 50,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 7,
-              "angle": 361,
-              "baseKnockback": 31,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1.4,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-dtilt",
-        "name": "dtilt",
-        "displayName": "下強攻撃",
-        "category": "tilt",
-        "type": "normal",
-        "input": "↓ + A",
-        "startup": 7,
-        "active": 3,
-        "recovery": 8,
-        "totalFrames": 18,
-        "onShield": -1,
-        "onHit": 4,
-        "onWhiff": -8,
-        "damage": 6,
-        "baseKnockback": 28,
-        "knockbackGrowth": 50,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 6,
-              "angle": 361,
-              "baseKnockback": 28,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1.2,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-fsmash",
-        "name": "fsmash",
-        "displayName": "横スマッシュ攻撃",
-        "category": "smash",
-        "type": "normal",
-        "input": "→ + A (溜め)",
-        "startup": 14,
-        "active": 4,
-        "recovery": 20,
-        "totalFrames": 38,
-        "onShield": -8,
-        "onHit": -3,
-        "onWhiff": -20,
-        "damage": 15,
-        "baseKnockback": 55,
-        "knockbackGrowth": 100,
-        "range": "mid",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 15,
-              "angle": 361,
-              "baseKnockback": 55,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 3,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": true,
-          "killPercent": 120,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-usmash",
-        "name": "usmash",
-        "displayName": "上スマッシュ攻撃",
-        "category": "smash",
-        "type": "normal",
-        "input": "↑ + A (溜め)",
-        "startup": 12,
-        "active": 5,
-        "recovery": 18,
-        "totalFrames": 35,
-        "onShield": -6,
-        "onHit": -1,
-        "onWhiff": -18,
-        "damage": 14,
-        "baseKnockback": 52,
-        "knockbackGrowth": 100,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 14,
-              "angle": 361,
-              "baseKnockback": 52,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 2.8,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": true,
-          "killPercent": 120,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-dsmash",
-        "name": "dsmash",
-        "displayName": "下スマッシュ攻撃",
-        "category": "smash",
-        "type": "normal",
-        "input": "↓ + A (溜め)",
-        "startup": 10,
-        "active": 3,
-        "recovery": 22,
-        "totalFrames": 35,
-        "onShield": -7,
-        "onHit": -2,
-        "onWhiff": -22,
-        "damage": 12,
-        "baseKnockback": 46,
-        "knockbackGrowth": 100,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 12,
-              "angle": 361,
-              "baseKnockback": 46,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 2.4,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": true,
-          "killPercent": 120,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-nair",
-        "name": "nair",
-        "displayName": "空中ニュートラル攻撃",
-        "category": "aerial",
-        "type": "normal",
-        "input": "A (空中)",
-        "startup": 8,
-        "active": 4,
-        "recovery": 10,
-        "totalFrames": 22,
-        "onShield": -4,
-        "onHit": 1,
-        "onWhiff": -10,
-        "damage": 9,
-        "baseKnockback": 37,
-        "knockbackGrowth": 70,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 9,
-              "angle": 361,
-              "baseKnockback": 37,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1.8,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-fair",
-        "name": "fair",
-        "displayName": "空中前攻撃",
-        "category": "aerial",
-        "type": "normal",
-        "input": "→ + A (空中)",
-        "startup": 10,
-        "active": 3,
-        "recovery": 12,
-        "totalFrames": 25,
-        "onShield": -5,
-        "onHit": 0,
-        "onWhiff": -12,
-        "damage": 10,
-        "baseKnockback": 40,
-        "knockbackGrowth": 70,
-        "range": "mid",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 10,
-              "angle": 361,
-              "baseKnockback": 40,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 2,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-bair",
-        "name": "bair",
-        "displayName": "空中後攻撃",
-        "category": "aerial",
-        "type": "normal",
-        "input": "← + A (空中)",
-        "startup": 9,
-        "active": 4,
-        "recovery": 11,
-        "totalFrames": 24,
-        "onShield": -3,
-        "onHit": 2,
-        "onWhiff": -11,
-        "damage": 11,
-        "baseKnockback": 43,
-        "knockbackGrowth": 70,
-        "range": "mid",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 11,
-              "angle": 361,
-              "baseKnockback": 43,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 2.2,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-uair",
-        "name": "uair",
-        "displayName": "空中上攻撃",
-        "category": "aerial",
-        "type": "normal",
-        "input": "↑ + A (空中)",
-        "startup": 7,
-        "active": 5,
-        "recovery": 8,
-        "totalFrames": 20,
-        "onShield": -2,
-        "onHit": 3,
-        "onWhiff": -8,
-        "damage": 8,
-        "baseKnockback": 34,
-        "knockbackGrowth": 70,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 8,
-              "angle": 361,
-              "baseKnockback": 34,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1.6,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-dair",
-        "name": "dair",
-        "displayName": "空中下攻撃",
-        "category": "aerial",
-        "type": "normal",
-        "input": "↓ + A (空中)",
-        "startup": 12,
-        "active": 3,
-        "recovery": 15,
-        "totalFrames": 30,
-        "onShield": -6,
-        "onHit": -1,
-        "onWhiff": -15,
-        "damage": 12,
-        "baseKnockback": 46,
-        "knockbackGrowth": 70,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 12,
-              "angle": 361,
-              "baseKnockback": 46,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 2.4,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": true,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-dash_attack",
-        "name": "dash_attack",
-        "displayName": "ダッシュ攻撃",
-        "category": "dash",
-        "type": "normal",
-        "input": "A (ダッシュ中)",
-        "startup": 8,
-        "active": 3,
-        "recovery": 24,
-        "totalFrames": 35,
-        "onShield": -5,
-        "onHit": 0,
-        "onWhiff": -24,
-        "damage": 8,
-        "baseKnockback": 34,
-        "knockbackGrowth": 50,
-        "range": "mid",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 8,
-              "angle": 361,
-              "baseKnockback": 34,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1.6,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-neutral_b",
-        "name": "neutral_b",
-        "displayName": "通常必殺技",
-        "category": "special",
-        "type": "special",
-        "input": "B",
-        "startup": 15,
-        "active": 5,
-        "recovery": 20,
-        "totalFrames": 40,
-        "onShield": -10,
-        "onHit": -5,
-        "onWhiff": -20,
-        "damage": 10,
-        "baseKnockback": 40,
-        "knockbackGrowth": 80,
-        "range": "projectile",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 10,
-              "angle": 361,
-              "baseKnockback": 40,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 2,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": true
-        }
-      },
-      {
-        "id": "pokemon_trainer-side_b",
-        "name": "side_b",
-        "displayName": "横必殺技",
-        "category": "special",
-        "type": "special",
-        "input": "→ + B",
-        "startup": 12,
-        "active": 4,
-        "recovery": 18,
-        "totalFrames": 34,
-        "onShield": -8,
-        "onHit": -3,
-        "onWhiff": -18,
-        "damage": 12,
-        "baseKnockback": 46,
-        "knockbackGrowth": 80,
-        "range": "mid",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 12,
-              "angle": 361,
-              "baseKnockback": 46,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 2.4,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": true
-        }
-      },
-      {
-        "id": "pokemon_trainer-up_b",
-        "name": "up_b",
-        "displayName": "上必殺技",
-        "category": "special",
-        "type": "special",
-        "input": "↑ + B",
-        "startup": 10,
-        "active": 6,
-        "recovery": 16,
-        "totalFrames": 32,
-        "onShield": -6,
-        "onHit": -1,
-        "onWhiff": -16,
-        "damage": 8,
-        "baseKnockback": 34,
-        "knockbackGrowth": 80,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 8,
-              "angle": 361,
-              "baseKnockback": 34,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1.6,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": true
-        }
-      },
-      {
-        "id": "pokemon_trainer-down_b",
-        "name": "down_b",
-        "displayName": "下必殺技",
-        "category": "special",
-        "type": "special",
-        "input": "↓ + B",
-        "startup": 18,
-        "active": 3,
-        "recovery": 25,
-        "totalFrames": 46,
-        "onShield": -12,
-        "onHit": -7,
-        "onWhiff": -25,
-        "damage": 14,
-        "baseKnockback": 52,
-        "knockbackGrowth": 80,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 14,
-              "angle": 361,
-              "baseKnockback": 52,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 2.8,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": true,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": true
-        }
-      },
-      {
-        "id": "pokemon_trainer-grab",
-        "name": "grab",
-        "displayName": "つかみ",
-        "category": "grab",
-        "type": "grab",
-        "input": "Z",
-        "startup": 6,
-        "active": 2,
-        "recovery": 10,
-        "totalFrames": 18,
-        "onShield": 0,
-        "onHit": 5,
-        "onWhiff": -10,
-        "damage": 0,
-        "baseKnockback": 10,
-        "knockbackGrowth": 50,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 0,
-              "angle": 361,
-              "baseKnockback": 10,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": false,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-pummel",
-        "name": "pummel",
-        "displayName": "つかみ攻撃",
-        "category": "grab",
-        "type": "grab",
-        "input": "A (つかみ中)",
-        "startup": 1,
-        "active": 1,
-        "recovery": 2,
-        "totalFrames": 4,
-        "onShield": 0,
-        "onHit": 5,
-        "onWhiff": -2,
-        "damage": 1.3,
-        "baseKnockback": 13,
-        "knockbackGrowth": 50,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 1.3,
-              "angle": 361,
-              "baseKnockback": 13,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": false,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-fthrow",
-        "name": "fthrow",
-        "displayName": "前投げ",
-        "category": "throw",
-        "type": "throw",
-        "input": "→ (つかみ中)",
-        "startup": 8,
-        "active": 1,
-        "recovery": 15,
-        "totalFrames": 24,
-        "onShield": 0,
-        "onHit": 5,
-        "onWhiff": -15,
-        "damage": 8,
-        "baseKnockback": 34,
-        "knockbackGrowth": 60,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 8,
-              "angle": 361,
-              "baseKnockback": 34,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1.6,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-bthrow",
-        "name": "bthrow",
-        "displayName": "後投げ",
-        "category": "throw",
-        "type": "throw",
-        "input": "← (つかみ中)",
-        "startup": 10,
-        "active": 1,
-        "recovery": 18,
-        "totalFrames": 29,
-        "onShield": 0,
-        "onHit": 5,
-        "onWhiff": -18,
-        "damage": 9,
-        "baseKnockback": 37,
-        "knockbackGrowth": 60,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 9,
-              "angle": 361,
-              "baseKnockback": 37,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1.8,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-uthrow",
-        "name": "uthrow",
-        "displayName": "上投げ",
-        "category": "throw",
-        "type": "throw",
-        "input": "↑ (つかみ中)",
-        "startup": 7,
-        "active": 1,
-        "recovery": 16,
-        "totalFrames": 24,
-        "onShield": 0,
-        "onHit": 5,
-        "onWhiff": -16,
-        "damage": 7,
-        "baseKnockback": 31,
-        "knockbackGrowth": 60,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 7,
-              "angle": 361,
-              "baseKnockback": 31,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1.4,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      },
-      {
-        "id": "pokemon_trainer-dthrow",
-        "name": "dthrow",
-        "displayName": "下投げ",
-        "category": "throw",
-        "type": "throw",
-        "input": "↓ (つかみ中)",
-        "startup": 12,
-        "active": 1,
-        "recovery": 20,
-        "totalFrames": 33,
-        "onShield": 0,
-        "onHit": 5,
-        "onWhiff": -20,
-        "damage": 6,
-        "baseKnockback": 28,
-        "knockbackGrowth": 60,
-        "range": "close",
-        "hitboxData": {
-          "hitboxes": [
-            {
-              "id": 1,
-              "damage": 6,
-              "angle": 361,
-              "baseKnockback": 28,
-              "knockbackGrowth": 70,
-              "hitboxType": "normal",
-              "effect": "normal",
-              "size": 1.2,
-              "position": {
-                "x": 0,
-                "y": 8,
-                "z": 5
-              }
-            }
-          ],
-          "multihit": false
-        },
-        "properties": {
-          "isKillMove": false,
-          "hasArmor": false,
-          "isCommandGrab": false,
-          "isSpike": false,
-          "isMeteor": false,
-          "hasInvincibility": false,
-          "hasIntangibility": false,
-          "canClank": true,
-          "priority": 1,
-          "transcendentPriority": false
-        }
-      }
-    ],
-    "shieldData": {
-      "shieldHealth": 50,
-      "shieldRegen": 0.07,
-      "shieldRegenDelay": 30,
-      "shieldStun": 0.8665,
-      "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
-      "shieldGrabFrames": 6,
-      "outOfShieldOptions": [
-        {
-          "move": "nair",
-          "frames": 3,
-          "type": "nair",
-          "effectiveness": 7
-        },
-        {
-          "move": "up_b",
-          "frames": 3,
-          "type": "up_b",
-          "effectiveness": 8
-        },
-        {
-          "move": "grab",
-          "frames": 6,
-          "type": "grab",
-          "effectiveness": 6
-        },
-        {
-          "move": "up_smash",
-          "frames": 4,
-          "type": "up_smash",
-          "effectiveness": 9
-        }
-      ]
-    },
-    "movementData": {
-      "jumpSquat": 3,
-      "fullHopHeight": 32,
-      "shortHopHeight": 15.5,
-      "airJumps": 1,
-      "dodgeFrames": {
-        "spotDodge": {
-          "startup": 3,
-          "active": 20,
-          "recovery": 4,
-          "total": 27
-        },
-        "airDodge": {
-          "startup": 3,
-          "active": 29,
-          "recovery": 28,
-          "total": 60
-        }
-      },
-      "rollFrames": {
-        "forward": {
-          "startup": 4,
-          "active": 12,
-          "recovery": 15,
-          "total": 31
-        },
-        "backward": {
-          "startup": 4,
-          "active": 12,
-          "recovery": 15,
-          "total": 31
-        }
-      }
-    },
-    "imageUrl": "/images/pokemon_trainer.png",
-    "iconUrl": "/icons/pokemon_trainer.png"
-  },
-  {
     "id": "squirtle",
     "name": "squirtle",
     "displayName": "ゼニガメ",
@@ -51847,7 +50446,7 @@
       {
         "id": "squirtle-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -51898,7 +50497,7 @@
       {
         "id": "squirtle-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -51949,7 +50548,7 @@
       {
         "id": "squirtle-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -53129,7 +51728,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -53211,7 +51809,7 @@
       {
         "id": "ivysaur-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -53262,7 +51860,7 @@
       {
         "id": "ivysaur-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -53313,7 +51911,7 @@
       {
         "id": "ivysaur-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -54493,7 +53091,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -54575,7 +53172,7 @@
       {
         "id": "charizard-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -54626,7 +53223,7 @@
       {
         "id": "charizard-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -54677,7 +53274,7 @@
       {
         "id": "charizard-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -55857,7 +54454,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -55939,7 +54535,7 @@
       {
         "id": "diddy_kong-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -55990,7 +54586,7 @@
       {
         "id": "diddy_kong-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -56041,7 +54637,7 @@
       {
         "id": "diddy_kong-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -57221,7 +55817,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -57303,7 +55898,7 @@
       {
         "id": "lucas-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -57354,7 +55949,7 @@
       {
         "id": "lucas-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -57405,7 +56000,7 @@
       {
         "id": "lucas-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -58585,7 +57180,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -58667,7 +57261,7 @@
       {
         "id": "sonic-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -58718,7 +57312,7 @@
       {
         "id": "sonic-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -58769,7 +57363,7 @@
       {
         "id": "sonic-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -59949,7 +58543,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -60031,7 +58624,7 @@
       {
         "id": "king_dedede-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -60082,7 +58675,7 @@
       {
         "id": "king_dedede-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -60133,7 +58726,7 @@
       {
         "id": "king_dedede-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -61313,7 +59906,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -61395,7 +59987,7 @@
       {
         "id": "olimar-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -61446,7 +60038,7 @@
       {
         "id": "olimar-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -61497,7 +60089,7 @@
       {
         "id": "olimar-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -62677,7 +61269,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -62759,7 +61350,7 @@
       {
         "id": "lucario-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -62810,7 +61401,7 @@
       {
         "id": "lucario-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -62861,7 +61452,7 @@
       {
         "id": "lucario-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -64041,7 +62632,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -64123,7 +62713,7 @@
       {
         "id": "rob-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -64174,7 +62764,7 @@
       {
         "id": "rob-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -64225,7 +62815,7 @@
       {
         "id": "rob-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -65405,7 +63995,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -65487,7 +64076,7 @@
       {
         "id": "toon_link-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -65538,7 +64127,7 @@
       {
         "id": "toon_link-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -65589,7 +64178,7 @@
       {
         "id": "toon_link-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -66769,7 +65358,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -66851,7 +65439,7 @@
       {
         "id": "wolf-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -66902,7 +65490,7 @@
       {
         "id": "wolf-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -66953,7 +65541,7 @@
       {
         "id": "wolf-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -68133,7 +66721,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -68215,7 +66802,7 @@
       {
         "id": "villager-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -68266,7 +66853,7 @@
       {
         "id": "villager-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -68317,7 +66904,7 @@
       {
         "id": "villager-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -69497,7 +68084,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -69579,7 +68165,7 @@
       {
         "id": "mega_man-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -69630,7 +68216,7 @@
       {
         "id": "mega_man-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -69681,7 +68267,7 @@
       {
         "id": "mega_man-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -70861,7 +69447,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -70943,7 +69528,7 @@
       {
         "id": "wii_fit_trainer-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -70994,7 +69579,7 @@
       {
         "id": "wii_fit_trainer-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -71045,7 +69630,7 @@
       {
         "id": "wii_fit_trainer-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -72225,7 +70810,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -72307,7 +70891,7 @@
       {
         "id": "rosalina-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -72358,7 +70942,7 @@
       {
         "id": "rosalina-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -72409,7 +70993,7 @@
       {
         "id": "rosalina-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -73589,7 +72173,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -73671,7 +72254,7 @@
       {
         "id": "little_mac-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -73722,7 +72305,7 @@
       {
         "id": "little_mac-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -73773,7 +72356,7 @@
       {
         "id": "little_mac-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -74953,7 +73536,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -75035,7 +73617,7 @@
       {
         "id": "greninja-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -75086,7 +73668,7 @@
       {
         "id": "greninja-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -75137,7 +73719,7 @@
       {
         "id": "greninja-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -76317,7 +74899,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -76399,7 +74980,7 @@
       {
         "id": "mii_brawler-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -76450,7 +75031,7 @@
       {
         "id": "mii_brawler-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -76501,7 +75082,7 @@
       {
         "id": "mii_brawler-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -77681,7 +76262,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -77763,7 +76343,7 @@
       {
         "id": "mii_swordfighter-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -77814,7 +76394,7 @@
       {
         "id": "mii_swordfighter-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -77865,7 +76445,7 @@
       {
         "id": "mii_swordfighter-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -79045,7 +77625,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -79127,7 +77706,7 @@
       {
         "id": "mii_gunner-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -79178,7 +77757,7 @@
       {
         "id": "mii_gunner-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -79229,7 +77808,7 @@
       {
         "id": "mii_gunner-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -80409,7 +78988,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -80491,7 +79069,7 @@
       {
         "id": "palutena-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -80542,7 +79120,7 @@
       {
         "id": "palutena-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -80593,7 +79171,7 @@
       {
         "id": "palutena-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -81773,7 +80351,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -81855,7 +80432,7 @@
       {
         "id": "pac_man-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -81906,7 +80483,7 @@
       {
         "id": "pac_man-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -81957,7 +80534,7 @@
       {
         "id": "pac_man-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -83137,7 +81714,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -83219,7 +81795,7 @@
       {
         "id": "robin-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -83270,7 +81846,7 @@
       {
         "id": "robin-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -83321,7 +81897,7 @@
       {
         "id": "robin-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -84501,7 +83077,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -84583,7 +83158,7 @@
       {
         "id": "shulk-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -84634,7 +83209,7 @@
       {
         "id": "shulk-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -84685,7 +83260,7 @@
       {
         "id": "shulk-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -85865,7 +84440,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -85947,7 +84521,7 @@
       {
         "id": "bowser_jr-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -85998,7 +84572,7 @@
       {
         "id": "bowser_jr-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -86049,7 +84623,7 @@
       {
         "id": "bowser_jr-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -87229,7 +85803,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -87311,7 +85884,7 @@
       {
         "id": "duck_hunt-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -87362,7 +85935,7 @@
       {
         "id": "duck_hunt-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -87413,7 +85986,7 @@
       {
         "id": "duck_hunt-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -88593,7 +87166,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -88675,7 +87247,7 @@
       {
         "id": "ryu-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -88726,7 +87298,7 @@
       {
         "id": "ryu-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -88777,7 +87349,7 @@
       {
         "id": "ryu-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -89957,7 +88529,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -90039,7 +88610,7 @@
       {
         "id": "ken-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -90090,7 +88661,7 @@
       {
         "id": "ken-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -90141,7 +88712,7 @@
       {
         "id": "ken-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -91321,7 +89892,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -91403,7 +89973,7 @@
       {
         "id": "cloud-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -91454,7 +90024,7 @@
       {
         "id": "cloud-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -91505,7 +90075,7 @@
       {
         "id": "cloud-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -92685,7 +91255,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -92767,7 +91336,7 @@
       {
         "id": "corrin-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -92818,7 +91387,7 @@
       {
         "id": "corrin-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -92869,7 +91438,7 @@
       {
         "id": "corrin-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -94049,7 +92618,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -94131,7 +92699,7 @@
       {
         "id": "bayonetta-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -94182,7 +92750,7 @@
       {
         "id": "bayonetta-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -94233,7 +92801,7 @@
       {
         "id": "bayonetta-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -95413,7 +93981,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -95495,7 +94062,7 @@
       {
         "id": "inkling-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -95546,7 +94113,7 @@
       {
         "id": "inkling-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -95597,7 +94164,7 @@
       {
         "id": "inkling-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -96777,7 +95344,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -96859,7 +95425,7 @@
       {
         "id": "ridley-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -96910,7 +95476,7 @@
       {
         "id": "ridley-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -96961,7 +95527,7 @@
       {
         "id": "ridley-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -98141,7 +96707,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -98223,7 +96788,7 @@
       {
         "id": "simon-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -98274,7 +96839,7 @@
       {
         "id": "simon-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -98325,7 +96890,7 @@
       {
         "id": "simon-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -99505,7 +98070,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -99587,7 +98151,7 @@
       {
         "id": "richter-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -99638,7 +98202,7 @@
       {
         "id": "richter-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -99689,7 +98253,7 @@
       {
         "id": "richter-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -100869,7 +99433,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -100951,7 +99514,7 @@
       {
         "id": "king_k_rool-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -101002,7 +99565,7 @@
       {
         "id": "king_k_rool-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -101053,7 +99616,7 @@
       {
         "id": "king_k_rool-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -102233,7 +100796,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -102315,7 +100877,7 @@
       {
         "id": "incineroar-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -102366,7 +100928,7 @@
       {
         "id": "incineroar-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -102417,7 +100979,7 @@
       {
         "id": "incineroar-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -103597,7 +102159,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -103679,7 +102240,7 @@
       {
         "id": "isabelle-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -103730,7 +102291,7 @@
       {
         "id": "isabelle-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -103781,7 +102342,7 @@
       {
         "id": "isabelle-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -104961,7 +103522,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -105043,7 +103603,7 @@
       {
         "id": "piranha_plant-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -105094,7 +103654,7 @@
       {
         "id": "piranha_plant-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -105145,7 +103705,7 @@
       {
         "id": "piranha_plant-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -106325,7 +104885,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -106407,7 +104966,7 @@
       {
         "id": "joker-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -106458,7 +105017,7 @@
       {
         "id": "joker-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -106509,7 +105068,7 @@
       {
         "id": "joker-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -107689,7 +106248,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -107771,7 +106329,7 @@
       {
         "id": "hero-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -107822,7 +106380,7 @@
       {
         "id": "hero-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -107873,7 +106431,7 @@
       {
         "id": "hero-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -109053,7 +107611,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -109135,7 +107692,7 @@
       {
         "id": "banjo_kazooie-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -109186,7 +107743,7 @@
       {
         "id": "banjo_kazooie-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -109237,7 +107794,7 @@
       {
         "id": "banjo_kazooie-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -110417,7 +108974,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -110499,7 +109055,7 @@
       {
         "id": "terry-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -110550,7 +109106,7 @@
       {
         "id": "terry-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -110601,7 +109157,7 @@
       {
         "id": "terry-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -111781,7 +110337,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -111863,7 +110418,7 @@
       {
         "id": "byleth-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -111914,7 +110469,7 @@
       {
         "id": "byleth-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -111965,7 +110520,7 @@
       {
         "id": "byleth-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -113145,7 +111700,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -113227,7 +111781,7 @@
       {
         "id": "min_min-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -113278,7 +111832,7 @@
       {
         "id": "min_min-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -113329,7 +111883,7 @@
       {
         "id": "min_min-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -114509,7 +113063,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -114591,7 +113144,7 @@
       {
         "id": "steve-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -114642,7 +113195,7 @@
       {
         "id": "steve-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -114693,7 +113246,7 @@
       {
         "id": "steve-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -115873,7 +114426,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -115955,7 +114507,7 @@
       {
         "id": "sephiroth-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -116006,7 +114558,7 @@
       {
         "id": "sephiroth-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -116057,7 +114609,7 @@
       {
         "id": "sephiroth-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -117237,7 +115789,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -117319,7 +115870,7 @@
       {
         "id": "pyra_mythra-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -117370,7 +115921,7 @@
       {
         "id": "pyra_mythra-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -117421,7 +115972,7 @@
       {
         "id": "pyra_mythra-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -118601,7 +117152,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -118683,7 +117233,7 @@
       {
         "id": "kazuya-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -118734,7 +117284,7 @@
       {
         "id": "kazuya-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -118785,7 +117335,7 @@
       {
         "id": "kazuya-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -119965,7 +118515,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {
@@ -120047,7 +118596,7 @@
       {
         "id": "sora-jab1",
         "name": "jab1",
-        "displayName": "ジャブ1",
+        "displayName": "弱攻撃1",
         "category": "jab",
         "type": "normal",
         "input": "A",
@@ -120098,7 +118647,7 @@
       {
         "id": "sora-jab2",
         "name": "jab2",
-        "displayName": "ジャブ2",
+        "displayName": "弱攻撃2",
         "category": "jab",
         "type": "normal",
         "input": "A A",
@@ -120149,7 +118698,7 @@
       {
         "id": "sora-jab3",
         "name": "jab3",
-        "displayName": "ジャブ3",
+        "displayName": "弱攻撃3",
         "category": "jab",
         "type": "normal",
         "input": "A A A",
@@ -121329,7 +119878,6 @@
       "shieldRegenDelay": 30,
       "shieldStun": 0.8665,
       "shieldReleaseFrames": 11,
-      "shieldDropFrames": 4,
       "shieldGrabFrames": 6,
       "outOfShieldOptions": [
         {

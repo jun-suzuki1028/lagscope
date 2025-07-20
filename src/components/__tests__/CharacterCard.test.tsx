@@ -28,7 +28,6 @@ const mockFighter: Fighter = {
     shieldRegenDelay: 30,
     shieldStun: 0.725,
     shieldReleaseFrames: 11,
-    shieldDropFrames: 7,
     shieldGrabFrames: 10,
     outOfShieldOptions: [],
   },

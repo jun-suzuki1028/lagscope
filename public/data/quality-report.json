@@ -374,16 +374,6 @@
       "missingMoves": [],
       "issues": []
     },
-    "pokemon_trainer": {
-      "characterId": "pokemon_trainer",
-      "score": 1,
-      "completeness": 1,
-      "accuracy": 1,
-      "moveCount": 25,
-      "expectedMoveCount": 20,
-      "missingMoves": [],
-      "issues": []
-    },
     "squirtle": {
       "characterId": "squirtle",
       "score": 1,

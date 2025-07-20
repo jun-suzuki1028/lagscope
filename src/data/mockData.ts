@@ -18,7 +18,7 @@ export const mockFighters: Fighter[] = [
       {
         id: 'mario-jab1',
         name: 'jab1',
-        displayName: 'ジャブ1',
+        displayName: '弱攻撃1',
         category: 'jab',
         type: 'normal',
         input: 'A',
@@ -63,7 +63,7 @@ export const mockFighters: Fighter[] = [
       {
         id: 'mario-dash-attack',
         name: 'dash-attack',
-        displayName: 'ダッシュアタック',
+        displayName: 'ダッシュ攻撃',
         category: 'dash',
         type: 'normal',
         input: 'A (ダッシュ中)',
@@ -112,7 +112,6 @@ export const mockFighters: Fighter[] = [
       shieldRegenDelay: 30,
       shieldStun: 0.8665,
       shieldReleaseFrames: 11,
-      shieldDropFrames: 4,
       shieldGrabFrames: 6,
       outOfShieldOptions: [
         {
@@ -181,7 +180,7 @@ export const mockFighters: Fighter[] = [
       {
         id: 'link-jab1',
         name: 'jab1',
-        displayName: 'ジャブ1',
+        displayName: '弱攻撃1',
         category: 'jab',
         type: 'normal',
         input: 'A',
@@ -230,7 +229,6 @@ export const mockFighters: Fighter[] = [
       shieldRegenDelay: 30,
       shieldStun: 0.8665,
       shieldReleaseFrames: 11,
-      shieldDropFrames: 4,
       shieldGrabFrames: 6,
       outOfShieldOptions: [
         {
@@ -299,7 +297,7 @@ export const mockFighters: Fighter[] = [
       {
         id: 'pikachu-jab1',
         name: 'jab1',
-        displayName: 'ジャブ1',
+        displayName: '弱攻撃1',
         category: 'jab',
         type: 'normal',
         input: 'A',
@@ -348,7 +346,6 @@ export const mockFighters: Fighter[] = [
       shieldRegenDelay: 30,
       shieldStun: 0.8665,
       shieldReleaseFrames: 11,
-      shieldDropFrames: 4,
       shieldGrabFrames: 6,
       outOfShieldOptions: [
         {

@@ -40,7 +40,6 @@ const initialState: AppState = {
     rangeFilter: ['close', 'mid', 'far'],
     allowOutOfShield: true,
     allowGuardCancel: true,
-    allowShieldDrop: true,
     allowPerfectShield: true,
     allowRolling: true,
     allowSpotDodge: true,

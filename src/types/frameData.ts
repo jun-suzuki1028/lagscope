@@ -46,7 +46,6 @@ export interface ShieldData {
   shieldRegenDelay: number;
   shieldStun: number;
   shieldReleaseFrames: number;
-  shieldDropFrames: number;
   shieldGrabFrames: number;
   outOfShieldOptions: OutOfShieldOption[];
 }
@@ -232,7 +231,6 @@ export type PunishMethod =
   | 'guard_cancel_up_smash'
   | 'guard_cancel_nair'
   | 'guard_cancel_up_tilt'
-  | 'shield_drop'
   | 'perfect_shield'
   | 'roll_away'
   | 'roll_behind'
@@ -243,7 +241,6 @@ export interface CalculationOptions {
   rangeFilter: MoveRange[];
   allowOutOfShield: boolean;
   allowGuardCancel: boolean;
-  allowShieldDrop: boolean;
   allowPerfectShield: boolean;
   allowRolling: boolean;
   allowSpotDodge: boolean;

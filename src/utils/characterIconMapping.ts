@@ -48,7 +48,6 @@ export const CHARACTER_ICON_MAPPING: Record<string, string> = {
   'wario': 'wario.png',
   'snake': 'snake.png',
   'ike': 'ike.png',
-  'pokemon_trainer': 'pokemon_trainer.png',
   'squirtle': 'squirtle.png',
   'ivysaur': 'ivysaur.png',
   'charizard': 'charizard.png',

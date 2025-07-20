@@ -333,15 +333,6 @@
     "category": "unlockable"
   },
   {
-    "id": "pokemon_trainer",
-    "name": "pokemon_trainer",
-    "displayName": "ポケモントレーナー",
-    "series": "Pokémon",
-    "moveCount": 25,
-    "weight": 100,
-    "category": "unlockable"
-  },
-  {
     "id": "squirtle",
     "name": "squirtle",
     "displayName": "ゼニガメ",

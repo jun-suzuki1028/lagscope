@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { CharacterSelector } from './components/CharacterSelector';
 import { MoveSelector } from './components/MoveSelector';
 import OptionsPanel from './components/OptionsPanel';
@@ -6,6 +6,7 @@ import ResultsTable from './components/ResultsTable';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { LoadingSpinner } from './components/LoadingSpinner';
 import { useAppStore } from './stores/app-store';
+import { useDebounce } from './hooks/useDebounce';
 import { mockFighters } from './data/mockData';
 import { calculatePunishOptions } from './services/calculationService';
 import type { PunishResult } from './types/frameData';
@@ -22,6 +23,9 @@ function App() {
   const [calculationResults, setCalculationResults] = useState<PunishResult[]>([]);
   const [isCalculating, setIsCalculating] = useState(false);
   const [calculationError, setCalculationError] = useState<string | null>(null);
+
+  // オプション変更のデバウンス処理
+  const debouncedCalculationOptions = useDebounce(calculationOptions, 500);
 
   // 生成されたフレームデータの読み込み
   useEffect(() => {
@@ -80,10 +84,11 @@ function App() {
     loadFighterData();
   }, [setFightersData]);
 
-  // 計算実行
-  const handleCalculate = async () => {
+  // 自動計算実行
+  const performCalculation = useCallback(async () => {
     if (!attackingFighter || !selectedMove || defendingFighters.length === 0) {
-      setCalculationError('攻撃側キャラクター、技、防御側キャラクターを全て選択してください');
+      setCalculationResults([]);
+      setCalculationError(null);
       return;
     }
 
@@ -95,19 +100,26 @@ function App() {
         attackingFighter,
         attackMove: selectedMove,
         defendingFighters,
-        options: calculationOptions,
+        options: debouncedCalculationOptions,
       });
       setCalculationResults(results);
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error('Calculation failed:', error);
+      console.error('Auto calculation failed:', error);
       setCalculationError('計算中にエラーが発生しました');
+      setCalculationResults([]);
     } finally {
       setIsCalculating(false);
     }
-  };
+  }, [attackingFighter, selectedMove, defendingFighters, debouncedCalculationOptions]);
 
-  const canCalculate = attackingFighter && selectedMove && defendingFighters.length > 0;
+  // 技選択やオプション変更時の自動計算
+  useEffect(() => {
+    performCalculation();
+  }, [performCalculation]);
+
+
+  const hasCompleteSelection = attackingFighter && selectedMove && defendingFighters.length > 0;
 
   return (
     <ErrorBoundary>
@@ -153,36 +165,32 @@ function App() {
             <OptionsPanel className="w-full transform transition-all duration-300 hover:shadow-lg" />
           </div>
 
-          {/* 計算実行ボタン */}
+          {/* 計算状態表示 */}
           <section className="bg-white rounded-lg shadow p-6 transform transition-all duration-300 hover:shadow-lg animate-slideInUp" style={{ animationDelay: '0.3s' }}>
             <div className="flex flex-col items-center space-y-4">
-              <button
-                onClick={handleCalculate}
-                disabled={!canCalculate || isCalculating}
-                className={`
-                  px-8 py-3 rounded-lg font-semibold text-white transition-all duration-300 transform
-                  ${
-                    canCalculate && !isCalculating
-                      ? 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95'
-                      : 'bg-gray-400 cursor-not-allowed'
-                  }
-                `}
-                aria-label="確定反撃を計算"
-              >
-                {isCalculating ? (
-                  <div className="flex items-center space-x-2">
-                    <LoadingSpinner size="sm" />
-                    <span>計算中...</span>
-                  </div>
-                ) : (
-                  '確定反撃を計算'
-                )}
-              </button>
+              {isCalculating && (
+                <div className="flex items-center space-x-2 text-blue-600">
+                  <LoadingSpinner size="sm" />
+                  <span className="text-sm font-medium">計算中...</span>
+                </div>
+              )}
               
-              {!canCalculate && (
+              {!hasCompleteSelection && !isCalculating && (
                 <p className="text-sm text-gray-500 text-center">
-                  攻撃側キャラクター、技、防御側キャラクターを選択してください
+                  攻撃側キャラクター、技、防御側キャラクターを選択すると自動で計算されます
                 </p>
+              )}
+              
+              {hasCompleteSelection && !isCalculating && calculationResults.length === 0 && !calculationError && (
+                <div className="text-center">
+                  <div className="text-2xl mb-2">🤔</div>
+                  <p className="text-sm text-gray-600">
+                    条件に該当する確定反撃技が見つかりませんでした
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    オプション設定を調整してみてください
+                  </p>
+                </div>
               )}
               
               {calculationError && (
@@ -194,12 +202,14 @@ function App() {
           </section>
 
           {/* 計算結果 */}
-          <div className="animate-slideInUp" style={{ animationDelay: '0.4s' }}>
-            <ResultsTable 
-              results={calculationResults}
-              className="w-full transform transition-all duration-300 hover:shadow-lg"
-            />
-          </div>
+          {(hasCompleteSelection || calculationResults.length > 0) && (
+            <div className="animate-slideInUp" style={{ animationDelay: '0.4s' }}>
+              <ResultsTable 
+                results={calculationResults}
+                className="w-full transform transition-all duration-300 hover:shadow-lg"
+              />
+            </div>
+          )}
 
           {/* 選択状態の表示 */}
           <section className="bg-white rounded-lg shadow p-6 transform transition-all duration-300 hover:shadow-lg animate-slideInUp" style={{ animationDelay: '0.5s' }}>
