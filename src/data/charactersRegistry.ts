@@ -61,7 +61,6 @@ export const ALL_CHARACTERS: CharacterInfo[] = [
   { id: 'wario', name: 'wario', displayName: 'ワリオ', series: 'Wario', fighterNumber: 35, category: 'unlockable' },
   { id: 'snake', name: 'snake', displayName: 'スネーク', series: 'Metal Gear', fighterNumber: 36, category: 'unlockable' },
   { id: 'ike', name: 'ike', displayName: 'アイク', series: 'Fire Emblem', fighterNumber: 37, category: 'unlockable' },
-  { id: 'pokemon_trainer', name: 'pokemon_trainer', displayName: 'ポケモントレーナー', series: 'Pokémon', fighterNumber: 38, category: 'unlockable' },
   { id: 'squirtle', name: 'squirtle', displayName: 'ゼニガメ', series: 'Pokémon', fighterNumber: 39, category: 'unlockable' },
   { id: 'ivysaur', name: 'ivysaur', displayName: 'フシギソウ', series: 'Pokémon', fighterNumber: 40, category: 'unlockable' },
   { id: 'charizard', name: 'charizard', displayName: 'リザードン', series: 'Pokémon', fighterNumber: 41, category: 'unlockable' },
