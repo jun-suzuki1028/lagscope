@@ -31,12 +31,17 @@ jobs:
       
     - name: Run unit tests
       run: npm run test:run
+      env:
+        CI: true
+        NODE_OPTIONS: --max-old-space-size=4096
       
     - name: Install Playwright browsers
       run: npx playwright install --with-deps
       
     - name: Run E2E tests
       run: npx playwright test
+      env:
+        CI: true
       
     - name: Upload test results
       uses: actions/upload-artifact@v4
