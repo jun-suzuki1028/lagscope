@@ -1,92 +1,104 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useMemo, memo } from 'react';
 import { CharacterSelector } from './components/CharacterSelector';
 import { MoveSelector } from './components/MoveSelector';
 import OptionsPanel from './components/OptionsPanel';
 import ResultsTable from './components/ResultsTable';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { LoadingSpinner } from './components/LoadingSpinner';
-import { useAppStore } from './stores/app-store';
+import { CalculationStatus } from './components/CalculationStatus';
+import { SelectionStatus } from './components/SelectionStatus';
+import { 
+  useCharacterSelectionStore, 
+  useCalculationStore, 
+  characterSelectors, 
+  calculationSelectors 
+} from './stores';
 import { useDebounce } from './hooks/useDebounce';
 import { mockFighters } from './data/mockData';
 import { calculatePunishOptions } from './services/calculationService';
 import type { PunishResult } from './types/frameData';
 
-function App() {
-  const {
-    attackingFighter,
-    defendingFighter,
-    selectedMove,
-    calculationOptions,
-    setFightersData,
-  } = useAppStore();
+const App = memo(() => {
+  // 分割されたストアからSelectorで必要なデータのみ購読
+  const attackingFighter = useCharacterSelectionStore(characterSelectors.attackingFighter);
+  const defendingFighter = useCharacterSelectionStore(characterSelectors.defendingFighter);
+  const selectedMove = useCharacterSelectionStore(characterSelectors.selectedMove);
+  const setFightersData = useCharacterSelectionStore(state => state.setFightersData);
+  
+  const calculationOptions = useCalculationStore(calculationSelectors.calculationOptions);
   
   const [calculationResults, setCalculationResults] = useState<PunishResult[]>([]);
   const [isCalculating, setIsCalculating] = useState(false);
   const [calculationError, setCalculationError] = useState<string | null>(null);
 
-  // オプション変更のデバウンス処理
+  // オプション変更のデバウンス処理 - useMemo で最適化
   const debouncedCalculationOptions = useDebounce(calculationOptions, 500);
+  
+  // 計算の完了状態をメモ化
+  const hasCompleteSelection = useMemo(() => 
+    Boolean(attackingFighter && selectedMove && defendingFighter),
+    [attackingFighter, selectedMove, defendingFighter]
+  );
 
-  // 生成されたフレームデータの読み込み
-  useEffect(() => {
-    const loadFighterData = async () => {
+  // 生成されたフレームデータの読み込み - useCallback で最適化
+  const loadFighterData = useCallback(async () => {
+    setFightersData({
+      data: [],
+      loading: true,
+      error: null,
+      lastFetch: Date.now(),
+    });
+
+    try {
+      // ベースパスを考慮したURL構築
+      const baseUrl = import.meta.env.BASE_URL || '/';
+      const dataUrl = `${baseUrl}data/all-fighters.json`.replace(/\/+/g, '/');
+      
+      // eslint-disable-next-line no-console
+      console.log('Attempting to fetch data from:', dataUrl);
+      
+      const response = await fetch(dataUrl);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText} - URL: ${dataUrl}`);
+      }
+      const fighters = await response.json();
+      
+      // データ検証
+      if (!Array.isArray(fighters) || fighters.length === 0) {
+        throw new Error('Invalid fighter data: expected non-empty array');
+      }
+      
+      // eslint-disable-next-line no-console
+      console.log(`Successfully loaded ${fighters.length} fighters`);
+      
       setFightersData({
-        data: [],
-        loading: true,
+        data: fighters,
+        loading: false,
         error: null,
         lastFetch: Date.now(),
       });
-
-      try {
-        // ベースパスを考慮したURL構築
-        const baseUrl = import.meta.env.BASE_URL || '/';
-        const dataUrl = `${baseUrl}data/all-fighters.json`.replace(/\/+/g, '/');
-        
-        // eslint-disable-next-line no-console
-        console.log('Attempting to fetch data from:', dataUrl);
-        
-        const response = await fetch(dataUrl);
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText} - URL: ${dataUrl}`);
-        }
-        const fighters = await response.json();
-        
-        // データ検証
-        if (!Array.isArray(fighters) || fighters.length === 0) {
-          throw new Error('Invalid fighter data: expected non-empty array');
-        }
-        
-        // eslint-disable-next-line no-console
-        console.log(`Successfully loaded ${fighters.length} fighters`);
-        
-        setFightersData({
-          data: fighters,
-          loading: false,
-          error: null,
-          lastFetch: Date.now(),
-        });
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error('Failed to load fighter data:', error);
-        // eslint-disable-next-line no-console
-        console.warn('Falling back to mock data');
-        
-        // フォールバック: モックデータを使用
-        setFightersData({
-          data: mockFighters,
-          loading: false,
-          error: null,
-          lastFetch: Date.now(),
-        });
-      }
-    };
-
-    loadFighterData();
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Failed to load fighter data:', error);
+      // eslint-disable-next-line no-console
+      console.warn('Falling back to mock data');
+      
+      // フォールバック: モックデータを使用
+      setFightersData({
+        data: mockFighters,
+        loading: false,
+        error: null,
+        lastFetch: Date.now(),
+      });
+    }
   }, [setFightersData]);
+  
+  useEffect(() => {
+    loadFighterData();
+  }, [loadFighterData]);
 
-  // 自動計算実行
+  // 自動計算実行 - 依存関係を最適化
   const performCalculation = useCallback(async () => {
-    if (!attackingFighter || !selectedMove || !defendingFighter) {
+    if (!hasCompleteSelection || !attackingFighter || !selectedMove || !defendingFighter) {
       setCalculationResults([]);
       setCalculationError(null);
       return;
@@ -111,7 +123,7 @@ function App() {
     } finally {
       setIsCalculating(false);
     }
-  }, [attackingFighter, selectedMove, defendingFighter, debouncedCalculationOptions]);
+  }, [hasCompleteSelection, attackingFighter, selectedMove, defendingFighter, debouncedCalculationOptions]);
 
   // 技選択やオプション変更時の自動計算
   useEffect(() => {
@@ -119,7 +131,6 @@ function App() {
   }, [performCalculation]);
 
 
-  const hasCompleteSelection = attackingFighter && selectedMove && defendingFighter;
 
   return (
     <ErrorBoundary>
@@ -165,41 +176,13 @@ function App() {
             <OptionsPanel className="w-full transform transition-all duration-300 hover:shadow-lg" />
           </div>
 
-          {/* 計算状態表示 */}
-          <section className="bg-white rounded-lg shadow p-3 sm:p-6 transform transition-all duration-300 hover:shadow-lg animate-slideInUp" style={{ animationDelay: '0.3s' }}>
-            <div className="flex flex-col items-center space-y-4">
-              {isCalculating && (
-                <div className="flex items-center space-x-2 text-blue-600">
-                  <LoadingSpinner size="sm" />
-                  <span className="text-sm font-medium">計算中...</span>
-                </div>
-              )}
-              
-              {!hasCompleteSelection && !isCalculating && (
-                <p className="text-sm text-gray-500 text-center">
-                  攻撃側キャラクター、技、防御側キャラクターを選択すると自動で計算されます
-                </p>
-              )}
-              
-              {hasCompleteSelection && !isCalculating && calculationResults.length === 0 && !calculationError && (
-                <div className="text-center">
-                  <div className="text-2xl mb-2">🤔</div>
-                  <p className="text-sm text-gray-600">
-                    条件に該当する確定反撃技が見つかりませんでした
-                  </p>
-                  <p className="text-xs text-gray-500 mt-1">
-                    オプション設定を調整してみてください
-                  </p>
-                </div>
-              )}
-              
-              {calculationError && (
-                <p className="text-sm text-red-600 text-center">
-                  {calculationError}
-                </p>
-              )}
-            </div>
-          </section>
+          {/* 計算状態表示 - メモ化されたコンポーネント */}
+          <CalculationStatus 
+            isCalculating={isCalculating}
+            hasCompleteSelection={hasCompleteSelection}
+            calculationResults={calculationResults}
+            calculationError={calculationError}
+          />
 
           {/* 計算結果 */}
           {(hasCompleteSelection || calculationResults.length > 0) && (
@@ -211,28 +194,16 @@ function App() {
             </div>
           )}
 
-          {/* 選択状態の表示 */}
-          <section className="bg-white rounded-lg shadow p-3 sm:p-6 transform transition-all duration-300 hover:shadow-lg animate-slideInUp" style={{ animationDelay: '0.5s' }}>
-            <h2 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">現在の選択状態</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 text-xs sm:text-sm">
-              <div>
-                <span className="font-medium text-gray-700">攻撃側：</span>
-                <span className="ml-2">{attackingFighter?.displayName || '未選択'}</span>
-              </div>
-              <div>
-                <span className="font-medium text-gray-700">技：</span>
-                <span className="ml-2">{selectedMove?.displayName || '未選択'}</span>
-              </div>
-              <div>
-                <span className="font-medium text-gray-700">防御側：</span>
-                <span className="ml-2">{defendingFighter?.displayName || '未選択'}</span>
-              </div>
-            </div>
-          </section>
+          {/* 選択状態の表示 - メモ化されたコンポーネント */}
+          <SelectionStatus
+            attackingFighter={attackingFighter}
+            selectedMove={selectedMove}
+            defendingFighter={defendingFighter}
+          />
         </main>
       </div>
     </ErrorBoundary>
   );
-}
+});
 
 export default App;

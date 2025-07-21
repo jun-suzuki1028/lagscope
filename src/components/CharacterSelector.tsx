@@ -1,5 +1,5 @@
 import { useMemo, useState, useId, memo, useCallback } from 'react';
-import { useAppStore } from '../stores/app-store';
+import { useCharacterSelectionStore, characterSelectors } from '../stores';
 import { Fighter } from '../types/frameData';
 import { usePerformanceMonitor } from '../hooks/usePerformanceMonitor';
 import { CharacterModal } from './CharacterModal';
@@ -26,13 +26,12 @@ export const CharacterSelector = memo(function CharacterSelector({
   // 使用しない場合は削除
   void startMeasure;
   
-  const {
-    fightersData,
-    attackingFighter,
-    defendingFighter,
-    setAttackingFighter,
-    setDefendingFighter,
-  } = useAppStore();
+  // 分割されたストアから必要なデータのみ購読
+  const fightersData = useCharacterSelectionStore(characterSelectors.fightersData);
+  const attackingFighter = useCharacterSelectionStore(characterSelectors.attackingFighter);
+  const defendingFighter = useCharacterSelectionStore(characterSelectors.defendingFighter);
+  const setAttackingFighter = useCharacterSelectionStore(state => state.setAttackingFighter);
+  const setDefendingFighter = useCharacterSelectionStore(state => state.setDefendingFighter);
 
   const filteredFighters = useMemo(() => {
     const allFighters = fightersData.data || [];
@@ -41,7 +40,7 @@ export const CharacterSelector = memo(function CharacterSelector({
       return allFighters;
     }
     
-    return allFighters.filter(fighter => 
+    return allFighters.filter((fighter: Fighter) => 
       fighter.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       fighter.displayName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       fighter.series.toLowerCase().includes(searchTerm.toLowerCase())

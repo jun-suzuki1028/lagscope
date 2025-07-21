@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppStore } from '../stores/app-store';
+import { useCalculationStore, calculationSelectors } from '../stores';
 import type { CalculationOptions, MoveRange, StalenessLevel } from '../types/frameData';
 
 interface OptionsPanelProps {
@@ -7,7 +7,9 @@ interface OptionsPanelProps {
 }
 
 const OptionsPanel: React.FC<OptionsPanelProps> = ({ className = '' }) => {
-  const { calculationOptions, setCalculationOptions } = useAppStore();
+  // 分割されたストアから計算オプションを購諭
+  const calculationOptions = useCalculationStore(calculationSelectors.calculationOptions);
+  const setCalculationOptions = useCalculationStore(state => state.setCalculationOptions);
 
   const handleOptionChange = (key: keyof CalculationOptions, value: unknown) => {
     try {
@@ -20,7 +22,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({ className = '' }) => {
 
   const handleRangeToggle = (range: MoveRange) => {
     const newRanges = calculationOptions.rangeFilter.includes(range)
-      ? calculationOptions.rangeFilter.filter(r => r !== range)
+      ? calculationOptions.rangeFilter.filter((r: MoveRange) => r !== range)
       : [...calculationOptions.rangeFilter, range];
     handleOptionChange('rangeFilter', newRanges);
   };

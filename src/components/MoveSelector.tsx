@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useAppStore } from '../stores/app-store';
+import { useCharacterSelectionStore, characterSelectors } from '../stores';
 import { Fighter, Move } from '../types/frameData';
 
 interface MoveSelectorProps {
@@ -9,7 +9,9 @@ interface MoveSelectorProps {
 }
 
 export function MoveSelector({ selectedFighter, onMoveSelect, className = '' }: MoveSelectorProps) {
-  const { selectedMove, setSelectedMove } = useAppStore();
+  // 分割されたストアから必要なデータを購読
+  const selectedMove = useCharacterSelectionStore(characterSelectors.selectedMove);
+  const setSelectedMove = useCharacterSelectionStore(state => state.setSelectedMove);
 
   const availableMoves = useMemo(() => {
     if (!selectedFighter) return [];
