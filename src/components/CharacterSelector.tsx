@@ -8,14 +8,12 @@ import { CharacterSelectionFallback } from './FallbackUI';
 
 interface CharacterSelectorProps {
   type: 'attacker' | 'defender';
-  multiSelect?: boolean;
   onCharacterSelect?: (fighter: Fighter) => void;
   className?: string;
 }
 
 export const CharacterSelector = memo(function CharacterSelector({ 
   type, 
-  multiSelect = false, 
   onCharacterSelect,
   className = '' 
 }: CharacterSelectorProps) {
@@ -31,10 +29,9 @@ export const CharacterSelector = memo(function CharacterSelector({
   const {
     fightersData,
     attackingFighter,
-    defendingFighters,
+    defendingFighter,
     setAttackingFighter,
-    addDefendingFighter,
-    removeDefendingFighter,
+    setDefendingFighter,
   } = useAppStore();
 
   const filteredFighters = useMemo(() => {
@@ -55,35 +52,26 @@ export const CharacterSelector = memo(function CharacterSelector({
     if (type === 'attacker') {
       return attackingFighter ? [attackingFighter.id] : [];
     }
-    return defendingFighters.map(f => f.id);
-  }, [type, attackingFighter, defendingFighters]);
+    return defendingFighter ? [defendingFighter.id] : [];
+  }, [type, attackingFighter, defendingFighter]);
 
   const handleFighterSelect = useCallback((fighter: Fighter) => {
     if (type === 'attacker') {
       setAttackingFighter(fighter);
     } else {
-      if (multiSelect) {
-        const isSelected = selectedFighterIds.includes(fighter.id);
-        if (isSelected) {
-          removeDefendingFighter(fighter.id);
-        } else {
-          addDefendingFighter(fighter);
-        }
-      } else {
-        setAttackingFighter(fighter);
-      }
+      setDefendingFighter(fighter);
     }
     
     onCharacterSelect?.(fighter);
-  }, [type, multiSelect, selectedFighterIds, setAttackingFighter, addDefendingFighter, removeDefendingFighter, onCharacterSelect]);
+  }, [type, setAttackingFighter, setDefendingFighter, onCharacterSelect]);
 
   const clearSelection = useCallback(() => {
     if (type === 'attacker') {
       setAttackingFighter(null);
     } else {
-      defendingFighters.forEach(f => removeDefendingFighter(f.id));
+      setDefendingFighter(null);
     }
-  }, [type, setAttackingFighter, defendingFighters, removeDefendingFighter]);
+  }, [type, setAttackingFighter, setDefendingFighter]);
 
 
   const handleModalOpen = useCallback(() => {
@@ -127,8 +115,7 @@ export const CharacterSelector = memo(function CharacterSelector({
       <div className="flex items-center justify-between">
         <div id={statusId} className="text-sm text-gray-600" aria-live="polite">
           {type === 'attacker' ? '攻撃側' : '防御側'}キャラクター
-          {multiSelect && ' (複数選択可能)'}
-          {selectedFighterIds.length > 0 && ` - ${selectedFighterIds.length}体選択中`}
+          {selectedFighterIds.length > 0 && ' - 選択済み'}
         </div>
         {selectedFighterIds.length > 0 && (
           <button
@@ -160,17 +147,10 @@ export const CharacterSelector = memo(function CharacterSelector({
                   <span className="text-gray-500">攻撃側キャラクターを選択</span>
                 )
               ) : (
-                defendingFighters.length > 0 ? (
-                  <div>
-                    <span className="font-medium text-gray-900">
-                      {defendingFighters.length === 1 
-                        ? defendingFighters[0].displayName
-                        : `${defendingFighters.length}体のキャラクター`
-                      }
-                    </span>
-                    {defendingFighters.length === 1 && (
-                      <span className="text-sm text-gray-500 ml-2">({defendingFighters[0].series})</span>
-                    )}
+                defendingFighter ? (
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium text-gray-900">{defendingFighter.displayName}</span>
+                    <span className="text-sm text-gray-500">({defendingFighter.series})</span>
                   </div>
                 ) : (
                   <span className="text-gray-500">防御側キャラクターを選択</span>
@@ -183,32 +163,6 @@ export const CharacterSelector = memo(function CharacterSelector({
           </div>
         </button>
 
-        {/* 選択状態表示 */}
-        {multiSelect && defendingFighters.length > 1 && (
-          <div className="bg-blue-50 p-3 rounded-lg">
-            <div className="text-sm font-medium text-blue-900 mb-2">選択中のキャラクター:</div>
-            <div className="flex flex-wrap gap-2">
-              {defendingFighters.map(fighter => (
-                <span 
-                  key={fighter.id}
-                  className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800 rounded-md text-xs"
-                >
-                  {fighter.displayName}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      removeDefendingFighter(fighter.id);
-                    }}
-                    className="text-blue-600 hover:text-blue-800"
-                    aria-label={`${fighter.displayName}を選択から削除`}
-                  >
-                    ×
-                  </button>
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
       <CharacterModal
@@ -217,7 +171,7 @@ export const CharacterSelector = memo(function CharacterSelector({
         fighters={filteredFighters}
         selectedFighterIds={selectedFighterIds}
         onFighterSelect={handleFighterSelect}
-        multiSelect={multiSelect}
+        multiSelect={false}
         title={`${type === 'attacker' ? '攻撃側' : '防御側'}キャラクター選択`}
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}

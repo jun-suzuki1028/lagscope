@@ -14,7 +14,7 @@ import type { PunishResult } from './types/frameData';
 function App() {
   const {
     attackingFighter,
-    defendingFighters,
+    defendingFighter,
     selectedMove,
     calculationOptions,
     setFightersData,
@@ -86,7 +86,7 @@ function App() {
 
   // 自動計算実行
   const performCalculation = useCallback(async () => {
-    if (!attackingFighter || !selectedMove || defendingFighters.length === 0) {
+    if (!attackingFighter || !selectedMove || !defendingFighter) {
       setCalculationResults([]);
       setCalculationError(null);
       return;
@@ -99,7 +99,7 @@ function App() {
       const results = await calculatePunishOptions({
         attackingFighter,
         attackMove: selectedMove,
-        defendingFighters,
+        defendingFighters: [defendingFighter],
         options: debouncedCalculationOptions,
       });
       setCalculationResults(results);
@@ -111,7 +111,7 @@ function App() {
     } finally {
       setIsCalculating(false);
     }
-  }, [attackingFighter, selectedMove, defendingFighters, debouncedCalculationOptions]);
+  }, [attackingFighter, selectedMove, defendingFighter, debouncedCalculationOptions]);
 
   // 技選択やオプション変更時の自動計算
   useEffect(() => {
@@ -119,7 +119,7 @@ function App() {
   }, [performCalculation]);
 
 
-  const hasCompleteSelection = attackingFighter && selectedMove && defendingFighters.length > 0;
+  const hasCompleteSelection = attackingFighter && selectedMove && defendingFighter;
 
   return (
     <ErrorBoundary>
@@ -146,7 +146,7 @@ function App() {
               </div>
               <div>
                 <h3 className="text-base sm:text-lg font-medium mb-3 sm:mb-4">防御側キャラクター</h3>
-                <CharacterSelector type="defender" multiSelect />
+                <CharacterSelector type="defender" />
               </div>
             </div>
           </section>
@@ -225,12 +225,7 @@ function App() {
               </div>
               <div>
                 <span className="font-medium text-gray-700">防御側：</span>
-                <span className="ml-2">
-                  {defendingFighters.length > 0 
-                    ? defendingFighters.map(f => f.displayName).join(', ') 
-                    : '未選択'
-                  }
-                </span>
+                <span className="ml-2">{defendingFighter?.displayName || '未選択'}</span>
               </div>
             </div>
           </section>
