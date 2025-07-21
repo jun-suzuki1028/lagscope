@@ -1,7 +1,6 @@
 import { useMemo, useState, useId, memo, useCallback } from 'react';
 import { useAppStore } from '../stores/app-store';
 import { Fighter } from '../types/frameData';
-import { useDebounce } from '../hooks/useDebounce';
 import { usePerformanceMonitor } from '../hooks/usePerformanceMonitor';
 import { CharacterModal } from './CharacterModal';
 import { SkeletonScreen } from './SkeletonScreen';
@@ -22,8 +21,6 @@ export const CharacterSelector = memo(function CharacterSelector({
 }: CharacterSelectorProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
-  const searchId = useId();
   const sectionId = useId();
   const statusId = useId();
   
@@ -43,16 +40,16 @@ export const CharacterSelector = memo(function CharacterSelector({
   const filteredFighters = useMemo(() => {
     const allFighters = fightersData.data || [];
     
-    if (!debouncedSearchTerm) {
+    if (!searchTerm) {
       return allFighters;
     }
     
     return allFighters.filter(fighter => 
-      fighter.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
-      fighter.displayName.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
-      fighter.series.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+      fighter.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      fighter.displayName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      fighter.series.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  }, [fightersData.data, debouncedSearchTerm]);
+  }, [fightersData.data, searchTerm]);
 
   const selectedFighterIds = useMemo(() => {
     if (type === 'attacker') {
@@ -88,13 +85,6 @@ export const CharacterSelector = memo(function CharacterSelector({
     }
   }, [type, setAttackingFighter, defendingFighters, removeDefendingFighter]);
 
-  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  }, []);
-
-  const handleSearchClear = useCallback(() => {
-    setSearchTerm('');
-  }, []);
 
   const handleModalOpen = useCallback(() => {
     setIsModalOpen(true);
@@ -132,53 +122,23 @@ export const CharacterSelector = memo(function CharacterSelector({
   }
 
   return (
-    <section className={`${className} space-y-4`} id={sectionId} aria-labelledby={statusId}>
-      <div className="flex items-center gap-4">
-        <div className="relative flex-1">
-          <label htmlFor={searchId} className="sr-only">
-            キャラクター検索
-          </label>
-          <input
-            id={searchId}
-            type="text"
-            placeholder="キャラクターを検索..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:outline-none"
-            role="searchbox"
-            aria-label="キャラクター検索"
-            aria-describedby={statusId}
-            aria-autocomplete="list"
-            tabIndex={0}
-          />
-          {searchTerm && (
-            <button
-              onClick={handleSearchClear}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
-              aria-label="検索をクリア"
-              tabIndex={0}
-            >
-              ×
-            </button>
-          )}
+    <section className={`${className} space-y-3`} id={sectionId} aria-labelledby={statusId}>
+
+      <div className="flex items-center justify-between">
+        <div id={statusId} className="text-sm text-gray-600" aria-live="polite">
+          {type === 'attacker' ? '攻撃側' : '防御側'}キャラクター
+          {multiSelect && ' (複数選択可能)'}
+          {selectedFighterIds.length > 0 && ` - ${selectedFighterIds.length}体選択中`}
         </div>
-        
-        
         {selectedFighterIds.length > 0 && (
           <button
             onClick={clearSelection}
-            className="px-3 sm:px-4 py-1.5 sm:py-2 text-sm bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            className="px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
             aria-label="選択をクリア"
           >
             選択をクリア
           </button>
         )}
-      </div>
-
-      <div id={statusId} className="text-sm text-gray-600" aria-live="polite">
-        {type === 'attacker' ? '攻撃側' : '防御側'}キャラクター
-        {multiSelect && ' (複数選択可能)'}
-        {selectedFighterIds.length > 0 && ` - ${selectedFighterIds.length}体選択中`}
       </div>
 
       <div className="space-y-3">
