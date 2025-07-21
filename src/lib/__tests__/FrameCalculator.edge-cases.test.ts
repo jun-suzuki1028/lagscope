@@ -179,7 +179,7 @@ describe('FrameCalculator エッジケース', () => {
   describe('ワンパターン相殺の極端なケース', () => {
     it('全てのワンパターンレベルで正常に計算する', () => {
       const stalenessLevels = [
-        'fresh', 'stale1', 'stale2', 'stale3', 'stale4', 
+        'none', 'stale1', 'stale2', 'stale3', 'stale4', 
         'stale5', 'stale6', 'stale7', 'stale8', 'stale9'
       ] as const;
       
@@ -191,10 +191,10 @@ describe('FrameCalculator エッジケース', () => {
     });
 
     it('最大ワンパターン相殺が適切に適用される', () => {
-      const fresh = FrameCalculator.calculateShieldStun(100, 'fresh');
+      const none = FrameCalculator.calculateShieldStun(100, 'none');
       const stale9 = FrameCalculator.calculateShieldStun(100, 'stale9');
       
-      expect(stale9).toBeLessThan(fresh);
+      expect(stale9).toBeLessThan(none);
       expect(stale9).toBeGreaterThanOrEqual(2);
     });
   });
@@ -392,13 +392,13 @@ describe('FrameCalculator エッジケース', () => {
         frameAdvantage: -15,
         attackingMove: createMockMove(),
         calculationContext: {
-          staleness: 'fresh' as const,
+          staleness: 'none' as const,
           shieldDamage: 5,
           shieldStun: 8,
           range: 'close' as const,
           position: 'center',
           options: {
-            staleness: 'fresh' as const,
+            staleness: 'none' as const,
             rangeFilter: ['close' as const],
             allowOutOfShield: true,
             allowGuardCancel: true,
@@ -454,13 +454,13 @@ describe('FrameCalculator エッジケース', () => {
         frameAdvantage: -15,
         attackingMove: createMockMove(),
         calculationContext: {
-          staleness: 'fresh' as const,
+          staleness: 'none' as const,
           shieldDamage: 5,
           shieldStun: 8,
           range: 'close' as const,
           position: 'center',
           options: {
-            staleness: 'fresh' as const,
+            staleness: 'none' as const,
             rangeFilter: ['close' as const],
             allowOutOfShield: true,
             allowGuardCancel: true,
