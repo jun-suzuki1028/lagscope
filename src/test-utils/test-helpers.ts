@@ -1,6 +1,7 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Fighter } from '../types/frameData';
+import { expect } from 'vitest';
 
 /**
  * テスト用の共通ヘルパー関数
@@ -144,7 +145,7 @@ export const createLoadingState = () => ({
 /**
  * 成功状態のモック作成
  */
-export const createSuccessState = (data: any) => ({
+export const createSuccessState = (data: unknown) => ({
   loading: false,
   error: null,
   data,
@@ -161,8 +162,11 @@ export const CI_TIMEOUT = process.env.CI ? 10000 : 5000;
  */
 export const debugDOMState = (title: string = 'DOM State') => {
   if (process.env.NODE_ENV === 'test' && process.env.DEBUG_TESTS) {
+    // eslint-disable-next-line no-console
     console.log(`\n=== ${title} ===`);
+    // eslint-disable-next-line no-console
     console.log(document.body.innerHTML);
+    // eslint-disable-next-line no-console
     console.log('==================\n');
   }
 };

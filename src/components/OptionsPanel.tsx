@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppStore } from '../stores/app-store';
 import type { CalculationOptions, MoveRange, StalenessLevel } from '../types/frameData';
+import InfoTooltip from './InfoTooltip';
 
 interface OptionsPanelProps {
   className?: string;
@@ -88,9 +89,33 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({ className = '' }) => {
 
         {/* ガード行動オプション */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            ガード行動オプション
-          </label>
+          <div className="flex items-center mb-2">
+            <label className="block text-sm font-medium text-gray-700">
+              ガード行動オプション
+            </label>
+            <InfoTooltip
+              content={
+                <div className="space-y-2">
+                  <p className="font-semibold">ガード行動について</p>
+                  <p>シールド中に取れる反撃行動です。</p>
+                  
+                  <div className="mt-3">
+                    <p className="font-medium">計算方法:</p>
+                    <ul className="text-xs mt-1 space-y-1">
+                      <li>• <strong>特別な行動</strong>（上スマッシュ、上必殺技、つかみ、ジャンプ）：シールド解除11Fの隙なしで直接実行</li>
+                      <li>• <strong>通常の行動</strong>：シールド解除11F + 技の発生フレーム</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="mt-3">
+                    <p className="font-medium">例：</p>
+                    <p className="text-xs">10F有利時、8Fつかみは反撃確定（8F ≤ 10F）<br/>12F横強は間に合わない（12F + 11F &gt; 10F）</p>
+                  </div>
+                </div>
+              }
+              position="top"
+            />
+          </div>
           <div className="space-y-2">
             {[
               { key: 'allowOutOfShield' as const, label: 'ガード解除' },

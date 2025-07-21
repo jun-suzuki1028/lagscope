@@ -17,3 +17,4 @@ export { LoadingSpinner, LoadingOverlay, LoadingButton } from './LoadingSpinner'
 export { FallbackUI, CharacterSelectionFallback, MoveDataFallback, CalculationResultsFallback } from './FallbackUI';
 export { FormValidation, ValidatedInput, ValidatedSelect } from './FormValidation';
 export { validators, validateField, validateForm } from '../lib/validators';
+export { default as InfoTooltip } from './InfoTooltip';
