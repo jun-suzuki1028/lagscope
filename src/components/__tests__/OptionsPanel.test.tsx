@@ -11,7 +11,7 @@ vi.mock('../../stores/app-store', () => ({
 describe('OptionsPanel', () => {
   const mockSetCalculationOptions = vi.fn();
   const mockCalculationOptions = {
-    staleness: 'fresh' as const,
+    staleness: 'none' as const,
     rangeFilter: ['close', 'mid', 'far'] as const,
     minimumFrameAdvantage: 0,
     maximumFrameAdvantage: 999,
@@ -45,7 +45,7 @@ describe('OptionsPanel', () => {
   it('ワンパターン相殺の選択が正常に動作する', () => {
     render(<OptionsPanel />);
     
-    const stalenessSelect = screen.getByDisplayValue('フレッシュ');
+    const stalenessSelect = screen.getByDisplayValue('なし');
     fireEvent.change(stalenessSelect, { target: { value: 'stale1' } });
     
     expect(mockSetCalculationOptions).toHaveBeenCalledWith({
@@ -102,7 +102,7 @@ describe('OptionsPanel', () => {
     fireEvent.click(resetButton);
     
     expect(mockSetCalculationOptions).toHaveBeenCalledWith({
-      staleness: 'fresh',
+      staleness: 'none',
       rangeFilter: ['close', 'mid', 'far'],
       minimumFrameAdvantage: 0,
       maximumFrameAdvantage: 999,

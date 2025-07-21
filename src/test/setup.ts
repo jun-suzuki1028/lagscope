@@ -218,3 +218,17 @@ if (typeof global !== 'undefined') {
     (global as any).this = global;
   }
 }
+
+// CI環境でReact act() 警告を抑制
+if (process.env.CI) {
+  const originalConsoleError = console.error; // eslint-disable-line no-console
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  console.error = (...args: any[]) => { // eslint-disable-line no-console
+    const message = args[0];
+    if (typeof message === 'string' && message.includes('Warning: An update to') && message.includes('was not wrapped in act(...)')) {
+      // act() 警告は CI環境では抑制
+      return;
+    }
+    originalConsoleError(...args);
+  };
+}

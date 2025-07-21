@@ -34,7 +34,7 @@ const initialState: AppState = {
   defendingFighter: null,
   selectedMove: null,
   calculationOptions: {
-    staleness: 'fresh',
+    staleness: 'none',
     rangeFilter: ['close', 'mid', 'far'],
     minimumFrameAdvantage: 0,
     maximumFrameAdvantage: 999,
