@@ -173,7 +173,6 @@ if (typeof process !== 'undefined') {
 
 // React 18のcreateRootを無効化し、React 17のlegacy renderを強制
 if (typeof global !== 'undefined') {
-  const { ReactDOM } = require('react-dom');
   const { render: legacyRender, unmountComponentAtNode } = require('react-dom');
   
   // createRootを無効化してlegacy renderを使用
