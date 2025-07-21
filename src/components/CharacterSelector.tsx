@@ -3,7 +3,6 @@ import { useAppStore } from '../stores/app-store';
 import { Fighter } from '../types/frameData';
 import { useDebounce } from '../hooks/useDebounce';
 import { usePerformanceMonitor } from '../hooks/usePerformanceMonitor';
-import { CharacterGrid } from './CharacterGrid';
 import { CharacterModal } from './CharacterModal';
 import { SkeletonScreen } from './SkeletonScreen';
 import { CharacterSelectionFallback } from './FallbackUI';
@@ -164,18 +163,11 @@ export const CharacterSelector = memo(function CharacterSelector({
           )}
         </div>
         
-        <button
-          onClick={handleModalOpen}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:hidden"
-          aria-label="キャラクター選択モーダルを開く"
-        >
-          選択
-        </button>
         
         {selectedFighterIds.length > 0 && (
           <button
             onClick={clearSelection}
-            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            className="px-3 sm:px-4 py-1.5 sm:py-2 text-sm bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
             aria-label="選択をクリア"
           >
             選択をクリア
@@ -189,12 +181,75 @@ export const CharacterSelector = memo(function CharacterSelector({
         {selectedFighterIds.length > 0 && ` - ${selectedFighterIds.length}体選択中`}
       </div>
 
-      <CharacterGrid
-        fighters={filteredFighters}
-        selectedFighterIds={selectedFighterIds}
-        onFighterSelect={handleFighterSelect}
-        multiSelect={multiSelect}
-      />
+      <div className="space-y-3">
+        {/* 選択ボタン */}
+        <button
+          onClick={handleModalOpen}
+          className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-lg hover:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-left"
+          aria-label="キャラクター選択モーダルを開く"
+        >
+          <div className="flex items-center justify-between">
+            <div>
+              {type === 'attacker' ? (
+                attackingFighter ? (
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium text-gray-900">{attackingFighter.displayName}</span>
+                    <span className="text-sm text-gray-500">({attackingFighter.series})</span>
+                  </div>
+                ) : (
+                  <span className="text-gray-500">攻撃側キャラクターを選択</span>
+                )
+              ) : (
+                defendingFighters.length > 0 ? (
+                  <div>
+                    <span className="font-medium text-gray-900">
+                      {defendingFighters.length === 1 
+                        ? defendingFighters[0].displayName
+                        : `${defendingFighters.length}体のキャラクター`
+                      }
+                    </span>
+                    {defendingFighters.length === 1 && (
+                      <span className="text-sm text-gray-500 ml-2">({defendingFighters[0].series})</span>
+                    )}
+                  </div>
+                ) : (
+                  <span className="text-gray-500">防御側キャラクターを選択</span>
+                )
+              )}
+            </div>
+            <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </button>
+
+        {/* 選択状態表示 */}
+        {multiSelect && defendingFighters.length > 1 && (
+          <div className="bg-blue-50 p-3 rounded-lg">
+            <div className="text-sm font-medium text-blue-900 mb-2">選択中のキャラクター:</div>
+            <div className="flex flex-wrap gap-2">
+              {defendingFighters.map(fighter => (
+                <span 
+                  key={fighter.id}
+                  className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800 rounded-md text-xs"
+                >
+                  {fighter.displayName}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeDefendingFighter(fighter.id);
+                    }}
+                    className="text-blue-600 hover:text-blue-800"
+                    aria-label={`${fighter.displayName}を選択から削除`}
+                  >
+                    ×
+                  </button>
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
 
       <CharacterModal
         isOpen={isModalOpen}
