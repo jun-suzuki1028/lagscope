@@ -86,39 +86,18 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({ className = '' }) => {
           </div>
         </div>
 
-        {/* ガード行動オプション */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            ガード行動オプション
-          </label>
-          
-          {/* 説明文 */}
-          <div className="mb-3 p-3 bg-blue-50 border border-blue-200 rounded-md text-sm text-gray-700">
-            <p className="font-medium text-blue-800 mb-1">ガード行動について</p>
-            <p className="mb-2">シールド中に取れる反撃行動の計算方法：</p>
+        {/* ガード行動について */}
+        <div className="md:col-span-2">
+          <div className="p-4 bg-blue-50 border border-blue-200 rounded-md text-sm text-gray-700">
+            <p className="font-medium text-blue-800 mb-2">ガード行動について</p>
+            <p className="mb-2">計算結果には以下の2つのパターンが自動的に含まれます：</p>
             <ul className="text-xs space-y-1 ml-2">
-              <li>• <strong>特別な行動</strong>（上スマッシュ、上必殺技、つかみ、ジャンプ）：シールド解除11Fの隙なしで直接実行</li>
-              <li>• <strong>通常の行動</strong>：シールド解除11F + 技の発生フレーム</li>
+              <li>• <strong>ガードキャンセル</strong>（上スマッシュ、上必殺技、つかみ、ジャンプ）：シールド解除11Fの隙なしで直接実行</li>
+              <li>• <strong>ガード解除</strong>（通常の技）：シールド解除11F + 技の発生フレーム</li>
             </ul>
-          </div>
-          <div className="space-y-2">
-            {[
-              { key: 'allowOutOfShield' as const, label: 'ガード解除' },
-              { key: 'allowGuardCancel' as const, label: 'ガードキャンセル' },
-              { key: 'allowPerfectShield' as const, label: 'ジャストシールド' },
-              { key: 'allowRolling' as const, label: '回避' },
-              { key: 'allowSpotDodge' as const, label: 'その場回避' },
-            ].map(option => (
-              <label key={option.key} className="flex items-center">
-                <input
-                  type="checkbox"
-                  checked={calculationOptions[option.key]}
-                  onChange={(e) => handleOptionChange(option.key, e.target.checked)}
-                  className="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <span className="text-sm text-gray-700">{option.label}</span>
-              </label>
-            ))}
+            <p className="text-xs mt-2 text-gray-600">
+              計算結果では、どちらのパターンで反撃可能かが表示されます。
+            </p>
           </div>
         </div>
 
@@ -223,11 +202,6 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({ className = '' }) => {
           onClick={() => setCalculationOptions({
             staleness: 'fresh',
             rangeFilter: ['close', 'mid', 'far'],
-            allowOutOfShield: true,
-            allowGuardCancel: true,
-            allowPerfectShield: true,
-            allowRolling: true,
-            allowSpotDodge: true,
             minimumFrameAdvantage: 0,
             maximumFrameAdvantage: 999,
             minimumDamage: 0,

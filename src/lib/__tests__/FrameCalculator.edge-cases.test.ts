@@ -215,17 +215,14 @@ describe('FrameCalculator エッジケース', () => {
     });
 
     it('非常に速いOOSオプションを正しく処理する', () => {
-      const fastMove = createMockMove({ startup: 1, totalFrames: 5 });
+      const fastNair = createMockMove({ startup: 3, totalFrames: 20, category: 'aerial', name: 'nair' });
+      const upSmash = createMockMove({ startup: 6, totalFrames: 30, category: 'smash', name: 'up_smash' });
+      const grab = createMockMove({ startup: 8, totalFrames: 35, category: 'grab', name: 'grab' });
       const fighter = createMockFighter({
-        moves: [fastMove],
-        shieldData: {
-          ...createMockFighter().shieldData,
-          outOfShieldOptions: [{
-            move: fastMove.name,
-            frames: 1,
-            type: 'nair',
-            effectiveness: 10
-          }]
+        moves: [fastNair, upSmash, grab],
+        movementData: {
+          ...createMockFighter().movementData,
+          jumpSquat: 3  // ジャンプしゃがみ3F
         }
       });
       
@@ -240,6 +237,7 @@ describe('FrameCalculator エッジケース', () => {
       });
       const result = FrameCalculator.calculatePunishWindow(slowMove, fighter);
       
+      // 新しいロジックでは、ガードキャンセル技とガード解除技の両方が自動計算される
       expect(result.punishingMoves.length).toBeGreaterThan(0);
     });
   });

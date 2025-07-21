@@ -277,6 +277,9 @@ const ResultsTable: React.FC<ResultsTableProps> = memo(({ results, className = '
                 反撃方法
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                ガード行動
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 確定度
               </th>
               <th
@@ -318,6 +321,20 @@ const ResultsTable: React.FC<ResultsTableProps> = memo(({ results, className = '
                   <span className="inline-block px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
                     {formatMethod(move.method)}
                   </span>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  {move.guardActionType && (
+                    <span className={`inline-block px-2 py-1 text-xs font-semibold rounded-full ${
+                      move.guardActionType === 'guard_cancel' 
+                        ? 'bg-green-100 text-green-800' 
+                        : move.guardActionType === 'guard_release'
+                        ? 'bg-orange-100 text-orange-800'
+                        : 'bg-gray-100 text-gray-800'
+                    }`}>
+                      {move.guardActionType === 'guard_cancel' ? 'ガードキャンセル' : 
+                       move.guardActionType === 'guard_release' ? 'ガード解除' : '通常'}
+                    </span>
+                  )}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                   <div className="flex items-center">
@@ -370,6 +387,18 @@ const ResultsTable: React.FC<ResultsTableProps> = memo(({ results, className = '
                 <span className="inline-block px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
                   {formatMethod(move.method)}
                 </span>
+                {move.guardActionType && (
+                  <span className={`inline-block px-2 py-1 text-xs font-semibold rounded-full ${
+                    move.guardActionType === 'guard_cancel' 
+                      ? 'bg-green-100 text-green-800' 
+                      : move.guardActionType === 'guard_release'
+                      ? 'bg-orange-100 text-orange-800'
+                      : 'bg-gray-100 text-gray-800'
+                  }`}>
+                    {move.guardActionType === 'guard_cancel' ? 'ガードキャンセル' : 
+                     move.guardActionType === 'guard_release' ? 'ガード解除' : '通常'}
+                  </span>
+                )}
                 <span className={`inline-block px-2 py-1 text-xs font-semibold rounded-full ${
                   move.isGuaranteed 
                     ? 'bg-green-100 text-green-800' 

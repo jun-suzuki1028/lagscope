@@ -252,10 +252,10 @@ describe('FrameCalculator', () => {
         disadvantageMove,
         mockFighter,
         'fresh',
-        { allowOutOfShield: false }
+        { onlyGuaranteed: true }
       );
       
-      expect(result.calculationContext.options.allowOutOfShield).toBe(false);
+      expect(result.calculationContext.options.onlyGuaranteed).toBe(true);
     });
   });
 

@@ -210,6 +210,7 @@ export interface PunishMove {
   probability: number;
   damage: number;
   killPercent?: number;
+  guardActionType?: 'guard_cancel' | 'guard_release' | 'normal';
   notes?: string;
 }
 
@@ -239,11 +240,6 @@ export type PunishMethod =
 export interface CalculationOptions {
   staleness: StalenessLevel;
   rangeFilter: MoveRange[];
-  allowOutOfShield: boolean;
-  allowGuardCancel: boolean;
-  allowPerfectShield: boolean;
-  allowRolling: boolean;
-  allowSpotDodge: boolean;
   minimumFrameAdvantage: number;
   maximumFrameAdvantage: number;
   minimumDamage: number;

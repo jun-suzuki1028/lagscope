@@ -13,11 +13,6 @@ describe('OptionsPanel', () => {
   const mockCalculationOptions = {
     staleness: 'fresh' as const,
     rangeFilter: ['close', 'mid', 'far'] as const,
-    allowOutOfShield: true,
-    allowGuardCancel: true,
-    allowPerfectShield: true,
-    allowRolling: true,
-    allowSpotDodge: true,
     minimumFrameAdvantage: 0,
     maximumFrameAdvantage: 999,
     minimumDamage: 0,
@@ -42,7 +37,7 @@ describe('OptionsPanel', () => {
     expect(screen.getByText('計算オプション')).toBeInTheDocument();
     expect(screen.getByText('ワンパターン相殺')).toBeInTheDocument();
     expect(screen.getByText('距離フィルター')).toBeInTheDocument();
-    expect(screen.getByText('ガード行動オプション')).toBeInTheDocument();
+    expect(screen.getByText('ガード行動について')).toBeInTheDocument();
     expect(screen.getByText('フィルタリング設定')).toBeInTheDocument();
     expect(screen.getByText('数値フィルター')).toBeInTheDocument();
   });
@@ -69,15 +64,13 @@ describe('OptionsPanel', () => {
     });
   });
 
-  it('ガード行動オプションのチェックボックスが正常に動作する', () => {
+  it('ガード行動について説明文が表示される', () => {
     render(<OptionsPanel />);
     
-    const outOfShieldCheckbox = screen.getByLabelText('ガード解除');
-    fireEvent.click(outOfShieldCheckbox);
-    
-    expect(mockSetCalculationOptions).toHaveBeenCalledWith({
-      allowOutOfShield: false,
-    });
+    expect(screen.getByText('ガード行動について')).toBeInTheDocument();
+    expect(screen.getByText('計算結果には以下の2つのパターンが自動的に含まれます：')).toBeInTheDocument();
+    expect(screen.getByText(/ガードキャンセル/)).toBeInTheDocument();
+    expect(screen.getByText(/ガード解除/)).toBeInTheDocument();
   });
 
   it('フィルタリング設定のチェックボックスが正常に動作する', () => {
@@ -111,11 +104,6 @@ describe('OptionsPanel', () => {
     expect(mockSetCalculationOptions).toHaveBeenCalledWith({
       staleness: 'fresh',
       rangeFilter: ['close', 'mid', 'far'],
-      allowOutOfShield: true,
-      allowGuardCancel: true,
-      allowPerfectShield: true,
-      allowRolling: true,
-      allowSpotDodge: true,
       minimumFrameAdvantage: 0,
       maximumFrameAdvantage: 999,
       minimumDamage: 0,
@@ -149,19 +137,17 @@ describe('OptionsPanel', () => {
     expect(projectileCheckbox).not.toBeChecked();
   });
 
-  it('ガード行動オプションのチェックボックスが現在の状態を反映する', () => {
+  it('フィルタリング設定のチェックボックスが現在の状態を反映する', () => {
     render(<OptionsPanel />);
     
-    const outOfShieldCheckbox = screen.getByLabelText('ガード解除');
-    const guardCancelCheckbox = screen.getByLabelText('ガードキャンセル');
-    const perfectShieldCheckbox = screen.getByLabelText('ジャストシールド');
-    const rollingCheckbox = screen.getByLabelText('回避');
-    const spotDodgeCheckbox = screen.getByLabelText('その場回避');
+    const onlyGuaranteedCheckbox = screen.getByLabelText('確定のみ表示');
+    const includeKillMovesCheckbox = screen.getByLabelText('撃墜技を含める');
+    const includeDIOptionsCheckbox = screen.getByLabelText('DIオプションを含める');
+    const includeSDIOptionsCheckbox = screen.getByLabelText('SDIオプションを含める');
     
-    expect(outOfShieldCheckbox).toBeChecked();
-    expect(guardCancelCheckbox).toBeChecked();
-    expect(perfectShieldCheckbox).toBeChecked();
-    expect(rollingCheckbox).toBeChecked();
-    expect(spotDodgeCheckbox).toBeChecked();
+    expect(onlyGuaranteedCheckbox).not.toBeChecked();
+    expect(includeKillMovesCheckbox).toBeChecked();
+    expect(includeDIOptionsCheckbox).not.toBeChecked();
+    expect(includeSDIOptionsCheckbox).not.toBeChecked();
   });
 });
