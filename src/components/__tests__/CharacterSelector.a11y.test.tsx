@@ -30,10 +30,9 @@ vi.mock('../../stores/app-store', () => ({
       ],
     },
     attackingFighter: null,
-    defendingFighters: [],
+    defendingFighter: null,
     setAttackingFighter: vi.fn(),
-    addDefendingFighter: vi.fn(),
-    removeDefendingFighter: vi.fn(),
+    setDefendingFighter: vi.fn(),
   })),
 }));
 
@@ -47,9 +46,9 @@ describe('CharacterSelector アクセシビリティテスト', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('アクセシビリティ違反がない (防御側・複数選択)', async () => {
+  it('アクセシビリティ違反がない (防御側)', async () => {
     const { container } = render(
-      <CharacterSelector type="defender" multiSelect />
+      <CharacterSelector type="defender" />
     );
 
     const results = await axe(container);
@@ -81,9 +80,8 @@ describe('CharacterSelector アクセシビリティテスト', () => {
   it('適切なARIA属性が設定されている', () => {
     render(<CharacterSelector type="attacker" />);
 
-    const searchInput = screen.getByRole('searchbox');
-    expect(searchInput).toHaveAttribute('aria-label', 'キャラクター検索');
-    expect(searchInput).toHaveAttribute('aria-autocomplete', 'list');
+    const selectionButton = screen.getByRole('button', { name: 'キャラクター選択モーダルを開く' });
+    expect(selectionButton).toHaveAttribute('aria-label', 'キャラクター選択モーダルを開く');
 
     const section = screen.getByRole('region');
     expect(section).toBeInTheDocument();
@@ -92,12 +90,10 @@ describe('CharacterSelector アクセシビリティテスト', () => {
   it('キーボードナビゲーションが適切に動作する', () => {
     render(<CharacterSelector type="attacker" />);
 
-    const searchInput = screen.getByRole('searchbox');
-    expect(searchInput).toHaveAttribute('tabIndex', '0');
+    const selectionButton = screen.getByRole('button', { name: 'キャラクター選択モーダルを開く' });
+    expect(selectionButton).toBeInTheDocument();
 
-    const clearButton = screen.queryByLabelText('検索をクリア');
-    if (clearButton) {
-      expect(clearButton).toHaveAttribute('tabIndex', '0');
-    }
+    // フォーカス可能な要素が存在することを確認
+    expect(selectionButton).toHaveAttribute('aria-label');
   });
 });

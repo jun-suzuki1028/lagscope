@@ -5,7 +5,7 @@ import type { AsyncState } from '../types/utils';
 
 interface AppState {
   attackingFighter: Fighter | null;
-  defendingFighters: Fighter[];
+  defendingFighter: Fighter | null;
   selectedMove: Move | null;
   calculationOptions: CalculationOptions;
   results: PunishResult[];
@@ -18,9 +18,7 @@ interface AppState {
 interface AppStore extends AppState {
   // Actions
   setAttackingFighter: (fighter: Fighter | null) => void;
-  setDefendingFighters: (fighters: Fighter[]) => void;
-  addDefendingFighter: (fighter: Fighter) => void;
-  removeDefendingFighter: (fighterId: string) => void;
+  setDefendingFighter: (fighter: Fighter | null) => void;
   setSelectedMove: (move: Move | null) => void;
   setCalculationOptions: (options: Partial<CalculationOptions>) => void;
   setResults: (results: PunishResult[]) => void;
@@ -33,7 +31,7 @@ interface AppStore extends AppState {
 
 const initialState: AppState = {
   attackingFighter: null,
-  defendingFighters: [],
+  defendingFighter: null,
   selectedMove: null,
   calculationOptions: {
     staleness: 'fresh',
@@ -79,23 +77,8 @@ export const useAppStore = create<AppStore>()(
           set({ attackingFighter: fighter, selectedMove: null, results: [] });
         },
 
-        setDefendingFighters: (fighters) => {
-          set({ defendingFighters: fighters, results: [] });
-        },
-
-        addDefendingFighter: (fighter) => {
-          const { defendingFighters } = get();
-          if (!defendingFighters.find(f => f.id === fighter.id)) {
-            set({ defendingFighters: [...defendingFighters, fighter], results: [] });
-          }
-        },
-
-        removeDefendingFighter: (fighterId) => {
-          const { defendingFighters } = get();
-          set({ 
-            defendingFighters: defendingFighters.filter(f => f.id !== fighterId),
-            results: [] 
-          });
+        setDefendingFighter: (fighter) => {
+          set({ defendingFighter: fighter, results: [] });
         },
 
         setSelectedMove: (move) => {

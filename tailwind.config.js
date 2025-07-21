@@ -56,6 +56,9 @@ export default {
       screens: {
         'xs': '475px',
       },
+      gridTemplateColumns: {
+        '15': 'repeat(15, minmax(0, 1fr))',
+      },
       animation: {
         'fadeIn': 'fadeIn 0.5s ease-in-out',
         'slideInUp': 'slideInUp 0.6s ease-out',
