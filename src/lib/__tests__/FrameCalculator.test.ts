@@ -133,16 +133,14 @@ describe('FrameCalculator', () => {
 
     it('ワンパターン相殺を適用する', () => {
       const noneResult = FrameCalculator.calculateShieldStun(10.0, 'none');
-      const freshResult = FrameCalculator.calculateShieldStun(10.0, 'fresh');
       const staleResult = FrameCalculator.calculateShieldStun(10.0, 'stale1');
-      expect(noneResult).toBe(freshResult);
-      expect(staleResult).toBeLessThanOrEqual(freshResult);
+      expect(staleResult).toBeLessThanOrEqual(noneResult);
     });
 
     it('最大ワンパターン相殺を適用する', () => {
-      const freshResult = FrameCalculator.calculateShieldStun(10.0, 'fresh');
+      const noneResult = FrameCalculator.calculateShieldStun(10.0, 'none');
       const stale9Result = FrameCalculator.calculateShieldStun(10.0, 'stale9');
-      expect(stale9Result).toBeLessThan(freshResult);
+      expect(stale9Result).toBeLessThan(noneResult);
     });
   });
 
@@ -154,10 +152,8 @@ describe('FrameCalculator', () => {
 
     it('ワンパターン相殺を適用する', () => {
       const noneResult = FrameCalculator.calculateShieldDamage(10.0, 'none');
-      const freshResult = FrameCalculator.calculateShieldDamage(10.0, 'fresh');
       const staleResult = FrameCalculator.calculateShieldDamage(10.0, 'stale1');
-      expect(noneResult).toBe(freshResult);
-      expect(staleResult).toBeLessThan(freshResult);
+      expect(staleResult).toBeLessThan(noneResult);
     });
   });
 
@@ -196,8 +192,8 @@ describe('FrameCalculator', () => {
     });
 
     it('パーフェクトシールドボーナスを適用する', () => {
-      const normalResult = FrameCalculator.calculateFrameAdvantage(mockMove, 11, 'fresh', false);
-      const perfectResult = FrameCalculator.calculateFrameAdvantage(mockMove, 11, 'fresh', true);
+      const normalResult = FrameCalculator.calculateFrameAdvantage(mockMove, 11, 'none', false);
+      const perfectResult = FrameCalculator.calculateFrameAdvantage(mockMove, 11, 'none', true);
       
       expect(perfectResult.frameAdvantage).toBe(normalResult.frameAdvantage + 4);
     });
@@ -255,7 +251,7 @@ describe('FrameCalculator', () => {
       const result = FrameCalculator.calculatePunishWindow(
         disadvantageMove,
         mockFighter,
-        'fresh',
+        'none',
         { onlyGuaranteed: true }
       );
       
@@ -281,11 +277,11 @@ describe('FrameCalculator', () => {
   });
 
   describe('getStalenessLevel', () => {
-    it('新しい技にfreshを返す', () => {
+    it('新しい技にnoneを返す', () => {
       const recentMoves = ['ftilt', 'usmash', 'dsmash'];
       const result = FrameCalculator.getStalenessLevel(recentMoves, 'jab1');
       
-      expect(result).toBe('fresh');
+      expect(result).toBe('none');
     });
 
     it('1回使用した技にstale1を返す', () => {
@@ -371,13 +367,13 @@ describe('FrameCalculator', () => {
         frameAdvantage: -15,
         attackingMove: mockMove,
         calculationContext: {
-          staleness: 'fresh' as StalenessLevel,
+          staleness: 'none' as StalenessLevel,
           shieldDamage: 5,
           shieldStun: 8,
           range: 'close' as const,
           position: 'center',
           options: {
-            staleness: 'fresh' as StalenessLevel,
+            staleness: 'none' as StalenessLevel,
             rangeFilter: ['close' as const],
             allowOutOfShield: true,
             allowGuardCancel: true,

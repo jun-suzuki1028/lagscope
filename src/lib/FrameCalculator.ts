@@ -34,7 +34,6 @@ export class FrameCalculator {
 
   private static readonly STALENESS_MULTIPLIERS: Record<StalenessLevel, StalenessModifier> = {
     none: { damageMultiplier: 1.0, shieldDamageMultiplier: 1.0, hitstunMultiplier: 1.0 },
-    fresh: { damageMultiplier: 1.0, shieldDamageMultiplier: 1.0, hitstunMultiplier: 1.0 },
     stale1: { damageMultiplier: 0.99, shieldDamageMultiplier: 0.99, hitstunMultiplier: 0.99 },
     stale2: { damageMultiplier: 0.98, shieldDamageMultiplier: 0.98, hitstunMultiplier: 0.98 },
     stale3: { damageMultiplier: 0.97, shieldDamageMultiplier: 0.97, hitstunMultiplier: 0.97 },
@@ -62,7 +61,7 @@ export class FrameCalculator {
   public static calculateFrameAdvantage(
     attackMove: Move,
     defenderShieldReleaseFrames: number,
-    staleness: StalenessLevel = 'fresh',
+    staleness: StalenessLevel = 'none',
     isPerfectShield: boolean = false
   ): FrameAdvantageResult {
     const baseDamage = Array.isArray(attackMove.damage) 
@@ -93,7 +92,7 @@ export class FrameCalculator {
   public static calculatePunishWindow(
     attackMove: Move,
     defender: Fighter,
-    staleness: StalenessLevel = 'fresh',
+    staleness: StalenessLevel = 'none',
     options: Partial<CalculationOptions> = {}
   ): PunishResult {
     const frameAdvantage = this.calculateFrameAdvantage(
@@ -312,7 +311,7 @@ export class FrameCalculator {
   ): StalenessLevel {
     const occurrences = recentMoves.filter(id => id === moveId).length;
     
-    if (occurrences === 0) return 'fresh';
+    if (occurrences === 0) return 'none';
     if (occurrences >= 9) return 'stale9';
     
     return `stale${occurrences}` as StalenessLevel;
@@ -321,7 +320,7 @@ export class FrameCalculator {
   public static isMoveSafe(
     attackMove: Move,
     defenderShieldReleaseFrames: number,
-    staleness: StalenessLevel = 'fresh'
+    staleness: StalenessLevel = 'none'
   ): boolean {
     const result = this.calculateFrameAdvantage(
       attackMove,

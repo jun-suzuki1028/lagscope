@@ -491,7 +491,6 @@ export const GAME_MECHANICS: GameMechanics = {
   diInfluence: 0.17,
   stalenessMultipliers: {
     none: 1.0,
-    fresh: 1.0,
     stale1: 0.99,
     stale2: 0.98,
     stale3: 0.97,
