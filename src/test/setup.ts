@@ -178,16 +178,7 @@ beforeEach(() => {
     global.HTMLElement = window.HTMLElement;
   }
   
-  // CI環境では基本的なセットアップのみ
-  if (process.env.CI === 'true') {
-    // 基本的なDOM構造の確保のみ
-    if (document.body) {
-      document.body.innerHTML = '';
-    }
-    return;
-  }
-  
-  // 確実にdocument.bodyが存在することを保証（ローカル環境のみ）
+  // 確実にdocument.bodyが存在することを保証
   if (!document.body) {
     document.body = document.createElement('body');
   }
@@ -214,23 +205,12 @@ afterEach(() => {
     // windowオブジェクトのイベントリスナーをクリア
     window.removeEventListener = window.removeEventListener || (() => {});
   }
+  
+  // DOM環境の完全なリセット（テスト間の完全な分離）
+  if (typeof document !== 'undefined' && document.head) {
+    // headの内容をクリア（style、scriptなど）
+    document.head.innerHTML = '';
+  }
 });
 
-// jsdomのDOM API互換性向上（CI環境では無効化）
-if (typeof global.document !== 'undefined' && process.env.CI !== 'true') {
-  // createElementの安全性確保（ローカル環境のみ）
-  const originalCreateElement = document.createElement;
-  document.createElement = function (tagName: string, options?: ElementCreationOptions) {
-    try {
-      const element = originalCreateElement.call(this, tagName, options);
-      if (element && typeof element.setAttribute === 'function') {
-        return element;
-      }
-      throw new Error(`Invalid element created for tag: ${tagName}`);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.warn(`createElement failed for ${tagName}:`, error);
-      throw error;
-    }
-  };
-}
+// jsdomのDOM API互換性向上（削除済み - 問題を起こしていたため）

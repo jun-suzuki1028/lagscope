@@ -20,14 +20,15 @@ export default defineConfig({
     testTimeout: process.env.CI ? 30000 : 5000,
     hookTimeout: process.env.CI ? 30000 : 5000,
     teardownTimeout: process.env.CI ? 20000 : 1000,
-    // 並列実行設定（CI環境でより保守的に）
-    pool: 'threads',
+    // 並列実行設定（全環境でシーケンシャル実行）
+    fileParallelism: false,
+    pool: 'forks',
     poolOptions: {
-      threads: {
-        singleThread: process.env.CI === 'true',
-        maxThreads: process.env.CI ? 1 : 4,
-        minThreads: process.env.CI ? 1 : 1,
-        isolate: process.env.CI === 'true',
+      forks: {
+        singleFork: true,
+        maxForks: 1,
+        minForks: 1,
+        isolate: true,
       },
     },
     // CI環境でのDOM安定性向上
@@ -53,10 +54,15 @@ export default defineConfig({
     passWithNoTests: true,
     // カスタムreporter設定でunhandled errorを完全に隠す
     reporters: process.env.CI ? ['basic'] : ['default'],
-    // CI環境でのリソース制限
-    maxConcurrency: process.env.CI ? 1 : 5,
+    // 全環境でのリソース制限（安定性向上）
+    maxConcurrency: 1,
     // ファイルウォッチャーを無効化
     watch: false,
+    // テスト実行順序を決定論的にする
+    sequence: {
+      shuffle: false,
+      concurrent: false,
+    },
   },
   resolve: {
     alias: {
