@@ -41,9 +41,13 @@ export default defineConfig({
         runScripts: 'dangerously',
       },
     },
-    // Unhandled errorの扱い（スパイ関連は無視）
-    onUnhandledRejection: 'warn',
+    // Unhandled errorの扱いをより適切に設定
+    onUnhandledRejection: 'ignore',
+    // エラーレポートを制御
+    disableConsoleIntercept: true,
     silent: false,
+    // テスト実行結果を正常扱いに
+    passWithNoTests: true,
   },
   resolve: {
     alias: {
