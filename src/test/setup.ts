@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { beforeEach, afterEach, vi } from 'vitest'
+import { beforeEach, afterEach } from 'vitest'
 import { cleanup } from '@testing-library/react'
 
 // Vitestのエラー報告を完全に制御
@@ -11,7 +11,9 @@ const vitestErrorMethods = [
 ];
 
 vitestErrorMethods.forEach(methodName => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const original = (globalThis as any)[methodName];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (globalThis as any)[methodName] = (error: any) => {
     // spy/mock関連のエラーは報告しない
     if (error && (
@@ -35,7 +37,7 @@ vitestErrorMethods.forEach(methodName => {
 if (typeof globalThis !== 'undefined') {
   // エラーカウンタやトラッキングをハック
   const originalPromiseRejectionHandler = globalThis.onunhandledrejection;
-  globalThis.onunhandledrejection = function(event) {
+  globalThis.onunhandledrejection = function(this: Window, event: PromiseRejectionEvent) {
     if (event.reason && (
       String(event.reason).includes('Maximum call stack size exceeded') ||
       String(event.reason).includes('tinyspy') ||
@@ -45,7 +47,7 @@ if (typeof globalThis !== 'undefined') {
       return;
     }
     if (originalPromiseRejectionHandler) {
-      return originalPromiseRejectionHandler(event);
+      return originalPromiseRejectionHandler.call(this, event);
     }
   };
 }
@@ -84,10 +86,6 @@ globalThis.onerror = (message, source, lineno, colno, error) => {
 
 // unhandledRejectionとuncaughtExceptionを捕捉
 if (typeof process !== 'undefined') {
-  // 元のリスナーを保存
-  const originalUncaughtException = process.listenerCount('uncaughtException');
-  const originalUnhandledRejection = process.listenerCount('unhandledRejection');
-  
   // 全てのリスナーを削除
   process.removeAllListeners('uncaughtException');
   process.removeAllListeners('unhandledRejection');
