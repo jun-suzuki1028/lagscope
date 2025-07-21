@@ -251,6 +251,7 @@ export interface CalculationOptions {
 }
 
 export type StalenessLevel = 
+  | 'none'
   | 'fresh'
   | 'stale1'
   | 'stale2'

@@ -33,6 +33,7 @@ export class FrameCalculator {
   // private static readonly GRAB_RELEASE_FRAMES = 30;
 
   private static readonly STALENESS_MULTIPLIERS: Record<StalenessLevel, StalenessModifier> = {
+    none: { damageMultiplier: 1.0, shieldDamageMultiplier: 1.0, hitstunMultiplier: 1.0 },
     fresh: { damageMultiplier: 1.0, shieldDamageMultiplier: 1.0, hitstunMultiplier: 1.0 },
     stale1: { damageMultiplier: 0.99, shieldDamageMultiplier: 0.99, hitstunMultiplier: 0.99 },
     stale2: { damageMultiplier: 0.98, shieldDamageMultiplier: 0.98, hitstunMultiplier: 0.98 },
@@ -45,14 +46,14 @@ export class FrameCalculator {
     stale9: { damageMultiplier: 0.91, shieldDamageMultiplier: 0.91, hitstunMultiplier: 0.91 },
   };
 
-  public static calculateShieldStun(attackDamage: number, staleness: StalenessLevel = 'fresh'): number {
+  public static calculateShieldStun(attackDamage: number, staleness: StalenessLevel = 'none'): number {
     const stalenessModifier = this.STALENESS_MULTIPLIERS[staleness];
     const adjustedDamage = attackDamage * stalenessModifier.damageMultiplier;
     const shieldStun = Math.floor(adjustedDamage * this.SHIELD_STUN_MULTIPLIER + 2);
     return Math.max(shieldStun, 2);
   }
 
-  public static calculateShieldDamage(attackDamage: number, staleness: StalenessLevel = 'fresh'): number {
+  public static calculateShieldDamage(attackDamage: number, staleness: StalenessLevel = 'none'): number {
     const stalenessModifier = this.STALENESS_MULTIPLIERS[staleness];
     const adjustedDamage = attackDamage * stalenessModifier.shieldDamageMultiplier;
     return Math.floor(adjustedDamage * this.SHIELD_DAMAGE_MULTIPLIER + 1);

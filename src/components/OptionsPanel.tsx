@@ -26,6 +26,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({ className = '' }) => {
   };
 
   const stalenessOptions: { value: StalenessLevel; label: string }[] = [
+    { value: 'none', label: 'なし' },
     { value: 'fresh', label: 'フレッシュ' },
     { value: 'stale1', label: '1回使用' },
     { value: 'stale2', label: '2回使用' },
@@ -200,7 +201,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({ className = '' }) => {
       <div className="mt-6 flex justify-end">
         <button
           onClick={() => setCalculationOptions({
-            staleness: 'fresh',
+            staleness: 'none',
             rangeFilter: ['close', 'mid', 'far'],
             minimumFrameAdvantage: 0,
             maximumFrameAdvantage: 999,

@@ -132,8 +132,10 @@ describe('FrameCalculator', () => {
     });
 
     it('ワンパターン相殺を適用する', () => {
+      const noneResult = FrameCalculator.calculateShieldStun(10.0, 'none');
       const freshResult = FrameCalculator.calculateShieldStun(10.0, 'fresh');
       const staleResult = FrameCalculator.calculateShieldStun(10.0, 'stale1');
+      expect(noneResult).toBe(freshResult);
       expect(staleResult).toBeLessThanOrEqual(freshResult);
     });
 
@@ -151,8 +153,10 @@ describe('FrameCalculator', () => {
     });
 
     it('ワンパターン相殺を適用する', () => {
+      const noneResult = FrameCalculator.calculateShieldDamage(10.0, 'none');
       const freshResult = FrameCalculator.calculateShieldDamage(10.0, 'fresh');
       const staleResult = FrameCalculator.calculateShieldDamage(10.0, 'stale1');
+      expect(noneResult).toBe(freshResult);
       expect(staleResult).toBeLessThan(freshResult);
     });
   });
