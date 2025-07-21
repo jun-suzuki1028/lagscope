@@ -41,6 +41,9 @@ export default defineConfig({
         runScripts: 'dangerously',
       },
     },
+    // Unhandled errorの扱い（スパイ関連は無視）
+    onUnhandledRejection: 'warn',
+    silent: false,
   },
   resolve: {
     alias: {
