@@ -167,38 +167,6 @@ export class FrameCalculator {
       .sort((a, b) => a.totalFrames - b.totalFrames);
   }
 
-  private static getOutOfShieldOptions(
-    defender: Fighter,
-    advantageFrames: number,
-     
-    _context: CalculationContext
-  ): PunishMove[] {
-    const punishingMoves: PunishMove[] = [];
-    
-    for (const oosOption of defender.shieldData.outOfShieldOptions) {
-      const totalFrames = oosOption.frames;
-      
-      if (totalFrames <= advantageFrames) {
-        const move = defender.moves.find(m => m.name === oosOption.move);
-        if (move) {
-          punishingMoves.push({
-            move,
-            method: this.getOOSMethod(oosOption.type),
-            totalFrames,
-            isGuaranteed: totalFrames < advantageFrames,
-            probability: this.calculateProbability(totalFrames, advantageFrames, oosOption.effectiveness),
-            damage: Array.isArray(move.damage) 
-              ? (move.damage.length > 0 ? move.damage[0] : 0)
-              : move.damage,
-            killPercent: move.properties.killPercent,
-            notes: `OOS option: ${oosOption.type}`
-          });
-        }
-      }
-    }
-
-    return punishingMoves;
-  }
 
   private static getGuardCancelOptions(
     defender: Fighter,
@@ -315,24 +283,6 @@ export class FrameCalculator {
   }
 
 
-  private static getOOSMethod(type: string): PunishMove['method'] {
-    switch (type) {
-      case 'jump_cancel':
-        return 'guard_cancel_jump';
-      case 'grab':
-        return 'guard_cancel_grab';
-      case 'up_b':
-        return 'guard_cancel_up_b';
-      case 'up_smash':
-        return 'guard_cancel_up_smash';
-      case 'nair':
-        return 'guard_cancel_nair';
-      case 'up_tilt':
-        return 'guard_cancel_up_tilt';
-      default:
-        return 'out_of_shield';
-    }
-  }
 
   private static calculateProbability(
     totalFrames: number,
