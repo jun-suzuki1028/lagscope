@@ -1,11 +1,10 @@
-import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { CharacterSelector } from '../CharacterSelector';
 import { useAppStore } from '../../stores/app-store';
-import { Fighter } from '../../types/frameData';
+import type { Fighter } from '../../types/frameData';
 
-// Mock the store
 vi.mock('../../stores/app-store');
 
 // Mock the debounce hook to return value immediately
@@ -66,9 +65,9 @@ const mockFighters: Fighter[] = [
     fallSpeed: 1.6,
     fastFallSpeed: 2.56,
     gravity: 0.096,
-    walkSpeed: 1.24,
+    walkSpeed: 1.247,
     runSpeed: 1.534,
-    airSpeed: 0.924,
+    airSpeed: 1.155,
     moves: [],
     shieldData: {
       shieldHealth: 50,
@@ -80,9 +79,9 @@ const mockFighters: Fighter[] = [
       outOfShieldOptions: [],
     },
     movementData: {
-      jumpSquat: 7,
-      fullHopHeight: 30.83,
-      shortHopHeight: 12.6,
+      jumpSquat: 3,
+      fullHopHeight: 31.17,
+      shortHopHeight: 15.05,
       airJumps: 1,
       dodgeFrames: {
         spotDodge: { startup: 3, active: 2, recovery: 24, total: 29 },
@@ -105,10 +104,9 @@ const mockStore = {
     lastFetch: Date.now(),
   },
   attackingFighter: null,
-  defendingFighters: [],
+  defendingFighter: null,
   setAttackingFighter: vi.fn(),
-  addDefendingFighter: vi.fn(),
-  removeDefendingFighter: vi.fn(),
+  setDefendingFighter: vi.fn(),
 };
 
 beforeEach(() => {
@@ -123,131 +121,59 @@ describe('CharacterSelector', () => {
       fightersData: { ...mockStore.fightersData, loading: true },
     });
 
-    const { container } = render(<CharacterSelector type="attacker" />);
-    // Simply check that component renders without crashing in loading state
-    expect(container.firstChild).toBeTruthy();
+    render(<CharacterSelector type="attacker" />);
+    expect(screen.getByText('キャラクターデータを読み込み中...')).toBeInTheDocument();
   });
 
   it('renders error state', () => {
     (useAppStore as any).mockReturnValue({
       ...mockStore,
-      fightersData: { ...mockStore.fightersData, error: 'データの読み込みに失敗しました' },
+      fightersData: { ...mockStore.fightersData, error: 'Failed to load' },
     });
 
     render(<CharacterSelector type="attacker" />);
-    expect(screen.getByText('データの読み込みに失敗しました')).toBeInTheDocument();
+    expect(screen.getByText('キャラクターデータの読み込みエラー')).toBeInTheDocument();
   });
 
-  it('renders search input', () => {
+  it('renders character selection button', () => {
     render(<CharacterSelector type="attacker" />);
-    expect(screen.getByRole('searchbox')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('キャラクターを検索...')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'キャラクター選択モーダルを開く' })).toBeInTheDocument();
+    expect(screen.getByText('攻撃側キャラクターを選択')).toBeInTheDocument();
   });
 
-  it('filters characters based on search input', async () => {
-    const user = userEvent.setup();
-    render(<CharacterSelector type="attacker" />);
-
-    const searchInput = screen.getByRole('searchbox');
-    await user.type(searchInput, 'マリオ');
-
-    await waitFor(() => {
-      expect(screen.getByRole('button', { name: /マリオを選択/ })).toBeInTheDocument();
-      expect(screen.queryByRole('button', { name: /リンクを選択/ })).not.toBeInTheDocument();
-    });
-  });
-
-  it('filters characters by series', async () => {
-    const user = userEvent.setup();
-    render(<CharacterSelector type="attacker" />);
-
-    const searchInput = screen.getByRole('searchbox');
-    await user.type(searchInput, 'zelda');
-
-    await waitFor(() => {
-      expect(screen.getByRole('button', { name: /リンクを選択/ })).toBeInTheDocument();
-      expect(screen.queryByRole('button', { name: /マリオを選択/ })).not.toBeInTheDocument();
-    });
-  });
-
-  it('shows clear button when search term is entered', async () => {
-    const user = userEvent.setup();
-    render(<CharacterSelector type="attacker" />);
-
-    const searchInput = screen.getByRole('searchbox');
-    await user.type(searchInput, 'mario');
-
-    expect(screen.getByLabelText('検索をクリア')).toBeInTheDocument();
-  });
-
-  it('clears search when clear button is clicked', async () => {
-    const user = userEvent.setup();
-    render(<CharacterSelector type="attacker" />);
-
-    const searchInput = screen.getByRole('searchbox');
-    await user.type(searchInput, 'mario');
-
-    const clearButton = screen.getByLabelText('検索をクリア');
-    await user.click(clearButton);
-
-    expect(searchInput).toHaveValue('');
-  });
-
-  it('selects attacker fighter', async () => {
-    const user = userEvent.setup();
-    render(<CharacterSelector type="attacker" />);
-
-    const marioCard = screen.getByRole('button', { name: /マリオを選択/ });
-    await user.click(marioCard);
-
-    expect(mockStore.setAttackingFighter).toHaveBeenCalledWith(mockFighters[0]);
-  });
-
-  it('adds defending fighter in multiselect mode', async () => {
-    const user = userEvent.setup();
-    render(<CharacterSelector type="defender" multiSelect={true} />);
-
-    const marioCard = screen.getByRole('button', { name: /マリオを選択/ });
-    await user.click(marioCard);
-
-    expect(mockStore.addDefendingFighter).toHaveBeenCalledWith(mockFighters[0]);
-  });
-
-  it('removes defending fighter when already selected', async () => {
-    const user = userEvent.setup();
-    (useAppStore as any).mockReturnValue({
-      ...mockStore,
-      defendingFighters: [mockFighters[0]],
-    });
-
-    render(<CharacterSelector type="defender" multiSelect={true} />);
-
-    const marioCard = screen.getByRole('button', { name: /マリオを選択/ });
-    await user.click(marioCard);
-
-    expect(mockStore.removeDefendingFighter).toHaveBeenCalledWith('mario');
-  });
-
-  it('shows selected fighter count', () => {
-    (useAppStore as any).mockReturnValue({
-      ...mockStore,
-      defendingFighters: [mockFighters[0], mockFighters[1]],
-    });
-
-    render(<CharacterSelector type="defender" multiSelect={true} />);
-
-    expect(screen.getByText(/2体選択中/)).toBeInTheDocument();
-  });
-
-  it('shows clear selection button when fighters are selected', () => {
+  it('shows selected fighter name when selected', () => {
     (useAppStore as any).mockReturnValue({
       ...mockStore,
       attackingFighter: mockFighters[0],
     });
 
     render(<CharacterSelector type="attacker" />);
+    
+    expect(screen.getByText('マリオ')).toBeInTheDocument();
+    expect(screen.getByText('(Super Mario)')).toBeInTheDocument();
+  });
 
-    expect(screen.getByText('選択をクリア')).toBeInTheDocument();
+  it('shows defending fighter name when selected', () => {
+    (useAppStore as any).mockReturnValue({
+      ...mockStore,
+      defendingFighter: mockFighters[1],
+    });
+
+    render(<CharacterSelector type="defender" />);
+    
+    expect(screen.getByText('リンク')).toBeInTheDocument();
+    expect(screen.getByText('(The Legend of Zelda)')).toBeInTheDocument();
+  });
+
+  it('shows clear selection button when fighter is selected', () => {
+    (useAppStore as any).mockReturnValue({
+      ...mockStore,
+      attackingFighter: mockFighters[0],
+    });
+
+    render(<CharacterSelector type="attacker" />);
+    
+    expect(screen.getByRole('button', { name: '選択をクリア' })).toBeInTheDocument();
   });
 
   it('clears selection when clear button is clicked', async () => {
@@ -259,42 +185,59 @@ describe('CharacterSelector', () => {
 
     render(<CharacterSelector type="attacker" />);
 
-    const clearButton = screen.getByText('選択をクリア');
+    const clearButton = screen.getByRole('button', { name: '選択をクリア' });
     await user.click(clearButton);
 
     expect(mockStore.setAttackingFighter).toHaveBeenCalledWith(null);
   });
 
-  it('handles keyboard navigation', async () => {
+  it('opens modal when selection button is clicked', async () => {
     const user = userEvent.setup();
     render(<CharacterSelector type="attacker" />);
 
-    const marioCard = screen.getByRole('button', { name: /マリオを選択/ });
-    await user.click(marioCard);
+    const selectionButton = screen.getByRole('button', { name: 'キャラクター選択モーダルを開く' });
+    await user.click(selectionButton);
 
-    expect(mockStore.setAttackingFighter).toHaveBeenCalledWith(mockFighters[0]);
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 
-  it('handles space key for selection', async () => {
+  it('selects defending fighter from modal', async () => {
     const user = userEvent.setup();
-    render(<CharacterSelector type="attacker" />);
+    render(<CharacterSelector type="defender" />);
 
-    const marioCard = screen.getByRole('button', { name: /マリオを選択/ });
+    const selectionButton = screen.getByRole('button', { name: 'キャラクター選択モーダルを開く' });
+    await user.click(selectionButton);
+
+    const marioCard = screen.getByRole('button', { name: /マリオ/ });
     await user.click(marioCard);
 
-    expect(mockStore.setAttackingFighter).toHaveBeenCalledWith(mockFighters[0]);
+    expect(mockStore.setDefendingFighter).toHaveBeenCalledWith(mockFighters[0]);
   });
 
-  it('shows no results message when no fighters match search', async () => {
+  it('clears defending fighter selection', async () => {
     const user = userEvent.setup();
-    render(<CharacterSelector type="attacker" />);
-
-    const searchInput = screen.getByRole('searchbox');
-    await user.type(searchInput, 'nonexistent');
-
-    await waitFor(() => {
-      expect(screen.getByText('該当するキャラクターが見つかりませんでした')).toBeInTheDocument();
+    (useAppStore as any).mockReturnValue({
+      ...mockStore,
+      defendingFighter: mockFighters[0],
     });
+
+    render(<CharacterSelector type="defender" />);
+
+    const clearButton = screen.getByRole('button', { name: '選択をクリア' });
+    await user.click(clearButton);
+
+    expect(mockStore.setDefendingFighter).toHaveBeenCalledWith(null);
+  });
+
+  it('shows selection status', () => {
+    (useAppStore as any).mockReturnValue({
+      ...mockStore,
+      defendingFighter: mockFighters[0],
+    });
+
+    render(<CharacterSelector type="defender" />);
+
+    expect(screen.getByText(/選択済み/)).toBeInTheDocument();
   });
 
   it('calls onCharacterSelect callback when provided', async () => {
@@ -302,40 +245,20 @@ describe('CharacterSelector', () => {
     const onCharacterSelect = vi.fn();
     render(<CharacterSelector type="attacker" onCharacterSelect={onCharacterSelect} />);
 
-    const marioCard = screen.getByRole('button', { name: /マリオを選択/ });
+    const selectionButton = screen.getByRole('button', { name: 'キャラクター選択モーダルを開く' });
+    await user.click(selectionButton);
+
+    const marioCard = screen.getByRole('button', { name: /マリオ/ });
     await user.click(marioCard);
 
     expect(onCharacterSelect).toHaveBeenCalledWith(mockFighters[0]);
   });
 
-  it('shows modal on mobile when modal button is clicked', async () => {
-    const user = userEvent.setup();
-    
-    // Mock window.innerWidth to simulate mobile viewport
-    Object.defineProperty(window, 'innerWidth', {
-      writable: true,
-      configurable: true,
-      value: 375,
-    });
+  it('displays correct type labels', () => {
+    const { rerender } = render(<CharacterSelector type="attacker" />);
+    expect(screen.getByText('攻撃側キャラクター')).toBeInTheDocument();
 
-    render(<CharacterSelector type="attacker" />);
-
-    const modalButton = screen.getByText('選択');
-    await user.click(modalButton);
-
-    expect(screen.getByRole('dialog')).toBeInTheDocument();
-  });
-
-  it('displays correct type label', () => {
-    render(<CharacterSelector type="attacker" />);
-    expect(screen.getByText(/攻撃側キャラクター/)).toBeInTheDocument();
-
-    render(<CharacterSelector type="defender" />);
-    expect(screen.getByText(/防御側キャラクター/)).toBeInTheDocument();
-  });
-
-  it('shows multiselect hint when multiSelect is enabled', () => {
-    render(<CharacterSelector type="defender" multiSelect={true} />);
-    expect(screen.getByText(/複数選択可能/)).toBeInTheDocument();
+    rerender(<CharacterSelector type="defender" />);
+    expect(screen.getByText('防御側キャラクター')).toBeInTheDocument();
   });
 });
