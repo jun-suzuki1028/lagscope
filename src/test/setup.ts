@@ -171,46 +171,50 @@ if (typeof window !== 'undefined') {
   }
 }
 
-// テスト前後でのDOMクリーンアップ
+// DOM環境を各テストの前にリセットし、クリーンな状態を保証します。
+// これにより、全テスト実行時に発生する「Target container is not a DOM element」エラーを防ぎます。
 beforeEach(() => {
-  // HTMLElementが存在することを確認
-  if (typeof window !== 'undefined' && typeof HTMLElement === 'undefined') {
-    global.HTMLElement = window.HTMLElement;
+  // 既存のrootエレメントがあれば削除
+  const existingRoot = document.getElementById('root');
+  if (existingRoot) {
+    existingRoot.remove();
   }
   
-  // 確実にdocument.bodyが存在することを保証
-  if (!document.body) {
-    document.body = document.createElement('body');
-  }
-  
-  // body要素をクリア
-  document.body.innerHTML = '';
-  
-  // 必要なDOM環境をセットアップ
-  const container = document.createElement('div');
-  container.id = 'test-container';
-  document.body.appendChild(container);
+  // 新しいrootエレメントを作成
+  const rootElement = document.createElement('div');
+  rootElement.id = 'root';
+  document.body.appendChild(rootElement);
 });
 
+// 各テストの後にReactコンポーネントをクリーンアップし、DOMを完全にリセットします。
 afterEach(() => {
   cleanup();
-  
-  // DOM要素をクリア
-  if (document.body) {
-    document.body.innerHTML = '';
-  }
-  
-  // 任意のグローバル状態をリセット
-  if (typeof window !== 'undefined') {
-    // windowオブジェクトのイベントリスナーをクリア
-    window.removeEventListener = window.removeEventListener || (() => {});
-  }
-  
-  // DOM環境の完全なリセット（テスト間の完全な分離）
-  if (typeof document !== 'undefined' && document.head) {
-    // headの内容をクリア（style、scriptなど）
-    document.head.innerHTML = '';
-  }
+  document.body.innerHTML = '';
 });
 
-// jsdomのDOM API互換性向上（削除済み - 問題を起こしていたため）
+// jsdom環境でのWebAPI互換性向上
+if (typeof window !== 'undefined' && typeof URL !== 'undefined') {
+  // URL.createObjectURL のモック（jsdom環境で不足）
+  if (!URL.createObjectURL) {
+    URL.createObjectURL = (_object: Blob | MediaSource) => {
+      return `blob:${window.location.origin}/${Math.random().toString(36).substr(2, 9)}`;
+    };
+  }
+  
+  // URL.revokeObjectURL のモック
+  if (!URL.revokeObjectURL) {
+    URL.revokeObjectURL = (_url: string) => {
+      // モックなので何もしない
+    };
+  }
+}
+
+// axe-coreのグローバルthis問題を修正
+if (typeof global !== 'undefined') {
+  // axe-coreが期待するグローバルthisを設定
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  if (!(global as any).this) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (global as any).this = global;
+  }
+}

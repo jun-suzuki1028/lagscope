@@ -1,36 +1,39 @@
 import React from 'react';
-import { render as originalRender, RenderOptions } from '@testing-library/react';
+import { render as originalRender, RenderOptions, renderHook as originalRenderHook } from '@testing-library/react';
 
-// カスタムrender関数 - 確実にcontainerを作成
+// カスタムrender関数 - DOM要素の確実な作成
 function customRender(ui: React.ReactElement, options: RenderOptions = {}) {
-  // DOM環境の完全な初期化
-  if (!global.document) {
-    throw new Error('document is not available. Make sure jsdom is set up correctly.');
+  // DOM環境の基本チェック
+  if (!document || !document.body) {
+    throw new Error('DOM環境が初期化されていません');
   }
   
-  // 確実にdocument.bodyが存在することを保証
-  if (!document.body) {
-    document.body = document.createElement('body');
-  }
-  
-  // containerが指定されていない場合は新しく作成
+  // container が指定されていない場合、新しいcontainerを作成
   if (!options.container) {
     const container = document.createElement('div');
-    container.setAttribute('data-testid', 'test-container');
+    
+    // DOMに追加してからcontainerとして使用
     document.body.appendChild(container);
     options.container = container;
-  }
-  
-  // DOM要素が有効であることを確認
-  if (!options.container.nodeType) {
-    throw new Error('Container is not a valid DOM element');
+    
+    // テスト完了後にクリーンアップするためのフラグ
+    container.setAttribute('data-auto-cleanup', 'true');
   }
   
   return originalRender(ui, options);
 }
 
-// Named export
-export { customRender as render };
+// カスタムrenderHook関数 - RTLのデフォルト動作を使用
+function customRenderHook<Result, Props>(
+  render: (initialProps: Props) => Result,
+  options?: Parameters<typeof originalRenderHook<Result, Props>>[1]
+) {
+  return originalRenderHook<Result, Props>(render, options);
+}
+
+// Named exports
+export { customRender as render, customRenderHook as renderHook };
 
 // Re-export everything else from @testing-library/react
+// eslint-disable-next-line react-refresh/only-export-components
 export * from '@testing-library/react';

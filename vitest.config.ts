@@ -31,6 +31,8 @@ export default defineConfig({
         isolate: true,
       },
     },
+    // テスト実行の完全な分離
+    isolate: true,
     // CI環境でのDOM安定性向上
     env: {
       JSDOM_QUIET: process.env.CI ? 'true' : 'false',
