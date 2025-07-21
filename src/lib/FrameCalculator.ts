@@ -99,7 +99,7 @@ export class FrameCalculator {
       attackMove,
       defender.shieldData.shieldReleaseFrames,
       staleness,
-      options.allowPerfectShield
+      false // perfectShieldは今回は無効
     );
 
     const context: CalculationContext = {
@@ -111,11 +111,6 @@ export class FrameCalculator {
       options: {
         staleness,
         rangeFilter: options.rangeFilter || ['close', 'mid', 'far'],
-        allowOutOfShield: options.allowOutOfShield ?? true,
-        allowGuardCancel: options.allowGuardCancel ?? true,
-        allowPerfectShield: options.allowPerfectShield ?? false,
-        allowRolling: options.allowRolling ?? true,
-        allowSpotDodge: options.allowSpotDodge ?? true,
         minimumFrameAdvantage: options.minimumFrameAdvantage ?? -999,
         maximumFrameAdvantage: options.maximumFrameAdvantage ?? 999,
         minimumDamage: options.minimumDamage ?? 0,
@@ -155,16 +150,13 @@ export class FrameCalculator {
       return punishingMoves;
     }
 
-    if (options.allowOutOfShield) {
-      const oosOptions = this.getOutOfShieldOptions(defender, advantageFrames, context);
-      punishingMoves.push(...oosOptions);
-    }
+    // ガードキャンセル技を自動的に計算
+    const guardCancelOptions = this.getGuardCancelOptions(defender, advantageFrames, context);
+    punishingMoves.push(...guardCancelOptions);
 
-    if (options.allowGuardCancel) {
-      const guardCancelOptions = this.getGuardCancelOptions(defender, advantageFrames, context);
-      punishingMoves.push(...guardCancelOptions);
-    }
-
+    // ガード解除技を自動的に計算
+    const guardReleaseOptions = this.getGuardReleaseOptions(defender, advantageFrames, context);
+    punishingMoves.push(...guardReleaseOptions);
 
     return punishingMoves
       .filter(move => 
@@ -175,48 +167,51 @@ export class FrameCalculator {
       .sort((a, b) => a.totalFrames - b.totalFrames);
   }
 
-  private static getOutOfShieldOptions(
+
+  private static getGuardCancelOptions(
     defender: Fighter,
     advantageFrames: number,
-     
     _context: CalculationContext
   ): PunishMove[] {
     const punishingMoves: PunishMove[] = [];
-    
-    for (const oosOption of defender.shieldData.outOfShieldOptions) {
-      const totalFrames = oosOption.frames;
-      
-      if (totalFrames <= advantageFrames) {
-        const move = defender.moves.find(m => m.name === oosOption.move);
-        if (move) {
+
+    // ガードキャンセル可能な技のカテゴリ定義
+    const guardCancelMoves = [
+      { category: 'smash', type: 'up', name: '上スマッシュ' },
+      { category: 'special', type: 'up', name: '上必殺技' },
+      { category: 'grab', type: 'normal', name: 'つかみ' },
+    ];
+
+    for (const gcMove of guardCancelMoves) {
+      const move = defender.moves.find(m => 
+        m.category === gcMove.category && 
+        (gcMove.type === 'normal' || m.name.includes(gcMove.type))
+      );
+
+      if (move) {
+        // ガードキャンセル技は11Fのシールド解除ペナルティなし
+        const totalFrames = move.startup;
+        
+        if (totalFrames <= advantageFrames) {
           punishingMoves.push({
             move,
-            method: this.getOOSMethod(oosOption.type),
+            method: this.getGuardCancelMethod(gcMove.category, gcMove.type),
             totalFrames,
             isGuaranteed: totalFrames < advantageFrames,
-            probability: this.calculateProbability(totalFrames, advantageFrames, oosOption.effectiveness),
+            probability: this.calculateProbability(totalFrames, advantageFrames, 8),
             damage: Array.isArray(move.damage) 
               ? (move.damage.length > 0 ? move.damage[0] : 0)
               : move.damage,
             killPercent: move.properties.killPercent,
-            notes: `OOS option: ${oosOption.type}`
+            guardActionType: 'guard_cancel',
+            notes: `${gcMove.name}（ガードキャンセル）`
           });
         }
       }
     }
 
-    return punishingMoves;
-  }
-
-  private static getGuardCancelOptions(
-    defender: Fighter,
-    advantageFrames: number,
-     
-    _context: CalculationContext
-  ): PunishMove[] {
-    const punishingMoves: PunishMove[] = [];
+    // ジャンプキャンセル（空中技）
     const jumpSquatFrames = defender.movementData.jumpSquat;
-    
     for (const move of defender.moves) {
       if (move.category === 'aerial') {
         const totalFrames = jumpSquatFrames + move.startup;
@@ -232,7 +227,8 @@ export class FrameCalculator {
               ? (move.damage.length > 0 ? move.damage[0] : 0)
               : move.damage,
             killPercent: move.properties.killPercent,
-            notes: `Jump cancel option`
+            guardActionType: 'guard_cancel',
+            notes: `${move.displayName}（ジャンプキャンセル）`
           });
         }
       }
@@ -241,25 +237,52 @@ export class FrameCalculator {
     return punishingMoves;
   }
 
+  private static getGuardReleaseOptions(
+    defender: Fighter,
+    advantageFrames: number,
+    _context: CalculationContext
+  ): PunishMove[] {
+    const punishingMoves: PunishMove[] = [];
+    const shieldReleaseFrames = 11; // シールド解除11Fペナルティ
 
-  private static getOOSMethod(type: string): PunishMove['method'] {
-    switch (type) {
-      case 'jump_cancel':
-        return 'guard_cancel_jump';
-      case 'grab':
-        return 'guard_cancel_grab';
-      case 'up_b':
-        return 'guard_cancel_up_b';
-      case 'up_smash':
-        return 'guard_cancel_up_smash';
-      case 'nair':
-        return 'guard_cancel_nair';
-      case 'up_tilt':
-        return 'guard_cancel_up_tilt';
-      default:
-        return 'out_of_shield';
+    for (const move of defender.moves) {
+      // ガードキャンセル不可能な技（通常技、強攻撃、スマッシュ、必殺技など）
+      if (move.category !== 'grab' && 
+          !(move.category === 'smash' && move.name.includes('up')) &&
+          !(move.category === 'special' && move.name.includes('up')) &&
+          move.category !== 'aerial') {
+        
+        const totalFrames = shieldReleaseFrames + move.startup;
+        
+        if (totalFrames <= advantageFrames) {
+          punishingMoves.push({
+            move,
+            method: 'out_of_shield',
+            totalFrames,
+            isGuaranteed: totalFrames < advantageFrames,
+            probability: this.calculateProbability(totalFrames, advantageFrames, 5),
+            damage: Array.isArray(move.damage) 
+              ? (move.damage.length > 0 ? move.damage[0] : 0)
+              : move.damage,
+            killPercent: move.properties.killPercent,
+            guardActionType: 'guard_release',
+            notes: `${move.displayName}（ガード解除）`
+          });
+        }
+      }
     }
+
+    return punishingMoves;
   }
+
+  private static getGuardCancelMethod(category: string, type: string): PunishMove['method'] {
+    if (category === 'smash' && type === 'up') return 'guard_cancel_up_smash';
+    if (category === 'special' && type === 'up') return 'guard_cancel_up_b';
+    if (category === 'grab') return 'guard_cancel_grab';
+    return 'guard_cancel_jump';
+  }
+
+
 
   private static calculateProbability(
     totalFrames: number,

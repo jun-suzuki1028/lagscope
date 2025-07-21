@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '../../test/test-utils';
 import { FormValidation, ValidatedInput, ValidatedSelect } from '../FormValidation';
 import { validators, validateField, validateForm } from '../../lib/validators';
 

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '../../test/test-utils';
 import { describe, it, expect } from 'vitest';
 import ResultsTable from '../ResultsTable';
 import type { PunishResult, Fighter, Move, PunishMove } from '../../types/frameData';

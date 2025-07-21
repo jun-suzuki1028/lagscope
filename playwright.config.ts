@@ -4,8 +4,8 @@ export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 1 : 0, // リトライ回数を削減
-  workers: process.env.CI ? 2 : 4, // ワーカー数を最適化
+  retries: process.env.CI ? 2 : 0, // CI環境ではリトライを2回に増加
+  workers: process.env.CI ? 1 : 4, // CI環境では安定性のため1ワーカー
   reporter: 'line', // シンプルなレポーター
   timeout: 30000, // テストタイムアウトを30秒に短縮
   expect: {

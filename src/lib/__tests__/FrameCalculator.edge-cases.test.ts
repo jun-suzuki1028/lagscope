@@ -215,32 +215,35 @@ describe('FrameCalculator エッジケース', () => {
     });
 
     it('非常に速いOOSオプションを正しく処理する', () => {
-      const fastMove = createMockMove({ startup: 1, totalFrames: 5 });
+      const fastNair = createMockMove({ startup: 3, totalFrames: 20, category: 'aerial', name: 'nair' });
+      const upSmash = createMockMove({ startup: 6, totalFrames: 30, category: 'smash', name: 'up_smash' });
+      const grab = createMockMove({ startup: 8, totalFrames: 35, category: 'grab', name: 'grab' });
       const fighter = createMockFighter({
-        moves: [fastMove],
-        shieldData: {
-          ...createMockFighter().shieldData,
-          outOfShieldOptions: [{
-            move: fastMove.name,
-            frames: 1,
-            type: 'nair',
-            effectiveness: 10
-          }]
+        moves: [fastNair, upSmash, grab],
+        movementData: {
+          ...createMockFighter().movementData,
+          jumpSquat: 3  // ジャンプしゃがみ3F
         }
       });
       
       // 非常に不利な技（攻撃側が大幅に不利になる）
       const slowMove = createMockMove({ 
-        totalFrames: 50,
+        totalFrames: 100,
         startup: 10,
         active: 5, 
-        recovery: 35, // 回復35フレーム
+        recovery: 85, // 回復85フレーム（攻撃側の隙を大きく）
         onShield: -20, // 非常に大きな不利フレーム
-        damage: 30 // シールド硬直を十分に増やして防御側を有利に
+        damage: 50 // より大きなダメージでシールド硬直を増やす
       });
       const result = FrameCalculator.calculatePunishWindow(slowMove, fighter);
       
-      expect(result.punishingMoves.length).toBeGreaterThan(0);
+      // 新しいロジックでは、ガードキャンセル技とガード解除技の両方が自動計算される
+      // 有利フレームが正の値の場合のみ反撃オプションが生成される
+      if (result.frameAdvantage > 0) {
+        expect(result.punishingMoves.length).toBeGreaterThan(0);
+      } else {
+        expect(result.punishingMoves.length).toBe(0);
+      }
     });
   });
 

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '../../test/test-utils';
 import { describe, it, expect } from 'vitest';
 import { MovePreview } from '../MovePreview';
 import { Move } from '../../types/frameData';

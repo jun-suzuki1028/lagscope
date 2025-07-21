@@ -36,11 +36,6 @@ const initialState: AppState = {
   calculationOptions: {
     staleness: 'fresh',
     rangeFilter: ['close', 'mid', 'far'],
-    allowOutOfShield: true,
-    allowGuardCancel: true,
-    allowPerfectShield: true,
-    allowRolling: true,
-    allowSpotDodge: true,
     minimumFrameAdvantage: 0,
     maximumFrameAdvantage: 999,
     minimumDamage: 0,
