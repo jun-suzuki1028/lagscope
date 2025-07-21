@@ -1,12 +1,10 @@
 import { render, screen, fireEvent } from '../../test/test-utils';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import OptionsPanel from '../OptionsPanel';
-import { useAppStore } from '../../stores/app-store';
+import { useAppStore } from "../../stores/app-store";
 
 // Zustandストアをモック
-vi.mock('../../stores/app-store', () => ({
-  useAppStore: vi.fn(),
-}));
+vi.mock("../../stores/app-store");
 
 describe('OptionsPanel', () => {
   const mockSetCalculationOptions = vi.fn();

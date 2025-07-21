@@ -2,10 +2,10 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '../../test/test-utils';
 import userEvent from '@testing-library/user-event';
 import { CharacterSelector } from '../CharacterSelector';
-import { useAppStore } from '../../stores/app-store';
+import { useAppStore } from "../../stores/app-store";
 import type { Fighter } from '../../types/frameData';
 
-vi.mock('../../stores/app-store');
+vi.mock("../../stores/app-store");
 
 // Mock the debounce hook to return value immediately
 vi.mock('../../hooks/useDebounce', () => ({

@@ -6,25 +6,20 @@ import ResultsTable from './components/ResultsTable';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { CalculationStatus } from './components/CalculationStatus';
 import { SelectionStatus } from './components/SelectionStatus';
-import { 
-  useCharacterSelectionStore, 
-  useCalculationStore, 
-  characterSelectors, 
-  calculationSelectors 
-} from './stores';
+import { useAppStore } from './stores/app-store';
 import { useDebounce } from './hooks/useDebounce';
 import { mockFighters } from './data/mockData';
 import { calculatePunishOptions } from './services/calculationService';
 import type { PunishResult } from './types/frameData';
 
 const App = memo(() => {
-  // 分割されたストアからSelectorで必要なデータのみ購読
-  const attackingFighter = useCharacterSelectionStore(characterSelectors.attackingFighter);
-  const defendingFighter = useCharacterSelectionStore(characterSelectors.defendingFighter);
-  const selectedMove = useCharacterSelectionStore(characterSelectors.selectedMove);
-  const setFightersData = useCharacterSelectionStore(state => state.setFightersData);
-  
-  const calculationOptions = useCalculationStore(calculationSelectors.calculationOptions);
+  const {
+    attackingFighter,
+    defendingFighter,
+    selectedMove,
+    calculationOptions,
+    setFightersData,
+  } = useAppStore();
   
   const [calculationResults, setCalculationResults] = useState<PunishResult[]>([]);
   const [isCalculating, setIsCalculating] = useState(false);

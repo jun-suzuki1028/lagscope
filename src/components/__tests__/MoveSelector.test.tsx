@@ -2,11 +2,11 @@ import { render, screen } from '../../test/test-utils';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { MoveSelector } from '../MoveSelector';
-import { useAppStore } from '../../stores/app-store';
+import { useAppStore } from "../../stores/app-store";
 import { Fighter, Move } from '../../types/frameData';
 
 // Mock the store
-vi.mock('../../stores/app-store');
+vi.mock("../../stores/app-store");
 
 const mockMoves: Move[] = [
   {

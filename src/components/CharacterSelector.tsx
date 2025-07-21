@@ -1,5 +1,5 @@
 import { useMemo, useState, useId, memo, useCallback } from 'react';
-import { useCharacterSelectionStore, characterSelectors } from '../stores';
+import { useAppStore } from '../stores/app-store';
 import { Fighter } from '../types/frameData';
 import { usePerformanceMonitor } from '../hooks/usePerformanceMonitor';
 import { CharacterModal } from './CharacterModal';
@@ -26,12 +26,13 @@ export const CharacterSelector = memo(function CharacterSelector({
   // 使用しない場合は削除
   void startMeasure;
   
-  // 分割されたストアから必要なデータのみ購読
-  const fightersData = useCharacterSelectionStore(characterSelectors.fightersData);
-  const attackingFighter = useCharacterSelectionStore(characterSelectors.attackingFighter);
-  const defendingFighter = useCharacterSelectionStore(characterSelectors.defendingFighter);
-  const setAttackingFighter = useCharacterSelectionStore(state => state.setAttackingFighter);
-  const setDefendingFighter = useCharacterSelectionStore(state => state.setDefendingFighter);
+  const {
+    fightersData,
+    attackingFighter,
+    defendingFighter,
+    setAttackingFighter,
+    setDefendingFighter,
+  } = useAppStore();
 
   const filteredFighters = useMemo(() => {
     const allFighters = fightersData.data || [];

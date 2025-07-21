@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCalculationStore, calculationSelectors } from '../stores';
+import { useAppStore } from '../stores/app-store';
 import type { CalculationOptions, MoveRange, StalenessLevel } from '../types/frameData';
 
 interface OptionsPanelProps {
@@ -7,9 +7,7 @@ interface OptionsPanelProps {
 }
 
 const OptionsPanel: React.FC<OptionsPanelProps> = ({ className = '' }) => {
-  // 分割されたストアから計算オプションを購諭
-  const calculationOptions = useCalculationStore(calculationSelectors.calculationOptions);
-  const setCalculationOptions = useCalculationStore(state => state.setCalculationOptions);
+  const { calculationOptions, setCalculationOptions } = useAppStore();
 
   const handleOptionChange = (key: keyof CalculationOptions, value: unknown) => {
     try {
