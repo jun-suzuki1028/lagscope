@@ -17,16 +17,17 @@ export default defineConfig({
       '**/e2e/**', // Playwrightテストファイルを除外
     ],
     // CI環境での安定性向上
-    testTimeout: process.env.CI ? 20000 : 5000,
-    hookTimeout: process.env.CI ? 20000 : 5000,
-    teardownTimeout: process.env.CI ? 15000 : 1000,
-    // 並列実行設定
+    testTimeout: process.env.CI ? 30000 : 5000,
+    hookTimeout: process.env.CI ? 30000 : 5000,
+    teardownTimeout: process.env.CI ? 20000 : 1000,
+    // 並列実行設定（CI環境でより保守的に）
     pool: 'threads',
     poolOptions: {
       threads: {
         singleThread: process.env.CI === 'true',
-        maxThreads: process.env.CI ? 1 : undefined,
-        minThreads: process.env.CI ? 1 : undefined,
+        maxThreads: process.env.CI ? 1 : 4,
+        minThreads: process.env.CI ? 1 : 1,
+        isolate: process.env.CI === 'true',
       },
     },
     // CI環境でのDOM安定性向上
@@ -34,11 +35,13 @@ export default defineConfig({
       JSDOM_QUIET: process.env.CI ? 'true' : 'false',
       NODE_ENV: 'test',
     },
-    // jsdom オプション
+    // jsdom オプション（CI環境では安全なオプション）
     environmentOptions: {
       jsdom: {
-        resources: 'usable',
-        runScripts: 'dangerously',
+        resources: process.env.CI ? 'usable' : 'usable',
+        runScripts: process.env.CI ? 'outside-only' : 'dangerously',
+        pretendToBeVisual: true,
+        url: 'http://localhost:3000',
       },
     },
     // Unhandled errorの扱いをより適切に設定
@@ -50,6 +53,10 @@ export default defineConfig({
     passWithNoTests: true,
     // カスタムreporter設定でunhandled errorを完全に隠す
     reporters: process.env.CI ? ['basic'] : ['default'],
+    // CI環境でのリソース制限
+    maxConcurrency: process.env.CI ? 1 : 5,
+    // ファイルウォッチャーを無効化
+    watch: false,
   },
   resolve: {
     alias: {

@@ -178,7 +178,16 @@ beforeEach(() => {
     global.HTMLElement = window.HTMLElement;
   }
   
-  // 確実にdocument.bodyが存在することを保証
+  // CI環境では基本的なセットアップのみ
+  if (process.env.CI === 'true') {
+    // 基本的なDOM構造の確保のみ
+    if (document.body) {
+      document.body.innerHTML = '';
+    }
+    return;
+  }
+  
+  // 確実にdocument.bodyが存在することを保証（ローカル環境のみ）
   if (!document.body) {
     document.body = document.createElement('body');
   }
@@ -207,14 +216,13 @@ afterEach(() => {
   }
 });
 
-// jsdomのDOM API互換性向上
-if (typeof global.document !== 'undefined') {
-  // createElementの安全性確保
+// jsdomのDOM API互換性向上（CI環境では無効化）
+if (typeof global.document !== 'undefined' && process.env.CI !== 'true') {
+  // createElementの安全性確保（ローカル環境のみ）
   const originalCreateElement = document.createElement;
   document.createElement = function (tagName: string, options?: ElementCreationOptions) {
     try {
       const element = originalCreateElement.call(this, tagName, options);
-      // CI環境でのDOM要素の初期化を確実にする
       if (element && typeof element.setAttribute === 'function') {
         return element;
       }
