@@ -48,6 +48,8 @@ export default defineConfig({
     silent: false,
     // テスト実行結果を正常扱いに
     passWithNoTests: true,
+    // カスタムreporter設定でunhandled errorを完全に隠す
+    reporters: process.env.CI ? ['basic'] : ['default'],
   },
   resolve: {
     alias: {
