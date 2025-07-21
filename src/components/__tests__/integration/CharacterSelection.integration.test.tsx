@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { CharacterSelector } from '../../CharacterSelector';
@@ -136,10 +136,9 @@ const mockStore = {
     data: mockFighters
   },
   attackingFighter: null,
-  defendingFighters: [],
+  defendingFighter: null,
   setAttackingFighter: vi.fn(),
-  addDefendingFighter: vi.fn(),
-  removeDefendingFighter: vi.fn(),
+  setDefendingFighter: vi.fn(),
 };
 
 vi.mock('../../../stores/app-store', () => ({
@@ -154,8 +153,16 @@ describe('キャラクター選択統合テスト', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockStore.attackingFighter = null;
-    mockStore.defendingFighters = [];
+    mockStore.defendingFighter = null;
   });
+
+  // モーダルを開く共通のヘルパー関数
+  const openModal = async (user: any) => {
+    const modalButton = screen.getByRole('button', { name: 'キャラクター選択モーダルを開く' });
+    await user.click(modalButton);
+    // モーダルが開くまで待機
+    await screen.findByRole('dialog');
+  };
 
   describe('基本的なキャラクター選択フロー', () => {
     it('攻撃側キャラクターを選択し、ストアが更新される', async () => {
@@ -163,42 +170,44 @@ describe('キャラクター選択統合テスト', () => {
       
       render(<CharacterSelector type="attacker" />);
       
-      // マリオのキャラクターカードを探してクリック
-      const marioCard = screen.getByLabelText('マリオを選択');
+      // モーダルを開く
+      await openModal(user);
+      
+      // マリオのキャラクターカードを探してクリック（モーダル内で）
+      const marioCard = screen.getByRole('button', { name: /マリオ/ });
       await user.click(marioCard);
       
       expect(mockStore.setAttackingFighter).toHaveBeenCalledWith(mockFighters[0]);
     });
 
-    it('防御側キャラクターを複数選択し、ストアが更新される', async () => {
+    it('防御側キャラクターを選択し、ストアが更新される', async () => {
       const user = userEvent.setup();
       
-      render(<CharacterSelector type="defender" multiSelect />);
+      render(<CharacterSelector type="defender" />);
       
-      // マリオとリンクを選択
-      const marioCard = screen.getByLabelText('マリオを選択');
-      const linkCard = screen.getByLabelText('リンクを選択');
+      // モーダルを開く
+      await openModal(user);
       
+      // マリオを選択
+      const marioCard = screen.getByRole('button', { name: /マリオ/ });
       await user.click(marioCard);
-      await user.click(linkCard);
       
-      expect(mockStore.addDefendingFighter).toHaveBeenCalledWith(mockFighters[0]);
-      expect(mockStore.addDefendingFighter).toHaveBeenCalledWith(mockFighters[1]);
+      expect(mockStore.setDefendingFighter).toHaveBeenCalledWith(mockFighters[0]);
     });
 
-    it('防御側キャラクターの選択解除が機能する', async () => {
+    it('選択解除が機能する', async () => {
       const user = userEvent.setup();
       
       // 既に選択されている状態をセット
-      mockStore.defendingFighters = [mockFighters[0]];
+      mockStore.defendingFighter = mockFighters[0];
       
-      render(<CharacterSelector type="defender" multiSelect />);
+      render(<CharacterSelector type="defender" />);
       
-      // マリオのカードを再度クリックして選択解除
-      const marioCard = screen.getByLabelText('マリオを選択解除');
-      await user.click(marioCard);
+      // 選択をクリアボタンをクリック
+      const clearButton = screen.getByRole('button', { name: '選択をクリア' });
+      await user.click(clearButton);
       
-      expect(mockStore.removeDefendingFighter).toHaveBeenCalledWith('mario');
+      expect(mockStore.setDefendingFighter).toHaveBeenCalledWith(null);
     });
   });
 
@@ -208,14 +217,19 @@ describe('キャラクター選択統合テスト', () => {
       
       render(<CharacterSelector type="attacker" />);
       
-      // 検索入力
+      // モーダルを開く
+      await openModal(user);
+      
+      // 検索入力（モーダル内の検索ボックス）
       const searchInput = screen.getByRole('searchbox');
       await user.type(searchInput, 'マリオ');
       
       // マリオのみ表示されることを確認
-      expect(screen.getByRole('button', { name: /マリオを選択/ })).toBeInTheDocument();
-      expect(screen.queryByText('リンク')).not.toBeInTheDocument();
-      expect(screen.queryByText('ピカチュウ')).not.toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: /マリオ/ })).toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: /リンク/ })).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: /ピカチュウ/ })).not.toBeInTheDocument();
+      });
     });
 
     it('検索語をクリアする', async () => {
@@ -223,18 +237,22 @@ describe('キャラクター選択統合テスト', () => {
       
       render(<CharacterSelector type="attacker" />);
       
+      // モーダルを開く
+      await openModal(user);
+      
       // 検索入力
       const searchInput = screen.getByRole('searchbox');
       await user.type(searchInput, 'マリオ');
       
-      // クリアボタンをクリック
-      const clearButton = screen.getByLabelText('検索をクリア');
-      await user.click(clearButton);
+      // 検索欄をクリアする
+      await user.clear(searchInput);
       
       // 全てのキャラクターが表示されることを確認
-      expect(screen.getByRole('button', { name: /マリオを選択/ })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /リンクを選択/ })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /ピカチュウを選択/ })).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: /マリオ/ })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /リンク/ })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /ピカチュウ/ })).toBeInTheDocument();
+      });
     });
 
     it('シリーズ名でも検索できる', async () => {
@@ -242,24 +260,32 @@ describe('キャラクター選択統合テスト', () => {
       
       render(<CharacterSelector type="attacker" />);
       
+      // モーダルを開く
+      await openModal(user);
+      
       // シリーズ名で検索
       const searchInput = screen.getByRole('searchbox');
       await user.type(searchInput, 'Pokémon');
       
       // ピカチュウのみ表示されることを確認
-      expect(screen.getByRole('button', { name: /ピカチュウを選択/ })).toBeInTheDocument();
-      expect(screen.queryByText('マリオ')).not.toBeInTheDocument();
-      expect(screen.queryByText('リンク')).not.toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByRole('button', { name: /ピカチュウ/ })).toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: /マリオ/ })).not.toBeInTheDocument();
+        expect(screen.queryByRole('button', { name: /リンク/ })).not.toBeInTheDocument();
+      });
     });
   });
 
   describe('選択状態の表示', () => {
-    it('選択されたキャラクターの数が表示される', () => {
-      mockStore.defendingFighters = [mockFighters[0], mockFighters[1]];
+    it('選択されたキャラクターが表示される', () => {
+      mockStore.defendingFighter = mockFighters[0];
       
-      render(<CharacterSelector type="defender" multiSelect />);
+      render(<CharacterSelector type="defender" />);
       
-      expect(screen.getByText(/2体選択中/)).toBeInTheDocument();
+      expect(screen.getByText('マリオ')).toBeInTheDocument();
+      expect(screen.getByText((content, element) => {
+        return element?.textContent === '防御側キャラクター - 選択済み';
+      })).toBeInTheDocument();
     });
 
     it('選択クリアボタンが表示される', () => {
@@ -267,7 +293,7 @@ describe('キャラクター選択統合テスト', () => {
       
       render(<CharacterSelector type="attacker" />);
       
-      expect(screen.getByText('選択をクリア')).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: '選択をクリア' })).toBeInTheDocument();
     });
 
     it('選択クリアボタンが機能する', async () => {
@@ -276,7 +302,7 @@ describe('キャラクター選択統合テスト', () => {
       
       render(<CharacterSelector type="attacker" />);
       
-      const clearButton = screen.getByText('選択をクリア');
+      const clearButton = screen.getByRole('button', { name: '選択をクリア' });
       await user.click(clearButton);
       
       expect(mockStore.setAttackingFighter).toHaveBeenCalledWith(null);
@@ -289,8 +315,11 @@ describe('キャラクター選択統合テスト', () => {
       
       render(<CharacterSelector type="attacker" />);
       
+      // モーダルを開く
+      await openModal(user);
+      
       // マリオのカードにフォーカス
-      const marioCard = screen.getByLabelText('マリオを選択');
+      const marioCard = screen.getByRole('button', { name: /マリオ/ });
       marioCard.focus();
       
       // Enterキーを押す
@@ -304,8 +333,11 @@ describe('キャラクター選択統合テスト', () => {
       
       render(<CharacterSelector type="attacker" />);
       
+      // モーダルを開く
+      await openModal(user);
+      
       // マリオのカードにフォーカス
-      const marioCard = screen.getByLabelText('マリオを選択');
+      const marioCard = screen.getByRole('button', { name: /マリオ/ });
       marioCard.focus();
       
       // スペースキーを押す
@@ -334,7 +366,7 @@ describe('キャラクター選択統合テスト', () => {
       
       render(<CharacterSelector type="attacker" />);
       
-      expect(screen.getByText('データの読み込みに失敗しました')).toBeInTheDocument();
+      expect(screen.getByText('キャラクターデータの読み込みエラー')).toBeInTheDocument();
     });
   });
 
@@ -347,9 +379,14 @@ describe('キャラクター選択統合テスト', () => {
         value: 375,
       });
       
+      // 正常状態をセット（エラー状態をクリア）
+      mockStore.fightersData.loading = false;
+      mockStore.fightersData.error = null;
+      mockStore.fightersData.data = mockFighters;
+      
       render(<CharacterSelector type="attacker" />);
       
-      expect(screen.queryByText('選択') || screen.getByRole('button')).toBeTruthy();
+      expect(screen.getByRole('button', { name: 'キャラクター選択モーダルを開く' })).toBeInTheDocument();
     });
   });
 
@@ -367,7 +404,7 @@ describe('キャラクター選択統合テスト', () => {
       );
       
       // マリオのカードをクリック
-      const marioCard = screen.getByLabelText('マリオを選択');
+      const marioCard = screen.getByRole('button', { name: /マリオ/ });
       await user.click(marioCard);
       
       expect(mockStore.setAttackingFighter).toHaveBeenCalledWith(mockFighters[0]);
@@ -379,11 +416,11 @@ describe('キャラクター選択統合テスト', () => {
           fighter={mockFighters[0]}
           isSelected={true}
           onSelect={() => {}}
-          multiSelect={true}
+          multiSelect={false}
         />
       );
       
-      const card = screen.getByLabelText('マリオを選択解除');
+      const card = screen.getByRole('button', { name: /マリオ/ });
       expect(card).toHaveAttribute('aria-pressed', 'true');
     });
   });
