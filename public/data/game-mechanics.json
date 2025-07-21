@@ -10,7 +10,7 @@
   "sdiMultiplier": 6,
   "diInfluence": 0.17,
   "stalenessMultipliers": {
-    "fresh": 1,
+    "none": 1,
     "stale1": 0.99,
     "stale2": 0.98,
     "stale3": 0.97,

@@ -41,7 +41,7 @@ export const CharacterSelector = memo(function CharacterSelector({
       return allFighters;
     }
     
-    return allFighters.filter(fighter => 
+    return allFighters.filter((fighter: Fighter) => 
       fighter.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       fighter.displayName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       fighter.series.toLowerCase().includes(searchTerm.toLowerCase())

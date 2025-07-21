@@ -20,7 +20,7 @@ const OptionsPanel: React.FC<OptionsPanelProps> = ({ className = '' }) => {
 
   const handleRangeToggle = (range: MoveRange) => {
     const newRanges = calculationOptions.rangeFilter.includes(range)
-      ? calculationOptions.rangeFilter.filter(r => r !== range)
+      ? calculationOptions.rangeFilter.filter((r: MoveRange) => r !== range)
       : [...calculationOptions.rangeFilter, range];
     handleOptionChange('rangeFilter', newRanges);
   };

@@ -17,3 +17,6 @@ export { LoadingSpinner, LoadingOverlay, LoadingButton } from './LoadingSpinner'
 export { FallbackUI, CharacterSelectionFallback, MoveDataFallback, CalculationResultsFallback } from './FallbackUI';
 export { FormValidation, ValidatedInput, ValidatedSelect } from './FormValidation';
 export { validators, validateField, validateForm } from '../lib/validators';
+// リファクタリングで追加された新しいコンポーネント
+export { CalculationStatus } from './CalculationStatus';
+export { SelectionStatus } from './SelectionStatus';

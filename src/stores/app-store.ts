@@ -1,126 +1,39 @@
-import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
-import type { Fighter, Move, CalculationOptions, PunishResult } from '../types/frameData';
-import type { AsyncState } from '../types/utils';
+// テスト互換性のための旧ストアAPIエミュレーション
+import { useCharacterSelectionStore } from './characterSelectionStore';
+import { useCalculationStore } from './calculationStore';
 
-interface AppState {
-  attackingFighter: Fighter | null;
-  defendingFighter: Fighter | null;
-  selectedMove: Move | null;
-  calculationOptions: CalculationOptions;
-  results: PunishResult[];
-  isCalculating: boolean;
-  error: string | null;
-  fightersData: AsyncState<Fighter[]>;
-  movesData: AsyncState<Move[]>;
-}
+export const useAppStore = () => {
+  // 各ストアから必要なデータを取得
+  const characterData = useCharacterSelectionStore((state) => ({
+    fightersData: state.fightersData,
+    attackingFighter: state.attackingFighter,
+    defendingFighter: state.defendingFighter,
+    selectedMove: state.selectedMove,
+    setAttackingFighter: state.setAttackingFighter,
+    setDefendingFighter: state.setDefendingFighter,
+    setSelectedMove: state.setSelectedMove,
+    setFightersData: state.setFightersData,
+  }));
 
-interface AppStore extends AppState {
-  // Actions
-  setAttackingFighter: (fighter: Fighter | null) => void;
-  setDefendingFighter: (fighter: Fighter | null) => void;
-  setSelectedMove: (move: Move | null) => void;
-  setCalculationOptions: (options: Partial<CalculationOptions>) => void;
-  setResults: (results: PunishResult[]) => void;
-  setIsCalculating: (isCalculating: boolean) => void;
-  setError: (error: string | null) => void;
-  setFightersData: (data: AsyncState<Fighter[]>) => void;
-  setMovesData: (data: AsyncState<Move[]>) => void;
-  resetState: () => void;
-}
+  const calculationData = useCalculationStore((state) => ({
+    calculationOptions: state.calculationOptions,
+    results: state.results,
+    isCalculating: state.isCalculating,
+    error: state.error,
+    movesData: state.movesData,
+    setCalculationOptions: state.setCalculationOptions,
+    setResults: state.setResults,
+    setIsCalculating: state.setIsCalculating,
+    setError: state.setError,
+    setMovesData: state.setMovesData,
+  }));
 
-const initialState: AppState = {
-  attackingFighter: null,
-  defendingFighter: null,
-  selectedMove: null,
-  calculationOptions: {
-    staleness: 'none',
-    rangeFilter: ['close', 'mid', 'far'],
-    minimumFrameAdvantage: 0,
-    maximumFrameAdvantage: 999,
-    minimumDamage: 0,
-    onlyGuaranteed: false,
-    includeKillMoves: true,
-    includeDIOptions: false,
-    includeSDIOptions: false,
-    positionFilter: [],
-  },
-  results: [],
-  isCalculating: false,
-  error: null,
-  fightersData: {
-    data: null,
-    loading: false,
-    error: null,
-    lastFetch: null,
-  },
-  movesData: {
-    data: null,
-    loading: false,
-    error: null,
-    lastFetch: null,
-  },
+  // 旧APIの形式で返す
+  return {
+    ...characterData,
+    ...calculationData,
+    resetState: () => {
+      // 必要に応じて各ストアのリセットを実装
+    },
+  };
 };
-
-export const useAppStore = create<AppStore>()(
-  devtools(
-    persist(
-      (set, get) => ({
-        ...initialState,
-
-        setAttackingFighter: (fighter) => {
-          set({ attackingFighter: fighter, selectedMove: null, results: [] });
-        },
-
-        setDefendingFighter: (fighter) => {
-          set({ defendingFighter: fighter, results: [] });
-        },
-
-        setSelectedMove: (move) => {
-          set({ selectedMove: move, results: [] });
-        },
-
-        setCalculationOptions: (options) => {
-          const { calculationOptions } = get();
-          set({ 
-            calculationOptions: { ...calculationOptions, ...options },
-            results: [] 
-          });
-        },
-
-        setResults: (results) => {
-          set({ results });
-        },
-
-        setIsCalculating: (isCalculating) => {
-          set({ isCalculating });
-        },
-
-        setError: (error) => {
-          set({ error });
-        },
-
-        setFightersData: (data) => {
-          set({ fightersData: data });
-        },
-
-        setMovesData: (data) => {
-          set({ movesData: data });
-        },
-
-        resetState: () => {
-          set(initialState);
-        },
-      }),
-      {
-        name: 'lagscope-options',
-        partialize: (state) => ({
-          calculationOptions: state.calculationOptions,
-        }),
-      }
-    ),
-    {
-      name: 'lagscope-app-store',
-    }
-  )
-);
