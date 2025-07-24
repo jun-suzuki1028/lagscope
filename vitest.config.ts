@@ -24,10 +24,10 @@ export default defineConfig({
     hookTimeout: process.env.CI ? 30000 : 5000,
     teardownTimeout: process.env.CI ? 20000 : 1000,
     // React 18 createRootエラー解決のための完全シーケンシャル設定
-    pool: 'forks',
+    pool: 'threads',
     poolOptions: {
-      forks: {
-        singleFork: true,
+      threads: {
+        singleThread: true,
         isolate: true,
         // プロセス間でのメモリ完全分離
         execArgv: ['--no-warnings'],
@@ -37,6 +37,8 @@ export default defineConfig({
     fileParallelism: false,
     maxConcurrency: 1,
     isolate: true,
+    minThreads: 1,
+    maxThreads: 1,
     // 各テストファイル間でのコンテキスト完全分離
     cache: false,
     // テスト実行間隔の設定（メモリクリーンアップ時間を確保）
@@ -45,6 +47,9 @@ export default defineConfig({
     env: {
       JSDOM_QUIET: process.env.CI ? 'true' : 'false',
       NODE_ENV: 'test',
+      // React 18 createRootエラーを回避するための環境変数
+      RTL_SKIP_AUTO_CLEANUP: 'false',
+      IS_REACT_ACT_ENVIRONMENT: 'true',
     },
     // jsdom オプション（createRootエラー解決）
     environmentOptions: {
