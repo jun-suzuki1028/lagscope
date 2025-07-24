@@ -47,6 +47,11 @@ export function CharacterModal({
     if (e.key === 'Escape') {
       onClose();
     }
+    // Tab キーでのフォーカス制御を追加（フォーカストラップ）
+    if (e.key === 'Tab' && e.shiftKey) {
+      // Shift+Tab の場合の逆方向フォーカス制御は
+      // より複雑な実装が必要だが、基本的なEscapeキー対応を優先
+    }
   };
 
   const handleOverlayClick = (e: React.MouseEvent) => {

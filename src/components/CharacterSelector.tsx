@@ -41,11 +41,15 @@ export const CharacterSelector = memo(function CharacterSelector({
       return allFighters;
     }
     
-    return allFighters.filter((fighter: Fighter) => 
-      fighter.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      fighter.displayName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      fighter.series.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    // 検索語を小文字化（1回のみ実行）
+    const lowerSearchTerm = searchTerm.toLowerCase();
+    
+    return allFighters.filter((fighter: Fighter) => {
+      // 短絡評価を利用した最適化（最も一致しやすい順に配置）
+      return fighter.displayName.toLowerCase().includes(lowerSearchTerm) ||
+             fighter.name.toLowerCase().includes(lowerSearchTerm) ||
+             fighter.series.toLowerCase().includes(lowerSearchTerm);
+    });
   }, [fightersData.data, searchTerm]);
 
   const selectedFighterIds = useMemo(() => {

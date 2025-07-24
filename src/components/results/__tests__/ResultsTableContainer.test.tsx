@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import ResultsTableContainer from '../ResultsTableContainer';
 import type { PunishResult, Fighter, Move, PunishMove } from '../../../types/frameData';
+import { GAME_MECHANICS } from '../../../lib/constants';
 
 // useMediaQueryフックをモック
 vi.mock('../../../hooks/useMediaQuery', () => ({
@@ -30,7 +31,7 @@ describe('ResultsTableContainer', () => {
       shieldRegen: 0.07,
       shieldRegenDelay: 30,
       shieldStun: 0,
-      shieldReleaseFrames: 11,
+      shieldReleaseFrames: GAME_MECHANICS.SHIELD_RELEASE_FRAMES,
       shieldGrabFrames: 8,
       outOfShieldOptions: [],
     },

@@ -3,6 +3,7 @@ import type { SortOption, SortConfig } from '@/types/frameData';
 import type { FlattenedResult } from '@/hooks/useResultsData';
 import { cn } from '@/utils/cn';
 import { formatMethod, formatMoveType } from '@/utils/formatters';
+import { ListStateDisplay } from '../StateDisplay';
 
 interface DesktopResultsTableProps {
   data: FlattenedResult[];
@@ -29,25 +30,17 @@ const DesktopResultsTable = memo<DesktopResultsTableProps>(({
   isLoading = false,
   className = '' 
 }) => {
-
-  if (isLoading) {
-    return (
-      <div className={cn('flex justify-center items-center py-8', className)}>
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-      </div>
-    );
-  }
-
-  if (data.length === 0) {
-    return (
-      <div className={cn('text-center py-8 text-gray-500', className)}>
-        条件に一致する結果がありません
-      </div>
-    );
-  }
-
   return (
-    <div className={cn('overflow-x-auto', className)}>
+    <ListStateDisplay
+      isLoading={isLoading}
+      error={null}
+      items={data}
+      emptyMessage="条件に一致する結果がありません"
+      loadingMessage="計算結果を生成中..."
+      className={className}
+    >
+      {(results) => (
+        <div className={cn('overflow-x-auto', className)}>
       <table className="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
         <thead className="bg-gray-50">
           <tr>
@@ -111,7 +104,7 @@ const DesktopResultsTable = memo<DesktopResultsTableProps>(({
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {data.map(({ result, move, key }) => (
+          {results.map(({ result, move, key }) => (
             <tr key={key} className="hover:bg-gray-50">
               <td className="px-4 py-4 whitespace-nowrap">
                 <div className="flex items-center">
@@ -166,7 +159,9 @@ const DesktopResultsTable = memo<DesktopResultsTableProps>(({
           ))}
         </tbody>
       </table>
-    </div>
+        </div>
+      )}
+    </ListStateDisplay>
   );
 });
 

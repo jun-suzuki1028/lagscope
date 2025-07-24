@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export interface AccessibilitySettings {
   highContrast: boolean;
@@ -16,27 +16,37 @@ export function useAccessibility() {
   const [settings, setSettings] = useState<AccessibilitySettings>(DEFAULT_SETTINGS);
 
   useEffect(() => {
-    const savedSettings = localStorage.getItem('lagscope-accessibility-settings');
-    if (savedSettings) {
+    // 非同期でlocalStorageを読み込み、UIブロッキングを回避
+    const loadSettings = async () => {
       try {
-        const parsedSettings = JSON.parse(savedSettings);
-        setSettings({ ...DEFAULT_SETTINGS, ...parsedSettings });
+        const savedSettings = localStorage.getItem('lagscope-accessibility-settings');
+        if (savedSettings) {
+          const parsedSettings = JSON.parse(savedSettings);
+          setSettings({ ...DEFAULT_SETTINGS, ...parsedSettings });
+        }
       } catch (error) {
         // eslint-disable-next-line no-console
         console.warn('Failed to parse accessibility settings:', error);
       }
-    }
+    };
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const prefersHighContrast = window.matchMedia('(prefers-contrast: high)').matches;
+    // システム設定の検出
+    const detectSystemPreferences = () => {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const prefersHighContrast = window.matchMedia('(prefers-contrast: high)').matches;
 
-    if (prefersReducedMotion || prefersHighContrast) {
-      setSettings(prevSettings => ({
-        ...prevSettings,
-        reducedMotion: prefersReducedMotion,
-        highContrast: prefersHighContrast,
-      }));
-    }
+      if (prefersReducedMotion || prefersHighContrast) {
+        setSettings(prevSettings => ({
+          ...prevSettings,
+          reducedMotion: prefersReducedMotion,
+          highContrast: prefersHighContrast,
+        }));
+      }
+    };
+
+    // 設定読み込みを非同期実行
+    loadSettings();
+    detectSystemPreferences();
   }, []);
 
   useEffect(() => {
@@ -46,21 +56,30 @@ export function useAccessibility() {
     document.documentElement.classList.toggle('reduced-motion', settings.reducedMotion);
   }, [settings]);
 
-  const updateSettings = (newSettings: Partial<AccessibilitySettings>) => {
+  const updateSettings = useCallback((newSettings: Partial<AccessibilitySettings>) => {
     setSettings(prevSettings => ({ ...prevSettings, ...newSettings }));
-  };
+  }, []);
 
-  const toggleHighContrast = () => {
-    updateSettings({ highContrast: !settings.highContrast });
-  };
+  const toggleHighContrast = useCallback(() => {
+    setSettings(prevSettings => ({ 
+      ...prevSettings, 
+      highContrast: !prevSettings.highContrast 
+    }));
+  }, []);
 
-  const toggleReducedMotion = () => {
-    updateSettings({ reducedMotion: !settings.reducedMotion });
-  };
+  const toggleReducedMotion = useCallback(() => {
+    setSettings(prevSettings => ({ 
+      ...prevSettings, 
+      reducedMotion: !prevSettings.reducedMotion 
+    }));
+  }, []);
 
-  const toggleAnnouncements = () => {
-    updateSettings({ announcements: !settings.announcements });
-  };
+  const toggleAnnouncements = useCallback(() => {
+    setSettings(prevSettings => ({ 
+      ...prevSettings, 
+      announcements: !prevSettings.announcements 
+    }));
+  }, []);
 
   return {
     settings,

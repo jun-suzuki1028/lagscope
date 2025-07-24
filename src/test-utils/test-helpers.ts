@@ -1,7 +1,19 @@
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Fighter } from '../types/frameData';
 import { expect } from 'vitest';
+// 新しいモックデータを再エクスポート
+export { 
+  createMockFighter, 
+  createMockMove, 
+  mockFightersArray,
+  mockMario,
+  mockPikachu,
+  mockKazuya,
+  createMockJab,
+  createMockSmash,
+  createMockAerial,
+  createMockGrab
+} from './mock-data';
 
 /**
  * テスト用の共通ヘルパー関数
@@ -45,48 +57,8 @@ export const selectCharacterSafely = async (
   }, { timeout: 2000 });
 };
 
-/**
- * テスト用のモックファイター作成
- */
-export const createMockFighter = (overrides: Partial<Fighter> = {}): Fighter => ({
-  id: 'test-fighter',
-  name: 'Test Fighter',
-  displayName: 'テストファイター',
-  series: 'Test Series',
-  weight: 100,
-  fallSpeed: 1.5,
-  fastFallSpeed: 2.4,
-  gravity: 0.087,
-  walkSpeed: 1.0,
-  runSpeed: 1.5,
-  airSpeed: 1.0,
-  iconUrl: '/test-icon.png',
-  moves: [],
-  shieldData: {
-    shieldHealth: 50,
-    shieldRegen: 0.07,
-    shieldRegenDelay: 30,
-    shieldStun: 0.8665,
-    shieldReleaseFrames: 11,
-    shieldGrabFrames: 6,
-    outOfShieldOptions: []
-  },
-  movementData: {
-    jumpSquat: 3,
-    fullHopHeight: 30.0,
-    shortHopHeight: 15.0,
-    airJumps: 1,
-    dodgeFrames: {
-      spotDodge: { startup: 3, active: 20, recovery: 4, total: 27 },
-      airDodge: { startup: 3, active: 29, recovery: 28, total: 60 }
-    },
-    rollFrames: {
-      forward: { startup: 4, active: 12, recovery: 15, total: 31 },
-      backward: { startup: 4, active: 12, recovery: 15, total: 31 }
-    }
-  },
-  ...overrides
-});
+// createMockFighterは./mock-data.tsに移動したため、レガシー関数として残す
+// 注意: 新しいテストでは mock-data.ts の createMockFighter を使用してください
 
 /**
  * CI環境用の安定したアサーション
@@ -168,5 +140,136 @@ export const debugDOMState = (title: string = 'DOM State') => {
     console.log(document.body.innerHTML);
     // eslint-disable-next-line no-console
     console.log('==================\n');
+  }
+};
+
+/**
+ * 技選択のヘルパー関数
+ */
+export const selectMove = async (
+  user: ReturnType<typeof userEvent.setup>,
+  moveId: string
+) => {
+  const dropdown = screen.getByTestId('move-select');
+  await user.selectOptions(dropdown, moveId);
+};
+
+/**
+ * 検索機能のヘルパー関数
+ */
+export const searchCharacters = async (
+  user: ReturnType<typeof userEvent.setup>,
+  searchTerm: string
+) => {
+  const searchInput = screen.getByRole('searchbox');
+  await user.clear(searchInput);
+  await user.type(searchInput, searchTerm);
+};
+
+/**
+ * キーボードイベントのヘルパー関数
+ */
+export const pressKey = async (
+  user: ReturnType<typeof userEvent.setup>,
+  key: string
+) => {
+  await user.keyboard(`{${key}}`);
+};
+
+/**
+ * 複数の状態をテストするためのヘルパー
+ */
+export const testElementStates = async (
+  getElement: () => HTMLElement,
+  states: Array<{
+    description: string;
+    setup?: () => void | Promise<void>;
+    assertion: (element: HTMLElement) => void;
+  }>
+) => {
+  for (const state of states) {
+    if (state.setup) {
+      await state.setup();
+    }
+    const element = getElement();
+    state.assertion(element);
+  }
+};
+
+/**
+ * アクセシビリティ属性の検証ヘルパー
+ */
+export const expectAccessibilityAttributes = (
+  element: HTMLElement,
+  attributes: Record<string, string>
+) => {
+  Object.entries(attributes).forEach(([attr, value]) => {
+    expect(element).toHaveAttribute(attr, value);
+  });
+};
+
+/**
+ * フォーム要素の検証ヘルパー
+ */
+export const expectFormElement = (
+  element: HTMLElement,
+  expectedRole: string,
+  expectedValue?: string
+) => {
+  expect(element).toHaveAttribute('role', expectedRole);
+  if (expectedValue) {
+    expect(element).toHaveValue(expectedValue);
+  }
+};
+
+/**
+ * CSS クラスの存在確認ヘルパー
+ */
+export const expectElementClasses = (
+  element: HTMLElement,
+  expectedClasses: string[]
+) => {
+  expectedClasses.forEach(className => {
+    expect(element).toHaveClass(className);
+  });
+};
+
+/**
+ * 要素の可視性チェックヘルパー
+ */
+export const expectElementVisibility = (
+  element: HTMLElement,
+  shouldBeVisible: boolean
+) => {
+  if (shouldBeVisible) {
+    expect(element).toBeInTheDocument();
+    expect(element).toBeVisible();
+  } else {
+    expect(element).not.toBeInTheDocument();
+  }
+};
+
+/**
+ * ローディング状態のテストヘルパー
+ */
+export const expectLoadingState = (isLoading: boolean) => {
+  if (isLoading) {
+    expect(screen.getByText('キャラクターデータを読み込み中...')).toBeInTheDocument();
+  } else {
+    expect(screen.queryByText('キャラクターデータを読み込み中...')).not.toBeInTheDocument();
+  }
+};
+
+/**
+ * エラー状態のテストヘルパー
+ */
+export const expectErrorState = (hasError: boolean, errorMessage?: string) => {
+  if (hasError) {
+    expect(screen.getByText('キャラクターデータの読み込みエラー')).toBeInTheDocument();
+    if (errorMessage) {
+      expect(screen.getByText(errorMessage)).toBeInTheDocument();
+    }
+  } else {
+    expect(screen.queryByText('キャラクターデータの読み込みエラー')).not.toBeInTheDocument();
   }
 };

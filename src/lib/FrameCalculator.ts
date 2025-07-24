@@ -1,4 +1,5 @@
 import { Move, Fighter, StalenessLevel, PunishResult, PunishMove, CalculationOptions, CalculationContext } from '../types/frameData';
+import { GAME_MECHANICS } from './constants';
 
 export interface FrameAdvantageResult {
   frameAdvantage: number;
@@ -243,7 +244,7 @@ export class FrameCalculator {
     _context: CalculationContext
   ): PunishMove[] {
     const punishingMoves: PunishMove[] = [];
-    const shieldReleaseFrames = 11; // シールド解除11Fペナルティ
+    const shieldReleaseFrames = GAME_MECHANICS.SHIELD_RELEASE_FRAMES; // シールド解除ペナルティ
 
     for (const move of defender.moves) {
       // ガードキャンセル不可能な技（通常技、強攻撃、スマッシュ、必殺技など）

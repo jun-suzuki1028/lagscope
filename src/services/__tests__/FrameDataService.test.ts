@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { FrameDataService } from '../FrameDataService';
 import { Fighter } from '../../types/frameData';
+import { GAME_MECHANICS } from '../constants';
 
 // Mock fetch
 const mockFetch = vi.fn();
@@ -39,7 +40,7 @@ describe('FrameDataService', () => {
           shieldRegen: 0.07,
           shieldRegenDelay: 30,
           shieldStun: 0.8665,
-          shieldReleaseFrames: 11,
+          shieldReleaseFrames: GAME_MECHANICS.SHIELD_RELEASE_FRAMES,
           shieldGrabFrames: 6,
           outOfShieldOptions: []
         },
@@ -108,7 +109,7 @@ describe('FrameDataService', () => {
           shieldRegen: 0.07,
           shieldRegenDelay: 30,
           shieldStun: 0.8665,
-          shieldReleaseFrames: 11,
+          shieldReleaseFrames: GAME_MECHANICS.SHIELD_RELEASE_FRAMES,
           shieldGrabFrames: 6,
           outOfShieldOptions: []
         },
@@ -208,7 +209,7 @@ describe('FrameDataService', () => {
             shieldRegen: 0.07,
             shieldRegenDelay: 30,
             shieldStun: 0.8665,
-            shieldReleaseFrames: 11,
+            shieldReleaseFrames: GAME_MECHANICS.SHIELD_RELEASE_FRAMES,
             shieldGrabFrames: 6,
             outOfShieldOptions: []
           },
@@ -280,7 +281,7 @@ describe('FrameDataService', () => {
           shieldRegen: 0.07,
           shieldRegenDelay: 30,
           shieldStun: 0.8665,
-          shieldReleaseFrames: 11,
+          shieldReleaseFrames: GAME_MECHANICS.SHIELD_RELEASE_FRAMES,
           shieldGrabFrames: 6,
           outOfShieldOptions: []
         },
@@ -364,7 +365,7 @@ describe('FrameDataService', () => {
           shieldRegen: 0.07,
           shieldRegenDelay: 30,
           shieldStun: 0.8665,
-          shieldReleaseFrames: 11,
+          shieldReleaseFrames: GAME_MECHANICS.SHIELD_RELEASE_FRAMES,
           shieldGrabFrames: 6,
           outOfShieldOptions: []
         },
@@ -440,7 +441,7 @@ describe('FrameDataService', () => {
           shieldRegen: 0.07,
           shieldRegenDelay: 30,
           shieldStun: 0.8665,
-          shieldReleaseFrames: 11,
+          shieldReleaseFrames: GAME_MECHANICS.SHIELD_RELEASE_FRAMES,
           shieldGrabFrames: 6,
           outOfShieldOptions: []
         },
