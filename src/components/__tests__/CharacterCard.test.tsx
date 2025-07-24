@@ -2,51 +2,18 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { CharacterCard } from '../CharacterCard';
-import { Fighter } from '../../types/frameData';
+import { createMockFighter } from '../../test-utils/mock-data';
 
 // Mock the character icon mapping utility
 vi.mock('../../utils/characterIconMapping', () => ({
   getCharacterIconUrl: vi.fn(() => '/lagscope/icons/fighters/mario.png'),
 }));
 
-const mockFighter: Fighter = {
+const mockFighter = createMockFighter({
   id: 'mario',
-  name: 'Mario',
   displayName: 'マリオ',
-  series: 'Super Mario',
-  weight: 98,
-  fallSpeed: 1.5,
-  fastFallSpeed: 2.4,
-  gravity: 0.087,
-  walkSpeed: 1.05,
-  runSpeed: 1.6,
-  airSpeed: 1.15,
-  moves: [],
-  shieldData: {
-    shieldHealth: 50,
-    shieldRegen: 0.07,
-    shieldRegenDelay: 30,
-    shieldStun: 0.725,
-    shieldReleaseFrames: 11,
-    shieldGrabFrames: 10,
-    outOfShieldOptions: [],
-  },
-  movementData: {
-    jumpSquat: 3,
-    fullHopHeight: 34.66,
-    shortHopHeight: 15.02,
-    airJumps: 1,
-    dodgeFrames: {
-      spotDodge: { startup: 3, active: 2, recovery: 24, total: 29 },
-      airDodge: { startup: 3, active: 2, recovery: 39, total: 44 },
-    },
-    rollFrames: {
-      forward: { startup: 4, active: 16, recovery: 12, total: 32 },
-      backward: { startup: 4, active: 16, recovery: 12, total: 32 },
-    },
-  },
   iconUrl: '/images/mario-icon.png',
-};
+});
 
 describe('CharacterCard', () => {
   it('renders character card with accessibility label', () => {

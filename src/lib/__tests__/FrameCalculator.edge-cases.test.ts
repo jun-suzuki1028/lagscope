@@ -1,113 +1,16 @@
 import { describe, it, expect } from 'vitest';
 import { FrameCalculator } from '../FrameCalculator';
-import { Move, Fighter } from '../../types/frameData';
+import { Fighter } from '../../types/frameData';
+import { 
+  createMockMove, 
+  createMockFighter,
+  createExtremeMockMove,
+  createZeroDamageMockMove,
+  createArrayDamageMockMove 
+} from '../../test-utils/mock-data';
 
 describe('FrameCalculator エッジケース', () => {
-  const createMockMove = (overrides: Partial<Move> = {}): Move => ({
-    id: 'test-move',
-    name: 'test-move',
-    displayName: 'テスト技',
-    category: 'jab',
-    type: 'normal',
-    input: 'A',
-    startup: 5,
-    active: 3,
-    recovery: 10,
-    totalFrames: 18,
-    onShield: -5,
-    onHit: 5,
-    onWhiff: -10,
-    damage: 10,
-    baseKnockback: 20,
-    knockbackGrowth: 30,
-    range: 'close',
-    hitboxData: {
-      hitboxes: [{
-        id: 1,
-        damage: 10,
-        angle: 361,
-        baseKnockback: 20,
-        knockbackGrowth: 30,
-        hitboxType: 'normal',
-        effect: 'normal',
-        size: 2.0,
-        position: { x: 0, y: 8.5, z: 4.5 }
-      }],
-      multihit: false
-    },
-    properties: {
-      isKillMove: false,
-      hasArmor: false,
-      isCommandGrab: false,
-      isSpike: false,
-      isMeteor: false,
-      hasInvincibility: false,
-      hasIntangibility: false,
-      canClank: true,
-      priority: 1,
-      transcendentPriority: false
-    },
-    ...overrides
-  });
 
-  const createMockFighter = (overrides: Partial<Fighter> = {}): Fighter => ({
-    id: 'test-fighter',
-    name: 'Test Fighter',
-    displayName: 'テストファイター',
-    series: 'Test Series',
-    weight: 100,
-    fallSpeed: 1.5,
-    fastFallSpeed: 2.4,
-    gravity: 0.08,
-    walkSpeed: 1.0,
-    runSpeed: 1.5,
-    airSpeed: 1.0,
-    moves: [],
-    shieldData: {
-      shieldHealth: 50,
-      shieldRegen: 0.07,
-      shieldRegenDelay: 30,
-      shieldStun: 0.8665,
-      shieldReleaseFrames: 11,
-      shieldGrabFrames: 6,
-      outOfShieldOptions: []
-    },
-    movementData: {
-      jumpSquat: 3,
-      fullHopHeight: 35,
-      shortHopHeight: 17,
-      airJumps: 1,
-      dodgeFrames: {
-        spotDodge: {
-          startup: 3,
-          active: 20,
-          recovery: 4,
-          total: 27
-        },
-        airDodge: {
-          startup: 3,
-          active: 29,
-          recovery: 28,
-          total: 60
-        }
-      },
-      rollFrames: {
-        forward: {
-          startup: 4,
-          active: 12,
-          recovery: 15,
-          total: 31
-        },
-        backward: {
-          startup: 4,
-          active: 12,
-          recovery: 15,
-          total: 31
-        }
-      }
-    },
-    ...overrides
-  });
 
   describe('極端なダメージ値', () => {
     it('非常に低いダメージでも最小シールド硬直を計算する', () => {
@@ -250,6 +153,7 @@ describe('FrameCalculator エッジケース', () => {
   describe('反撃確率の計算', () => {
     it('1フレーム有利での反撃確率を計算する', () => {
       const move = createMockMove({ totalFrames: 30 });
+      const testMove = createMockMove({ name: 'test-move', startup: 5 });
       const fighter = createMockFighter({
         shieldData: {
           ...createMockFighter().shieldData,
@@ -260,7 +164,7 @@ describe('FrameCalculator エッジケース', () => {
             effectiveness: 5
           }]
         },
-        moves: [createMockMove({ name: 'test-move', startup: 5 })]
+        moves: [testMove]
       });
       
       const result = FrameCalculator.calculatePunishWindow(move, fighter);
@@ -273,6 +177,7 @@ describe('FrameCalculator エッジケース', () => {
 
     it('フレーム差が大きい場合の反撃確率を計算する', () => {
       const move = createMockMove({ totalFrames: 50 });
+      const testMove2 = createMockMove({ name: 'test-move', startup: 5 });
       const fighter = createMockFighter({
         shieldData: {
           ...createMockFighter().shieldData,
@@ -283,7 +188,7 @@ describe('FrameCalculator エッジケース', () => {
             effectiveness: 8
           }]
         },
-        moves: [createMockMove({ name: 'test-move', startup: 5 })]
+        moves: [testMove2]
       });
       
       const result = FrameCalculator.calculatePunishWindow(move, fighter);

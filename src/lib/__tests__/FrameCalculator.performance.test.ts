@@ -1,101 +1,33 @@
 import { describe, it, expect } from 'vitest';
 import { FrameCalculator } from '../FrameCalculator';
-import { Move, Fighter } from '../../types/frameData';
+import { Fighter } from '../../types/frameData';
+import { createMockMove, createMockFighter } from '../../test-utils/mock-data';
 
 describe('FrameCalculator パフォーマンステスト', () => {
-  const createMockMove = (id: string, damage: number = 10): Move => ({
-    id,
-    name: id,
-    displayName: `テスト技${id}`,
-    category: 'jab',
-    type: 'normal',
-    input: 'A',
-    startup: 5,
-    active: 3,
-    recovery: 10,
-    totalFrames: 18,
-    onShield: -5,
-    onHit: 5,
-    onWhiff: -10,
-    damage,
-    baseKnockback: 20,
-    knockbackGrowth: 30,
-    range: 'close',
-    hitboxData: {
-      hitboxes: [{
-        id: 1,
-        damage,
-        angle: 361,
-        baseKnockback: 20,
-        knockbackGrowth: 30,
-        hitboxType: 'normal',
-        effect: 'normal',
-        size: 2.0,
-        position: { x: 0, y: 8.5, z: 4.5 }
-      }],
-      multihit: false
-    },
-    properties: {
-      isKillMove: false,
-      hasArmor: false,
-      isCommandGrab: false,
-      isSpike: false,
-      isMeteor: false,
-      hasInvincibility: false,
-      hasIntangibility: false,
-      canClank: true,
-      priority: 1,
-      transcendentPriority: false
-    }
-  });
-
-  const createMockFighter = (id: string, moveCount: number = 50): Fighter => {
+  const createPerformanceMockFighter = (id: string, moveCount: number = 50): Fighter => {
     const moves = Array.from({ length: moveCount }, (_, i) => 
-      createMockMove(`${id}-move-${i}`, 5 + i % 15)
+      createMockMove({
+        id: `${id}-move-${i}`,
+        name: `${id}-move-${i}`,
+        displayName: `テスト技${id}-${i}`,
+        damage: 5 + i % 15
+      })
     );
 
-    return {
+    return createMockFighter({
       id,
-      name: `Fighter ${id}`,
       displayName: `ファイター${id}`,
-      series: 'Test Series',
-      weight: 100,
-      fallSpeed: 1.5,
-      fastFallSpeed: 2.4,
-      gravity: 0.08,
-      walkSpeed: 1.0,
-      runSpeed: 1.5,
-      airSpeed: 1.0,
       moves,
       shieldData: {
-        shieldHealth: 50,
-        shieldRegen: 0.07,
-        shieldRegenDelay: 30,
-        shieldStun: 0.8665,
-        shieldReleaseFrames: 11,
-        shieldGrabFrames: 6,
+        ...createMockFighter().shieldData,
         outOfShieldOptions: moves.slice(0, 5).map((move, i) => ({
           move: move.name,
           frames: 3 + i,
           type: 'nair',
           effectiveness: 8
         }))
-      },
-      movementData: {
-        jumpSquat: 3,
-        fullHopHeight: 35,
-        shortHopHeight: 17,
-        airJumps: 1,
-        dodgeFrames: {
-          spotDodge: { startup: 3, active: 20, recovery: 4, total: 27 },
-          airDodge: { startup: 3, active: 29, recovery: 28, total: 60 }
-        },
-        rollFrames: {
-          forward: { startup: 4, active: 12, recovery: 15, total: 31 },
-          backward: { startup: 4, active: 12, recovery: 15, total: 31 }
-        }
       }
-    };
+    });
   };
 
   describe('基本計算のパフォーマンス', () => {
@@ -148,11 +80,13 @@ describe('FrameCalculator パフォーマンステスト', () => {
     });
 
     it('複数キャラクターの反撃計算が妥当な時間で完了する', () => {
-      const move = createMockMove('slow-move');
-      move.totalFrames = 50;
+      const move = createMockMove({
+        id: 'slow-move',
+        totalFrames: 50
+      });
       
       const fighters = Array.from({ length: 10 }, (_, i) => 
-        createMockFighter(`fighter-${i}`, 50)
+        createPerformanceMockFighter(`fighter-${i}`, 50)
       );
       
       const startTime = performance.now();
@@ -190,9 +124,12 @@ describe('FrameCalculator パフォーマンステスト', () => {
     });
 
     it('最適反撃オプション選択が効率的に動作する', () => {
-      const fighter = createMockFighter('test-fighter', 100);
+      const fighter = createPerformanceMockFighter('test-fighter', 100);
       const moves = Array.from({ length: 100 }, (_, i) => ({
-        move: createMockMove(`move-${i}`, 10 + i % 20),
+        move: createMockMove({
+          id: `move-${i}`,
+          damage: 10 + i % 20
+        }),
         method: 'out_of_shield' as const,
         totalFrames: 10 + i % 30,
         isGuaranteed: i % 2 === 0,

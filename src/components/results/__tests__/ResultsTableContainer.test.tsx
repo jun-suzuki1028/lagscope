@@ -1,8 +1,13 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import ResultsTableContainer from '../ResultsTableContainer';
-import type { PunishResult, Fighter, Move, PunishMove } from '../../../types/frameData';
-import { GAME_MECHANICS } from '../../../lib/constants';
+import type { PunishResult, PunishMove } from '../../../types/frameData';
+import { 
+  createMockFighter, 
+  createMockMove, 
+  createMockPunishMove,
+  createMockPunishResult 
+} from '../../../test-utils/mock-data';
 
 // useMediaQueryフックをモック
 vi.mock('../../../hooks/useMediaQuery', () => ({
@@ -13,115 +18,31 @@ vi.mock('../../../hooks/useMediaQuery', () => ({
 }));
 
 describe('ResultsTableContainer', () => {
-  const mockFighter: Fighter = {
+  const mockFighter = createMockFighter({
     id: 'mario',
-    name: 'Mario',
     displayName: 'マリオ',
-    series: 'Super Mario',
-    weight: 98,
-    fallSpeed: 1.6,
-    fastFallSpeed: 2.56,
-    gravity: 0.087,
-    walkSpeed: 1.05,
-    runSpeed: 1.76,
-    airSpeed: 1.208,
-    moves: [],
-    shieldData: {
-      shieldHealth: 50,
-      shieldRegen: 0.07,
-      shieldRegenDelay: 30,
-      shieldStun: 0,
-      shieldReleaseFrames: GAME_MECHANICS.SHIELD_RELEASE_FRAMES,
-      shieldGrabFrames: 8,
-      outOfShieldOptions: [],
-    },
-    movementData: {
-      jumpSquat: 3,
-      fullHopHeight: 34.5,
-      shortHopHeight: 16.6,
-      airJumps: 2,
-      dodgeFrames: {
-        spotDodge: { startup: 3, active: 2, recovery: 22, total: 27 },
-        airDodge: { startup: 3, active: 29, recovery: 10, total: 42 },
-      },
-      rollFrames: {
-        forward: { startup: 4, active: 15, recovery: 15, total: 34 },
-        backward: { startup: 4, active: 15, recovery: 15, total: 34 },
-      },
-    },
-  };
+  });
 
-  const mockMove: Move = {
+  const mockMove = createMockMove({
     id: 'jab1',
-    name: 'Jab 1',
     displayName: 'ジャブ1',
-    category: 'jab',
-    type: 'normal',
-    input: 'A',
     startup: 2,
-    active: 2,
-    recovery: 5,
-    totalFrames: 9,
-    onShield: -2,
-    onHit: 2,
-    onWhiff: 0,
     damage: 2.2,
-    baseKnockback: 25,
-    knockbackGrowth: 25,
-    range: 'close',
-    hitboxData: {
-      hitboxes: [],
-      multihit: false,
-    },
-    properties: {
-      isKillMove: false,
-      hasArmor: false,
-      isCommandGrab: false,
-      isSpike: false,
-      isMeteor: false,
-      hasInvincibility: false,
-      hasIntangibility: false,
-      canClank: true,
-      priority: 3,
-      transcendentPriority: false,
-    },
-  };
+  });
 
-  const mockPunishMove: PunishMove = {
+  const mockPunishMove = createMockPunishMove({
     move: mockMove,
-    method: 'normal',
     totalFrames: 13,
-    isGuaranteed: true,
-    probability: 1.0,
     damage: 2.2,
-  };
+  });
 
   const mockResults: PunishResult[] = [
-    {
+    createMockPunishResult({
       defendingFighter: mockFighter,
       punishingMoves: [mockPunishMove],
       frameAdvantage: 9,
       attackingMove: mockMove,
-      calculationContext: {
-        staleness: 'none',
-        shieldDamage: 2.2,
-        shieldStun: 3,
-        range: 'close',
-        position: 'neutral',
-        options: {
-          staleness: 'none',
-          rangeFilter: ['close', 'mid', 'far'],
-          minimumFrameAdvantage: 0,
-          maximumFrameAdvantage: 999,
-          minimumDamage: 0,
-          onlyGuaranteed: false,
-          includeKillMoves: true,
-          includeDIOptions: false,
-          includeSDIOptions: false,
-          positionFilter: ['neutral'],
-        },
-      },
-    },
+    }),
   ];
 
   it('結果が空の場合、適切なメッセージを表示する', () => {

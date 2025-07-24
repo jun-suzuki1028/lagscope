@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { FrameDataService } from '../FrameDataService';
 import { Fighter } from '../../types/frameData';
-import { GAME_MECHANICS } from '../constants';
+import { GAME_MECHANICS } from '../../lib/constants';
 
 // Mock fetch
 const mockFetch = vi.fn();
