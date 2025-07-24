@@ -116,7 +116,18 @@ export const commonMocks = {
         status: 200,
         json: () => Promise.resolve({}),
         text: () => Promise.resolve(''),
-      })
+        headers: new Headers(),
+        redirected: false,
+        statusText: 'OK',
+        type: 'basic' as ResponseType,
+        url: '',
+        clone: () => ({} as Response),
+        body: null,
+        bodyUsed: false,
+        arrayBuffer: () => Promise.resolve(new ArrayBuffer(0)),
+        blob: () => Promise.resolve(new Blob()),
+        formData: () => Promise.resolve(new FormData()),
+      } as Response)
     ));
     
     Object.defineProperty(globalThis, 'fetch', {

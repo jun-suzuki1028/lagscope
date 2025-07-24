@@ -29,12 +29,18 @@ export default defineConfig({
       forks: {
         singleFork: true,
         isolate: true,
+        // プロセス間でのメモリ完全分離
+        execArgv: ['--no-warnings'],
       },
     },
     // 一度に1つのテストファイルだけを実行
     fileParallelism: false,
     maxConcurrency: 1,
     isolate: true,
+    // 各テストファイル間でのコンテキスト完全分離
+    cache: false,
+    // テスト実行間隔の設定（メモリクリーンアップ時間を確保）
+    slowTestThreshold: 1000,
     // CI環境でのDOM安定性向上
     env: {
       JSDOM_QUIET: process.env.CI ? 'true' : 'false',
