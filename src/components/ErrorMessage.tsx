@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 
 export interface ErrorMessageProps {
   title?: string;
@@ -7,6 +8,10 @@ export interface ErrorMessageProps {
   onRetry?: () => void;
   onDismiss?: () => void;
   className?: string;
+  details?: string; // 詳細なエラー情報
+  errorCode?: string; // エラーコード
+  retryCount?: number; // 再試行回数
+  maxRetries?: number; // 最大再試行回数
 }
 
 export function ErrorMessage({ 
@@ -15,8 +20,16 @@ export function ErrorMessage({
   type = 'error',
   onRetry,
   onDismiss,
-  className = '' 
+  className = '',
+  details,
+  errorCode,
+  retryCount = 0,
+  maxRetries = 3
 }: ErrorMessageProps) {
+  const [showDetails, setShowDetails] = useState(false);
+  
+  const canRetry = onRetry && retryCount < maxRetries;
+  
   const getTypeStyles = () => {
     switch (type) {
       case 'warning':
@@ -83,17 +96,56 @@ export function ErrorMessage({
           </h3>
           <div className={`mt-2 text-sm ${styles.message}`}>
             <p>{message}</p>
+            {errorCode && (
+              <p className="mt-1 font-mono text-xs opacity-80">
+                エラーコード: {errorCode}
+              </p>
+            )}
+            {retryCount > 0 && (
+              <p className="mt-1 text-xs opacity-80">
+                再試行回数: {retryCount}/{maxRetries}
+              </p>
+            )}
           </div>
-          {(onRetry || onDismiss) && (
+          
+          {details && (
+            <div className="mt-3">
+              <button
+                type="button"
+                onClick={() => setShowDetails(!showDetails)}
+                className={`text-xs font-medium underline ${styles.title} hover:no-underline`}
+                aria-expanded={showDetails}
+                aria-controls="error-details"
+              >
+                {showDetails ? '詳細を隠す' : '詳細を表示'}
+              </button>
+              {showDetails && (
+                <div
+                  id="error-details"
+                  className={`mt-2 p-3 bg-gray-50 rounded text-xs font-mono ${styles.message} border-l-4 border-gray-300`}
+                >
+                  <pre className="whitespace-pre-wrap break-words">{details}</pre>
+                </div>
+              )}
+            </div>
+          )}
+          
+          {(canRetry || onDismiss) && (
             <div className="mt-4 flex space-x-2">
-              {onRetry && (
+              {canRetry && (
                 <button
                   type="button"
                   onClick={onRetry}
                   className={`rounded-md px-3 py-1 text-sm font-medium transition-colors ${styles.button}`}
+                  disabled={retryCount >= maxRetries}
                 >
-                  再試行
+                  再試行 {retryCount > 0 && `(${retryCount}/${maxRetries})`}
                 </button>
+              )}
+              {retryCount >= maxRetries && (
+                <span className="text-xs text-gray-500 flex items-center">
+                  最大再試行回数に達しました
+                </span>
               )}
               {onDismiss && (
                 <button
