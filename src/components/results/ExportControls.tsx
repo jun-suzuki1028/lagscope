@@ -1,6 +1,6 @@
 import { memo, useState, useCallback } from 'react';
 import type { FlattenedResult } from '@/hooks/useResultsData';
-import ExportModal from '@/components/ExportModal';
+import ExportModal from '../ExportModal';
 import { cn } from '@/utils/cn';
 
 interface ExportControlsProps {
