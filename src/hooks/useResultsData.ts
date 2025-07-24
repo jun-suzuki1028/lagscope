@@ -1,18 +1,5 @@
 import { useState, useMemo, useCallback } from 'react';
-import type { PunishResult, PunishMove, SortOption, SortDirection } from '@/types/frameData';
-
-export interface SortConfig {
-  option: SortOption;
-  direction: SortDirection;
-}
-
-export interface FilterConfig {
-  guaranteed: boolean;
-  killMoves: boolean;
-  moveType: string;
-  minDamage: number;
-  maxDamage: number;
-}
+import type { PunishResult, PunishMove, SortOption, SortConfig, FilterConfig } from '@/types/frameData';
 
 export interface FlattenedResult {
   result: PunishResult;
@@ -113,7 +100,7 @@ export function useResultsData(results: PunishResult[]) {
     });
   }, [filteredResults, sortConfig]);
 
-  // ソート設定を変更
+  // ソート設定を変更 - 子コンポーネントに渡すため、useCallbackが必要
   const handleSort = useCallback((option: SortOption) => {
     setSortConfig(prev => ({
       option,
@@ -121,12 +108,12 @@ export function useResultsData(results: PunishResult[]) {
     }));
   }, []);
 
-  // フィルター設定を変更
+  // フィルター設定を変更 - 子コンポーネントに渡すため、useCallbackが必要
   const handleFilterChange = useCallback((key: keyof FilterConfig, value: string | boolean | number) => {
     setFilterConfig(prev => ({ ...prev, [key]: value }));
   }, []);
 
-  // ソートアイコンを取得
+  // ソートアイコンを取得 - 依存配列があり、頻繁に呼ばれる可能性があるため保持
   const getSortIcon = useCallback((option: SortOption) => {
     if (sortConfig.option !== option) return '↕️';
     return sortConfig.direction === 'asc' ? '↑' : '↓';

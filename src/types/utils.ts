@@ -415,7 +415,7 @@ export interface InfiniteScrollProps<T> {
   renderItem: (item: T, index: number) => React.ReactNode;
 }
 
-export interface FilterConfig<T> {
+export interface UtilsFilterConfig<T> {
   field: keyof T;
   operator: 'eq' | 'ne' | 'gt' | 'gte' | 'lt' | 'lte' | 'in' | 'nin' | 'contains' | 'startsWith' | 'endsWith';
   value: unknown;
@@ -450,8 +450,8 @@ export interface DataTableProps<T> {
   sortConfig?: UtilsSortConfig<T>;
   onSortChange?: (sortConfig: UtilsSortConfig<T>) => void;
   filterable?: boolean;
-  filters?: FilterConfig<T>[];
-  onFiltersChange?: (filters: FilterConfig<T>[]) => void;
+  filters?: UtilsFilterConfig<T>[];
+  onFiltersChange?: (filters: UtilsFilterConfig<T>[]) => void;
   pagination?: UtilsPaginationConfig;
   onPaginationChange?: (pagination: UtilsPaginationConfig) => void;
   actions?: Array<{
