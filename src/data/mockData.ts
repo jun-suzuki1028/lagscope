@@ -1,4 +1,5 @@
 import { Fighter } from '../types/frameData';
+import { GAME_MECHANICS } from '../lib/constants';
 
 export const mockFighters: Fighter[] = [
   {
@@ -111,7 +112,7 @@ export const mockFighters: Fighter[] = [
       shieldRegen: 0.07,
       shieldRegenDelay: 30,
       shieldStun: 0.8665,
-      shieldReleaseFrames: 11,
+      shieldReleaseFrames: GAME_MECHANICS.SHIELD_RELEASE_FRAMES,
       shieldGrabFrames: 6,
       outOfShieldOptions: [
         {
@@ -228,7 +229,7 @@ export const mockFighters: Fighter[] = [
       shieldRegen: 0.07,
       shieldRegenDelay: 30,
       shieldStun: 0.8665,
-      shieldReleaseFrames: 11,
+      shieldReleaseFrames: GAME_MECHANICS.SHIELD_RELEASE_FRAMES,
       shieldGrabFrames: 6,
       outOfShieldOptions: [
         {
@@ -345,7 +346,7 @@ export const mockFighters: Fighter[] = [
       shieldRegen: 0.07,
       shieldRegenDelay: 30,
       shieldStun: 0.8665,
-      shieldReleaseFrames: 11,
+      shieldReleaseFrames: GAME_MECHANICS.SHIELD_RELEASE_FRAMES,
       shieldGrabFrames: 6,
       outOfShieldOptions: [
         {

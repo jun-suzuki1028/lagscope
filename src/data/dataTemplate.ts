@@ -9,6 +9,7 @@ import {
   GameMechanics
 } from '../types/frameData';
 import { CharacterInfo } from './charactersRegistry';
+import { GAME_MECHANICS as GAME_CONSTANTS } from '../lib/constants';
 
 /**
  * 標準的な技テンプレート
@@ -407,7 +408,7 @@ export const DEFAULT_SHIELD_DATA: ShieldData = {
   shieldRegen: 0.07,
   shieldRegenDelay: 30,
   shieldStun: 0.8665,
-  shieldReleaseFrames: 11,
+  shieldReleaseFrames: GAME_CONSTANTS.SHIELD_RELEASE_FRAMES,
   shieldGrabFrames: 6,
   outOfShieldOptions: [
     {
