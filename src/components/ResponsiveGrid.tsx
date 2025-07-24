@@ -1,4 +1,4 @@
-import React from 'react';
+import { cn } from '@/utils/cn';
 
 interface ResponsiveGridProps {
   children: React.ReactNode;
@@ -38,7 +38,7 @@ const ResponsiveGrid: React.FC<ResponsiveGridProps> = ({
   };
 
   return (
-    <div className={`${getGridClasses()} ${className}`}>
+    <div className={cn(getGridClasses(), className)}>
       {children}
     </div>
   );
