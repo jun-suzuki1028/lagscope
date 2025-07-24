@@ -67,5 +67,15 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
+    // React 18のcreateRoot対応
+    environmentOptions: {
+      jsdom: {
+        resources: 'usable',
+      },
+    },
+    // レガシーレンダリング設定
+    env: {
+      RTL_SKIP_AUTO_CLEANUP: 'true',
+    },
   },
 })

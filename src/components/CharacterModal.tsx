@@ -66,8 +66,8 @@ export function CharacterModal({
       aria-modal="true"
       aria-labelledby="character-modal-title"
     >
-      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden mx-4">
-        <div className="flex items-center justify-between p-4 border-b">
+      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] mx-4 flex flex-col">
+        <div className="flex items-center justify-between p-4 border-b flex-shrink-0">
           <h2 id="character-modal-title" className="text-xl font-semibold">
             {title}
           </h2>
@@ -82,8 +82,8 @@ export function CharacterModal({
           </button>
         </div>
 
-        <div className="p-4 space-y-4">
-          <div className="relative">
+        <div className="p-4 space-y-4 flex-1 flex flex-col min-h-0">
+          <div className="relative flex-shrink-0">
             <input
               type="text"
               placeholder="キャラクターを検索..."
@@ -106,12 +106,12 @@ export function CharacterModal({
           </div>
 
           {multiSelect && selectedFighterIds.length > 0 && (
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-gray-600 flex-shrink-0">
               {selectedFighterIds.length}体のキャラクターが選択されています
             </div>
           )}
 
-          <div className="overflow-y-auto max-h-96">
+          <div className="overflow-y-auto flex-1 min-h-0">
             <CharacterGrid
               fighters={fighters}
               selectedFighterIds={selectedFighterIds}
@@ -121,7 +121,7 @@ export function CharacterModal({
           </div>
         </div>
 
-        <div className="flex justify-end gap-3 p-4 border-t bg-gray-50">
+        <div className="flex justify-end gap-3 p-4 border-t bg-gray-50 flex-shrink-0">
           <button
             onClick={onClose}
             className="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"

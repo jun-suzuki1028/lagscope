@@ -231,12 +231,22 @@ async function saveGeneratedData(fighters: Fighter[]): Promise<void> {
 /**
  * 品質レポートの生成
  */
+interface CharacterReport {
+  score: number;
+  completeness: number;
+  accuracy: number;
+  issues: string[];
+  moveCount: number;
+  requiredMoves: string[];
+  missingMoves: string[];
+}
+
 async function generateQualityReport(fighters: Fighter[]): Promise<{
   overallScore: number;
   completeness: number;
   accuracy: number;
   totalIssues: number;
-  characterReports: Map<string, any>;
+  characterReports: Map<string, CharacterReport>;
 }> {
   const report = {
     overallScore: 0,

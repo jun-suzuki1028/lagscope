@@ -400,6 +400,14 @@ export interface SortConfig {
   direction: SortDirection;
 }
 
+export interface FilterConfig {
+  guaranteed: boolean;
+  killMoves: boolean;
+  moveType: string;
+  minDamage: number;
+  maxDamage: number;
+}
+
 export interface PaginationConfig {
   page: number;
   limit: number;
