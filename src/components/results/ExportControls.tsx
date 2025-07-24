@@ -1,4 +1,4 @@
-import { memo, useState, useCallback } from 'react';
+import { memo, useState } from 'react';
 import type { FlattenedResult } from '@/hooks/useResultsData';
 import ExportModal from '../ExportModal';
 import { cn } from '@/utils/cn';
@@ -22,13 +22,13 @@ const ExportControls = memo<ExportControlsProps>(({
 }) => {
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
 
-  const handleOpenExportModal = useCallback(() => {
+  const handleOpenExportModal = () => {
     setIsExportModalOpen(true);
-  }, []);
+  };
 
-  const handleCloseExportModal = useCallback(() => {
+  const handleCloseExportModal = () => {
     setIsExportModalOpen(false);
-  }, []);
+  };
 
 
   return (

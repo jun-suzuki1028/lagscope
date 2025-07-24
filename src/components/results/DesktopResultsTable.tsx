@@ -1,7 +1,8 @@
-import { memo, useCallback } from 'react';
-import type { SortOption } from '@/types/frameData';
-import type { FlattenedResult, SortConfig } from '@/hooks/useResultsData';
+import { memo } from 'react';
+import type { SortOption, SortConfig } from '@/types/frameData';
+import type { FlattenedResult } from '@/hooks/useResultsData';
 import { cn } from '@/utils/cn';
+import { formatMethod, formatMoveType } from '@/utils/formatters';
 
 interface DesktopResultsTableProps {
   data: FlattenedResult[];
@@ -28,33 +29,6 @@ const DesktopResultsTable = memo<DesktopResultsTableProps>(({
   isLoading = false,
   className = '' 
 }) => {
-  const formatMethod = useCallback((method: string) => {
-    const methodMap: Record<string, string> = {
-      normal: '通常',
-      out_of_shield: 'ガード解除',
-      guard_cancel_jump: 'ガーキャン空中攻撃',
-      guard_cancel_grab: 'ガーキャン掴み',
-      guard_cancel_up_b: 'ガーキャン上B',
-      guard_cancel_up_smash: 'ガーキャン上スマ',
-      guard_cancel_nair: 'ガーキャン空N',
-      guard_cancel_up_tilt: 'ガーキャン上強',
-      perfect_shield: 'ジャストシールド',
-      roll_away: '回避(離脱)',
-      roll_behind: '回避(後ろ)',
-      spot_dodge: 'その場回避',
-    };
-    return methodMap[method] || method;
-  }, []);
-
-  const formatMoveType = useCallback((type: string) => {
-    const typeMap: Record<string, string> = {
-      normal: '通常技',
-      special: '必殺技',
-      grab: '掴み',
-      throw: '投げ',
-    };
-    return typeMap[type] || type;
-  }, []);
 
   if (isLoading) {
     return (
