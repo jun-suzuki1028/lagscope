@@ -9,6 +9,9 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
     css: true,
+    // React 18のcreateRootでの問題を防ぐ
+    clearMocks: true,
+    restoreMocks: true,
     exclude: [
       '**/node_modules/**',
       '**/dist/**',
@@ -20,31 +23,34 @@ export default defineConfig({
     testTimeout: process.env.CI ? 30000 : 5000,
     hookTimeout: process.env.CI ? 30000 : 5000,
     teardownTimeout: process.env.CI ? 20000 : 1000,
-    // 並列実行設定（全環境でシーケンシャル実行）
-    fileParallelism: false,
+    // React 18 createRootエラー解決のための完全シーケンシャル設定
     pool: 'forks',
     poolOptions: {
       forks: {
         singleFork: true,
-        maxForks: 1,
-        minForks: 1,
         isolate: true,
       },
     },
-    // テスト実行の完全な分離
+    // 一度に1つのテストファイルだけを実行
+    fileParallelism: false,
+    maxConcurrency: 1,
     isolate: true,
     // CI環境でのDOM安定性向上
     env: {
       JSDOM_QUIET: process.env.CI ? 'true' : 'false',
       NODE_ENV: 'test',
     },
-    // jsdom オプション（CI環境では安全なオプション）
+    // jsdom オプション（createRootエラー解決）
     environmentOptions: {
       jsdom: {
-        resources: process.env.CI ? 'usable' : 'usable',
-        runScripts: process.env.CI ? 'outside-only' : 'dangerously',
+        resources: 'usable',
+        runScripts: 'dangerously',
         pretendToBeVisual: true,
         url: 'http://localhost:3000',
+        // React 18のcreateRoot用のDOMコンテナを確実に設定
+        html: '<!DOCTYPE html><html><head></head><body><div id="root"></div></body></html>',
+        contentType: 'text/html',
+        userAgent: 'Mozilla/5.0 (jsdom)',
       },
     },
     // Unhandled errorの扱いをより適切に設定
@@ -56,14 +62,13 @@ export default defineConfig({
     passWithNoTests: true,
     // カスタムreporter設定でunhandled errorを完全に隠す
     reporters: process.env.CI ? ['basic'] : ['default'],
-    // 全環境でのリソース制限（安定性向上）
-    maxConcurrency: 1,
     // ファイルウォッチャーを無効化
     watch: false,
-    // テスト実行順序を決定論的にする
+    // テスト実行順序を決定論的にし、各テストを完全に分離
     sequence: {
       shuffle: false,
       concurrent: false,
+      setupTimeout: 10000,
     },
   },
   resolve: {

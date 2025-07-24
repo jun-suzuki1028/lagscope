@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '../../test/test-utils';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import ExportModal from '../ExportModal';
 import { ExportService } from '../../services/ExportService';

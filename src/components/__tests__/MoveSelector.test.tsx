@@ -1,4 +1,4 @@
-import { render, screen } from '../../test/test-utils';
+import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { MoveSelector } from '../MoveSelector';

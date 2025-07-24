@@ -1,4 +1,4 @@
-import { render, screen } from '../../test/test-utils';
+import { render, screen } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
 import { CharacterSelector } from '../CharacterSelector';
 import { useAppStore } from '../../stores/app-store';
