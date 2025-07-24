@@ -175,7 +175,7 @@ describe('全キャラクターフレームデータ生成', () => {
     const stats: FrameDataStats = {
       totalFighters: fighters.length,
       totalMoves,
-      lastUpdated: new Date().toISOString(),
+      lastUpdated: '2024-12-20T00:00:00.000Z', // スマブラSP最終アップデート日
       version: '1.0.0',
       gameVersion: 'v13.0.1',
       dataSource: 'Generated Template + Adjustments',

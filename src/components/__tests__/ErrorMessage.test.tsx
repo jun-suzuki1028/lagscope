@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '../../test/test-utils';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
 import { ErrorMessage } from '../ErrorMessage';
 

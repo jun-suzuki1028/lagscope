@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '../../test/test-utils';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import OptionsPanel from '../OptionsPanel';
 import { useAppStore } from "../../stores/app-store";
