@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Fighter } from '../types/frameData';
 import { CharacterGrid } from './CharacterGrid';
 
@@ -26,10 +26,35 @@ export function CharacterModal({
   onSearchChange,
 }: CharacterModalProps) {
   const [internalSearchTerm, setInternalSearchTerm] = useState(searchTerm);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     setInternalSearchTerm(searchTerm);
   }, [searchTerm]);
+
+  // モーダル開閉時のフォーカス管理
+  useEffect(() => {
+    if (isOpen) {
+      // モーダルが開いた時：現在のフォーカスを保存し、モーダル内にフォーカス
+      previousFocusRef.current = document.activeElement as HTMLElement;
+      
+      // モーダル内の最初のフォーカス可能要素にフォーカス
+      setTimeout(() => {
+        const modal = modalRef.current;
+        if (modal) {
+          const firstFocusable = modal.querySelector(
+            'input, button, select, textarea, [tabindex]:not([tabindex="-1"])'
+          ) as HTMLElement;
+          firstFocusable?.focus();
+        }
+      }, 0);
+    } else if (previousFocusRef.current) {
+      // モーダルが閉じた時：元の要素にフォーカスを戻す
+      previousFocusRef.current.focus();
+      previousFocusRef.current = null;
+    }
+  }, [isOpen]);
 
   const handleSearchChange = (value: string) => {
     setInternalSearchTerm(value);
@@ -46,11 +71,31 @@ export function CharacterModal({
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       onClose();
+      return;
     }
-    // Tab キーでのフォーカス制御を追加（フォーカストラップ）
-    if (e.key === 'Tab' && e.shiftKey) {
-      // Shift+Tab の場合の逆方向フォーカス制御は
-      // より複雑な実装が必要だが、基本的なEscapeキー対応を優先
+    
+    // フォーカストラップの実装
+    if (e.key === 'Tab') {
+      const modal = e.currentTarget as HTMLElement;
+      const focusableElements = modal.querySelectorAll(
+        'button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements[0] as HTMLElement;
+      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+      
+      if (e.shiftKey) {
+        // Shift+Tab: 逆方向
+        if (document.activeElement === firstElement) {
+          lastElement?.focus();
+          e.preventDefault();
+        }
+      } else {
+        // Tab: 順方向
+        if (document.activeElement === lastElement) {
+          firstElement?.focus();
+          e.preventDefault();
+        }
+      }
     }
   };
 
@@ -64,6 +109,7 @@ export function CharacterModal({
 
   return (
     <div
+      ref={modalRef}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
       onClick={handleOverlayClick}
       onKeyDown={handleKeyDown}
