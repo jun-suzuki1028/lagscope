@@ -2,6 +2,7 @@ import { memo } from 'react';
 import type { FlattenedResult } from '@/hooks/useResultsData';
 import { cn } from '@/utils/cn';
 import { formatMethod, formatMoveType } from '@/utils/formatters';
+import { ListStateDisplay } from '../StateDisplay';
 
 interface MobileResultsListProps {
   data: FlattenedResult[];
@@ -21,26 +22,18 @@ const MobileResultsList = memo<MobileResultsListProps>(({
   isLoading = false,
   className = '' 
 }) => {
-
-  if (isLoading) {
-    return (
-      <div className={cn('flex justify-center items-center py-8', className)}>
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-      </div>
-    );
-  }
-
-  if (data.length === 0) {
-    return (
-      <div className={cn('text-center py-8 text-gray-500', className)}>
-        条件に一致する結果がありません
-      </div>
-    );
-  }
-
   return (
-    <div className={cn('space-y-3', className)}>
-      {data.map(({ result, move, key }) => (
+    <ListStateDisplay
+      isLoading={isLoading}
+      error={null}
+      items={data}
+      emptyMessage="条件に一致する結果がありません"
+      loadingMessage="計算結果を生成中..."
+      className={className}
+    >
+      {(results) => (
+        <div className={cn('space-y-3', className)}>
+      {results.map(({ result, move, key }) => (
         <div key={key} className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
           {/* キャラクター情報 */}
           <div className="flex items-center mb-3">
@@ -119,7 +112,9 @@ const MobileResultsList = memo<MobileResultsListProps>(({
           )}
         </div>
       ))}
-    </div>
+        </div>
+      )}
+    </ListStateDisplay>
   );
 });
 
