@@ -32,18 +32,13 @@ if (!window.matchMedia) {
 // React 18対応: DOM環境の適切な初期化
 beforeEach(() => {
   // DOMの基本構造を確保
-  if (typeof document !== 'undefined') {
+  if (typeof document !== 'undefined' && document.body) {
     document.body.innerHTML = '';
     
-    // ルート要素が存在することを確認
-    if (!document.documentElement) {
-      const html = document.createElement('html');
-      const head = document.createElement('head');
-      const body = document.createElement('body');
-      html.appendChild(head);
-      html.appendChild(body);
-      document.replaceChild(html, document.documentElement);
-    }
+    // jsdomでのルート要素作成
+    const testContainer = document.createElement('div');
+    testContainer.id = 'test-container';
+    document.body.appendChild(testContainer);
   }
 });
 
