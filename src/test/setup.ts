@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { afterEach, beforeEach } from 'vitest'
+import { afterEach, beforeEach, vi } from 'vitest'
 import { cleanup, configure } from '@testing-library/react'
 import { 
   initializeMetrics, 
@@ -7,6 +7,12 @@ import {
   finalizeMetrics, 
   logMetrics 
 } from './metrics'
+import {
+  initializeTimerManager,
+  clearTrackedTimers,
+  restoreTimerManager,
+  logTimerStatus
+} from './timer-manager'
 
 /**
  * React 18テスト環境の統一設定
@@ -35,6 +41,33 @@ const debugLog = (message: string, ...args: unknown[]): void => {
 };
 
 debugLog('Setting up React 18 compatible test environment');
+
+// React act()警告の詳細制御
+if (typeof global !== 'undefined') {
+  // React 18設定をglobalに適用
+  Object.assign(global, REACT_18_TEST_CONFIG);
+  
+  // console.error の React警告フィルタリング
+  // eslint-disable-next-line no-console
+  const originalError = console.error;
+  // eslint-disable-next-line no-console
+  console.error = (...args: unknown[]) => {
+    const message = String(args[0] || '');
+    
+    // React act()関連の警告を抑制
+    const isReactActWarning = 
+      message.includes('Warning: An update to') ||
+      message.includes('inside a test was not wrapped in act') ||
+      message.includes('When testing, code that causes React state updates') ||
+      message.includes('act(...)')
+    
+    if (isReactActWarning && !process.env.DEBUG_REACT_WARNINGS) {
+      return; // 警告を抑制
+    }
+    
+    originalError.apply(console, args);
+  };
+}
 
 /**
  * React 18設定をglobalとglobalThisの両方に適用
@@ -115,6 +148,19 @@ if (typeof window !== 'undefined') {
     };
   }
 
+  // confirm/alert/prompt のテスト用モック
+  if (!window.confirm) {
+    window.confirm = vi.fn(() => true); // デフォルトでOKを返す
+  }
+  
+  if (!window.alert) {
+    window.alert = vi.fn();
+  }
+  
+  if (!window.prompt) {
+    window.prompt = vi.fn(() => null);
+  }
+
   // getComputedStyle のモック（jsdomの制限を回避）
   // 既存の実装を上書きして強制的にモックを適用
   Object.defineProperty(window, 'getComputedStyle', {
@@ -162,21 +208,34 @@ if (typeof window !== 'undefined') {
 
 /**
  * テストコンテナを安全に作成する
- * setAttribute失敗時の自動フォールバック機能付き
+ * React 18 createRoot対応の完全なDOM要素を作成
  */
 const createTestContainer = (): HTMLDivElement => {
   const container = document.createElement('div');
   
+  // 基本属性を設定
+  container.id = 'test-root';
+  
   try {
     container.setAttribute('data-testid', 'test-root');
-    container.id = 'test-root';
+    container.setAttribute('role', 'main');
+    container.setAttribute('aria-label', 'Test container');
     debugLog('Test container created successfully with attributes');
   } catch (error) {
     // setAttributeが失敗した場合は直接プロパティを設定
-    (container as Element & { dataset: Record<string, string> }).dataset = { testid: 'test-root' };
-    container.id = 'test-root';
+    Object.assign(container, {
+      'data-testid': 'test-root',
+      role: 'main',
+      'aria-label': 'Test container'
+    });
     debugLog('Fallback: Test container created using direct property assignment', error);
   }
+  
+  // DOM要素として確実に認識されるよう明示的にプロパティを設定
+  Object.defineProperty(container, 'nodeType', {
+    value: Node.ELEMENT_NODE,
+    writable: false
+  });
   
   return container;
 };
@@ -245,32 +304,28 @@ beforeEach(() => {
   initializeMetrics();
   debugLog('Test metrics initialized');
   
+  // タイマー管理システム初期化
+  initializeTimerManager();
+  debugLog('Timer management initialized');
+  
   if (typeof document !== 'undefined') {
     initializeDOMEnvironment();
   }
 });
 
 /**
- * タイマーとイベントリスナーの全クリア
- * メモリリーク防止のための包括的なクリーンアップ
+ * グローバル状態のクリーンアップ
+ * タイマーとイベントリスナーの効率的なクリア
  */
 const clearGlobalState = (): void => {
   if (typeof window === 'undefined') return;
 
   try {
-    // すべてのタイマーをクリア
-    const highestTimeoutId = setTimeout(() => {}, 0) as unknown as number;
-    for (let i = 0; i < highestTimeoutId; i++) {
-      clearTimeout(i);
-    }
+    // 追跡中のタイマーを効率的にクリア
+    clearTrackedTimers();
     
-    const highestIntervalId = setInterval(() => {}, 1000) as unknown as number;
-    clearInterval(highestIntervalId); // 作成したintervalをすぐにクリア
-    for (let i = 0; i < highestIntervalId; i++) {
-      clearInterval(i);
-    }
-    
-    debugLog(`Cleared ${highestTimeoutId} timeouts and ${highestIntervalId} intervals`);
+    // タイマー状況をログ出力（デバッグ時）
+    logTimerStatus();
     
     // グローバルイベントリスナーをクリア
     if (window.removeEventListener) {
@@ -314,6 +369,11 @@ afterEach(async () => {
     // グローバルな状態をリセット
     clearGlobalState();
   }
+  
+  // タイマー管理システムの復元（テストスイート終了時のみ）
+  // 通常のテスト間では追跡クリアのみ実行
+  restoreTimerManager();
+  debugLog('Timer management restored');
   
   // メモリクリーンアップのための待機時間
   await new Promise(resolve => setTimeout(resolve, 0));

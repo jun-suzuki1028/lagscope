@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from '../../test/test-utils';
 import { vi } from 'vitest';
 import { ErrorBoundary } from '../ErrorBoundary';
 

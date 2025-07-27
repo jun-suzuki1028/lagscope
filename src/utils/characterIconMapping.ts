@@ -108,7 +108,20 @@ export const CHARACTER_ICON_MAPPING: Record<string, string> = {
 };
 
 /**
- * キャラクターIDからアイコンURLを取得
+ * WebP対応の画像フォーマット検出
+ */
+function supportsWebP(): boolean {
+  if (typeof window === 'undefined') return false;
+  
+  const canvas = document.createElement('canvas');
+  canvas.width = 1;
+  canvas.height = 1;
+  
+  return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+}
+
+/**
+ * キャラクターIDからアイコンURLを取得（WebP対応）
  * @param characterId キャラクターID
  * @returns アイコンのURL、DLCで未実装の場合はプレースホルダー
  */
@@ -125,7 +138,29 @@ export function getCharacterIconUrl(characterId: string): string | null {
     return '/lagscope/icons/fighters/dlc_placeholder.svg';
   }
   
-  return `/lagscope/icons/fighters/${iconFileName}`;
+  // WebP対応ブラウザの場合はWebPを優先、フォールバックでPNG
+  const useWebP = supportsWebP();
+  const baseFileName = iconFileName.replace('.png', '');
+  const extension = useWebP ? '.webp' : '.png';
+  
+  return `/lagscope/icons/fighters/${baseFileName}${extension}`;
+}
+
+/**
+ * 画像の遅延読み込み用のsrcset生成
+ * @param characterId キャラクターID
+ * @returns srcset文字列（WebP + PNGフォールバック）
+ */
+export function getCharacterIconSrcSet(characterId: string): string | null {
+  const iconFileName = CHARACTER_ICON_MAPPING[characterId];
+  
+  if (!iconFileName) return null;
+  
+  const baseFileName = iconFileName.replace('.png', '');
+  const webpUrl = `/lagscope/icons/fighters/${baseFileName}.webp`;
+  const pngUrl = `/lagscope/icons/fighters/${baseFileName}.png`;
+  
+  return `${webpUrl} 1x, ${pngUrl} 1x`;
 }
 
 /**

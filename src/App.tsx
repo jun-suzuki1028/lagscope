@@ -10,6 +10,7 @@ import { useAppStore } from './stores/app-store';
 import { useDebounce } from './hooks/useDebounce';
 import { mockFighters } from './data/mockData';
 import { calculatePunishOptions } from './services/calculationService';
+import { analytics } from './services/AnalyticsService';
 import type { PunishResult } from './types/frameData';
 
 const App = memo(() => {
@@ -34,6 +35,16 @@ const App = memo(() => {
     [attackingFighter, selectedMove, defendingFighter]
   );
 
+  // 初期化時にページロード時間を記録
+  useEffect(() => {
+    const loadTime = performance.now();
+    analytics.trackPerformance({
+      load_time: loadTime,
+      calculation_time: 0,
+      render_time: 0,
+    });
+  }, []);
+
   // 生成されたフレームデータの読み込み - useCallback で最適化
   const loadFighterData = useCallback(async () => {
     setFightersData({
@@ -48,10 +59,24 @@ const App = memo(() => {
       const baseUrl = import.meta.env.BASE_URL || '/';
       const dataUrl = `${baseUrl}data/all-fighters.json`.replace(/\/+/g, '/');
       
-      // eslint-disable-next-line no-console
-      console.log('Attempting to fetch data from:', dataUrl);
+      if (import.meta.env.DEV) {
+        // eslint-disable-next-line no-console
+        console.log('Attempting to fetch data from:', dataUrl);
+      }
       
-      const response = await fetch(dataUrl);
+      // セキュリティ強化: タイムアウトとヘッダー設定
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10秒タイムアウト
+      
+      const response = await fetch(dataUrl, {
+        signal: controller.signal,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      clearTimeout(timeoutId);
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText} - URL: ${dataUrl}`);
       }
@@ -62,8 +87,10 @@ const App = memo(() => {
         throw new Error('Invalid fighter data: expected non-empty array');
       }
       
-      // eslint-disable-next-line no-console
-      console.log(`Successfully loaded ${fighters.length} fighters`);
+      if (import.meta.env.DEV) {
+        // eslint-disable-next-line no-console
+        console.log(`Successfully loaded ${fighters.length} fighters`);
+      }
       
       setFightersData({
         data: fighters,
@@ -74,8 +101,17 @@ const App = memo(() => {
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error('Failed to load fighter data:', error);
-      // eslint-disable-next-line no-console
-      console.warn('Falling back to mock data');
+      
+      // AbortErrorの場合は特別な処理
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        // eslint-disable-next-line no-console
+        console.error('Data fetch timed out');
+      }
+      
+      if (import.meta.env.DEV) {
+        // eslint-disable-next-line no-console
+        console.warn('Falling back to mock data');
+      }
       
       // フォールバック: モックデータを使用
       setFightersData({
@@ -103,17 +139,45 @@ const App = memo(() => {
     setCalculationError(null);
 
     try {
+      const startTime = performance.now();
       const results = await calculatePunishOptions({
         attackingFighter,
         attackMove: selectedMove,
         defendingFighters: [defendingFighter],
         options: debouncedCalculationOptions,
       });
+      const calculationTime = performance.now() - startTime;
+      
+      // 分析データの記録
+      analytics.trackCalculation(
+        attackingFighter.id,
+        defendingFighter.id,
+        results.reduce((sum, result) => sum + result.punishingMoves.length, 0),
+        calculationTime
+      );
+      
+      analytics.trackPerformance({
+        load_time: 0,
+        calculation_time: calculationTime,
+        render_time: 0,
+      });
+      
       setCalculationResults(results);
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Auto calculation failed:', error);
-      setCalculationError('計算中にエラーが発生しました');
+      if (import.meta.env.DEV) {
+        // eslint-disable-next-line no-console
+        console.error('Auto calculation failed:', error);
+      }
+      
+      // より具体的なエラーメッセージ
+      const errorMessage = error instanceof Error 
+        ? `計算エラー: ${error.message}` 
+        : '計算中に不明なエラーが発生しました';
+      
+      // エラー分析データの記録
+      analytics.trackError(errorMessage, 'calculation');
+      
+      setCalculationError(errorMessage);
       setCalculationResults([]);
     } finally {
       setIsCalculating(false);
