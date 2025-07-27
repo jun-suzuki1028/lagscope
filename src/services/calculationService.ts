@@ -9,6 +9,27 @@ export interface CalculationRequest {
 }
 
 /**
+ * 計算リクエストのバリデーション
+ */
+function validateCalculationRequestInternal(request: CalculationRequest): void {
+  if (!request.attackingFighter?.id) {
+    throw new Error('攻撃側キャラクターが選択されていません');
+  }
+  
+  if (!request.attackMove?.id) {
+    throw new Error('攻撃技が選択されていません');
+  }
+  
+  if (!Array.isArray(request.defendingFighters) || request.defendingFighters.length === 0) {
+    throw new Error('防御側キャラクターが選択されていません');
+  }
+  
+  if (!request.options) {
+    throw new Error('計算オプションが設定されていません');
+  }
+}
+
+/**
  * 効率化されたフィルタリング関数
  * 早期リターンによりパフォーマンスを最適化
  */
@@ -50,6 +71,9 @@ function sortPunishMoves(moves: PunishMove[]): PunishMove[] {
 }
 
 export async function calculatePunishOptions(request: CalculationRequest): Promise<PunishResult[]> {
+  // 入力バリデーション
+  validateCalculationRequestInternal(request);
+  
   const { attackMove, defendingFighters, options } = request;
   const results: PunishResult[] = [];
 

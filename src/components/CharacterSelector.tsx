@@ -2,6 +2,7 @@ import { useMemo, useState, useId, memo, useCallback } from 'react';
 import { useAppStore } from '../stores/app-store';
 import { Fighter } from '../types/frameData';
 import { usePerformanceMonitor } from '../hooks/usePerformanceMonitor';
+import { analytics } from '../services/AnalyticsService';
 import { CharacterModal } from './CharacterModal';
 import { SkeletonScreen } from './SkeletonScreen';
 import { CharacterSelectionFallback } from './FallbackUI';
@@ -65,6 +66,9 @@ export const CharacterSelector = memo(function CharacterSelector({
     } else {
       setDefendingFighter(fighter);
     }
+    
+    // キャラクター選択の分析データ記録
+    analytics.trackCharacterUsage(fighter.id, type);
     
     onCharacterSelect?.(fighter);
   }, [type, setAttackingFighter, setDefendingFighter, onCharacterSelect]);
