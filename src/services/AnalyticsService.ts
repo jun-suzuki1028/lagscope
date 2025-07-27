@@ -314,25 +314,36 @@ LagScopeの改善のため、匿名の使用統計を収集させていただけ
 }
 
 // ダミー実装（テスト環境用）
-const createDummyAnalytics = (): AnalyticsService => ({
-  trackEvent: () => {},
-  trackPerformance: () => {},
-  trackCharacterUsage: () => {},
-  trackCalculation: () => {},
-  trackError: () => {},
-  trackFeatureUsage: () => {},
-  getUsageStats: () => ({
-    characters_selected: {},
-    most_used_features: [],
-    calculation_count: 0,
-    session_duration: 0,
-    error_count: 0,
-  }),
-  flush: () => {},
-  setEnabled: () => {},
-  isAnalyticsEnabled: () => false,
-  endSession: () => {},
-} as AnalyticsService);
+const createDummyAnalytics = (): AnalyticsService => {
+  return {
+    trackEvent: () => {},
+    trackPerformance: () => {},
+    trackCharacterUsage: () => {},
+    trackCalculation: () => {},
+    trackError: () => {},
+    trackFeatureUsage: () => {},
+    getUsageStats: () => ({
+      characters_selected: {},
+      most_used_features: [],
+      calculation_count: 0,
+      session_duration: 0,
+      error_count: 0,
+    }),
+    flush: () => {},
+    setEnabled: () => {},
+    isAnalyticsEnabled: () => false,
+    endSession: () => {},
+    // プライベートプロパティもダミー値で満たす
+    sessionId: 'dummy-session',
+    events: [],
+    isEnabled: false,
+    startTime: Date.now(),
+    generateSessionId: () => 'dummy-session',
+    checkUserConsent: () => {},
+    requestConsent: () => {},
+    sendEvents: () => Promise.resolve(),
+  } as unknown as AnalyticsService;
+};
 
 // シングルトンインスタンス（テスト環境では安全なダミー実装を使用）
 let analytics: AnalyticsService;
@@ -362,7 +373,7 @@ try {
 export { analytics };
 
 // ページ離脱時のイベント送信（テスト環境では無効化）
-if (typeof window !== 'undefined' && analytics.isAnalyticsEnabled) {
+if (typeof window !== 'undefined' && analytics.isAnalyticsEnabled()) {
   window.addEventListener('beforeunload', () => {
     analytics.endSession();
   });
