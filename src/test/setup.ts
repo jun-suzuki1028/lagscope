@@ -1,5 +1,11 @@
 import '@testing-library/jest-dom'
 import { afterEach, beforeEach, vi } from 'vitest'
+
+// AnalyticsServiceが呼ばれる前にconfirmをモック化
+if (typeof window !== 'undefined' && !window.confirm) {
+  window.confirm = vi.fn(() => true);
+}
+
 import { cleanup, configure } from '@testing-library/react'
 import { 
   initializeMetrics, 

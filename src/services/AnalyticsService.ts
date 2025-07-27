@@ -41,6 +41,12 @@ export class AnalyticsService {
    * ユーザー同意の確認
    */
   private checkUserConsent(): void {
+    // テスト環境やサーバーサイドでは実行しない
+    if (typeof window === 'undefined' || typeof localStorage === 'undefined' || !window.confirm) {
+      this.isEnabled = false;
+      return;
+    }
+
     const consent = localStorage.getItem('lagscope-analytics-consent');
     this.isEnabled = consent === 'true';
     
@@ -53,6 +59,12 @@ export class AnalyticsService {
    * ユーザーに分析データ収集の同意を求める
    */
   private requestConsent(): void {
+    // テスト環境やconfirm関数が利用できない場合はスキップ
+    if (typeof window === 'undefined' || typeof localStorage === 'undefined' || !window.confirm) {
+      this.isEnabled = false;
+      return;
+    }
+
     const message = `
 LagScopeの改善のため、匿名の使用統計を収集させていただけますか？
 
@@ -301,11 +313,56 @@ LagScopeの改善のため、匿名の使用統計を収集させていただけ
   }
 }
 
-// シングルトンインスタンス
-export const analytics = new AnalyticsService();
+// ダミー実装（テスト環境用）
+const createDummyAnalytics = (): AnalyticsService => ({
+  trackEvent: () => {},
+  trackPerformance: () => {},
+  trackCharacterUsage: () => {},
+  trackCalculation: () => {},
+  trackError: () => {},
+  trackFeatureUsage: () => {},
+  getUsageStats: () => ({
+    characters_selected: {},
+    most_used_features: [],
+    calculation_count: 0,
+    session_duration: 0,
+    error_count: 0,
+  }),
+  flush: () => {},
+  setEnabled: () => {},
+  isAnalyticsEnabled: () => false,
+  endSession: () => {},
+} as AnalyticsService);
 
-// ページ離脱時のイベント送信
-if (typeof window !== 'undefined') {
+// シングルトンインスタンス（テスト環境では安全なダミー実装を使用）
+let analytics: AnalyticsService;
+
+// テスト環境チェック（Vitestやjsdom環境）
+const isTestEnvironment = typeof process !== 'undefined' && 
+  (process.env.NODE_ENV === 'test' || process.env.VITEST === 'true');
+
+try {
+  // テスト環境では常にダミー実装を使用
+  if (isTestEnvironment || typeof window === 'undefined' || typeof localStorage === 'undefined') {
+    analytics = createDummyAnalytics();
+  } else {
+    // confirm関数の存在確認
+    const hasConfirm = 'confirm' in window && typeof (window as any).confirm === 'function';
+    if (!hasConfirm) {
+      analytics = createDummyAnalytics();
+    } else {
+      analytics = new AnalyticsService();
+    }
+  }
+} catch (error) {
+  // テスト環境やconfirm未実装環境では安全なダミーを使用
+  analytics = createDummyAnalytics();
+}
+
+export { analytics };
+
+// ページ離脱時のイベント送信（テスト環境では無効化）
+if (typeof window !== 'undefined' && analytics.isAnalyticsEnabled) {
   window.addEventListener('beforeunload', () => {
     analytics.endSession();
   });
