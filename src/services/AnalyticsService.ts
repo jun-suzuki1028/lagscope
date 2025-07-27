@@ -358,14 +358,14 @@ try {
     analytics = createDummyAnalytics();
   } else {
     // confirm関数の存在確認
-    const hasConfirm = 'confirm' in window && typeof (window as any).confirm === 'function';
+    const hasConfirm = 'confirm' in window && typeof window.confirm === 'function';
     if (!hasConfirm) {
       analytics = createDummyAnalytics();
     } else {
       analytics = new AnalyticsService();
     }
   }
-} catch (error) {
+} catch {
   // テスト環境やconfirm未実装環境では安全なダミーを使用
   analytics = createDummyAnalytics();
 }
